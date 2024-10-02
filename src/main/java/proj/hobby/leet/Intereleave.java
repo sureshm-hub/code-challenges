@@ -96,19 +96,19 @@ public class Intereleave {
         }
 
         if (i1 == s1.length) {
-            boolean result = ((s2[i2] == s3[i3]) && isInterleave(s1, i1, s2,i2+1, s3,i3+1));
+            boolean result = ((s2[i2] == s3[i3]) && isInterleaveHashMap(s1, i1, s2,i2+1, s3,i3+1));
             cache.put(key, result);
             return result;
         }
 
         if (i2 == s2.length) {
-            boolean result = ((s1[i1] == s3[i3]) && isInterleave(s1, i1+1, s2,i2, s3,i3+1));
+            boolean result = ((s1[i1] == s3[i3]) && isInterleaveHashMap(s1, i1+1, s2,i2, s3,i3+1));
             cache.put(key, result);
             return result;
         }
 
-        boolean result =  ((s1[i1] == s3[i3]) && isInterleave(s1, i1+1, s2,i2, s3,i3+1)) ||
-                ((s2[i2] == s3[i3]) && isInterleave(s1, i1, s2,i2+1, s3,i3+1));
+        boolean result =  ((s1[i1] == s3[i3]) && isInterleaveHashMap(s1, i1+1, s2,i2, s3,i3+1)) ||
+                ((s2[i2] == s3[i3]) && isInterleaveHashMap(s1, i1, s2,i2+1, s3,i3+1));
         cache.put(key, result);
         return result;
     }
