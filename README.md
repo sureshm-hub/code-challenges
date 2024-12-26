@@ -41,8 +41,7 @@ No External Test Files: Tests are integrated into the main class for simplicity.
 📝 Sample Problem Template
 Here’s a quick look at the problem-solving format:
 
-```
-java
+```java
 
 // Problem: Reverse a Linked List or a Link to web
 // Given a linked list, reverse its nodes.  
