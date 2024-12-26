@@ -41,8 +41,9 @@ No External Test Files: Tests are integrated into the main class for simplicity.
 📝 Sample Problem Template
 Here’s a quick look at the problem-solving format:
 
+```
 java
-Copy code
+
 // Problem: Reverse a Linked List or a Link to web
 // Given a linked list, reverse its nodes.  
 // Input: Head of linked list  
@@ -57,6 +58,7 @@ class Solution {
         // Test cases and results  
     }  
 }  
+```
 
 📈 Topics Covered
 Data Structures: Arrays, Linked Lists, Trees, Graphs
