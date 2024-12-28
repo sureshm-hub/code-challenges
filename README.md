@@ -82,11 +82,10 @@ class Solution {
 - **Algorithms**: Sorting, Searching, Dynamic Programming  
 - **Complexity Analysis**: Time and Space Trade-offs  
 - **Real-World Scenarios**: Practical problem-solving insights  
-
-  https://leetcode.com/studyplan/leetcode-75/
-  https://leetcode.com/studyplan/top-interview-150/
-  https://blog.algomaster.io/p/15-leetcode-patterns
-  https://blog.algomaster.io/p/20-patterns-to-master-dynamic-programming
+- https://leetcode.com/studyplan/leetcode-75/
+- https://leetcode.com/studyplan/top-interview-150/
+- https://blog.algomaster.io/p/15-leetcode-patterns
+- https://blog.algomaster.io/p/20-patterns-to-master-dynamic-programming
 
 ---
 
