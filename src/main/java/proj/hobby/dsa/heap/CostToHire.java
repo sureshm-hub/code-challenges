@@ -31,16 +31,14 @@ public class CostToHire {
             int[] selected = minHeap.poll();
             totalCost += selected[0];
             int next = -1;
-            if(selected[1] <= left && (right-left) > 1){
+            if(selected[1] <= left && left + 1 < costs.length && left + 1 < right){
                 next = ++left;
-            }
-            if(selected[1] >= right && (right-left) > 1) {
+            } else if(selected[1] >= right && right - 1 >= 0 && right -1 > left) {
                 next = --right;
             }
             if(next != -1) {
                 minHeap.offer(new int[]{costs[next],next});
             }
-            // System.out.println("selcted, left, right, k, next: ["+selected[1]+", "+selected[0]+"], "+left+", "+right+", "+k+", "+next);
             k--;
         }
         return totalCost;
