@@ -1,5 +1,5 @@
 
-# 📚 Collection of Algorithm Problems, Solutions, and Analysis
+# 📚 A Collection of Algorithm Problems, Solutions, and Analysis
 
 Welcome to my curated repository of algorithmic challenges and solutions! 🚀
 
