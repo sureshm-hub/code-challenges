@@ -8,8 +8,8 @@ import java.util.*;
  * Approach: Priority Queue to hold candidates in minHeap
  *
  * Complexity:
- *  Time: N(Log N) - N Candidates
- *  Space: O(N) - N candidates to
+ *  Time: O(N Log N + K log N) - N Candidates & K rounds
+ *  Space: O(N) - store N candidates in min heap
  *
  */
 public class CostToHire {
