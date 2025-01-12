@@ -1,10 +1,16 @@
-package proj.hobby.dsa;
+package proj.hobby.dsa.backtracking;
 
 import java.util.*;
 
 /**
  *
  * https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/
+ *
+ * Approach: BFS as well as DFS
+ *
+ * Complexity:
+ *  Time: O(4^N) - N is digits length and 4 is worst case for digits 7, 9
+ *  Space: O(N * 4^N) - N is digits length and 4 is worst case branching factor
  *
  */
 
