@@ -5,7 +5,8 @@ import java.util.*;
 /**
  * https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/?envType=study-plan-v2&envId=leetcode-75
  *
- * Approach: Greedy Algorithm
+ * Approach: We use Greedy Algorithm to solve this problem. When we sort by end point we maximize the number of overlaps
+ * that one arrow can burst.
  *
  * Complexity:
  *  Time: O(NLogN) - for sorting points
