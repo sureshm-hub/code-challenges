@@ -1,14 +1,14 @@
-package proj.hobby.dsa;
+package proj.hobby.dsa.maps;
 
 import java.util.*;
 
 /**
 
- Problem:
-    https://leetcode.com/problems/two-sum/
+ Problem: https://leetcode.com/problems/two-sum/
 
  Clarifying Q's:
      - is the input  array sorted? N
+            - if Y we can use two pointers to save space
      - can the nums in array be nagative? Y
      - can the nums in array be repeated? Y
 
@@ -17,27 +17,21 @@ import java.util.*;
      output: {1,3}  -- indices
 
  HashMap:
+    use a hashmap to store the index for each number
+    Complexity:
+        Time: O(N)
+        Space: O(N)
 
  2 Pointer:
-     use a hashmap to store the index for each number
-     sort the numbers
-     initialize 2 pointers to START, END
-     loop till START  index > END index
-         if sum of 2 pointers > target reduce the index of END pointer by 1
-         else if sum of 2 pointers < target increase the index of START pointer by 1
-         else return indexes of START, END from hashmap
-
- Performance:
-     O(N) + O(N log N) + O(N)
-     ~ O (N log N)
-
+     only works if nums are already sorted
+     Performance:
+         Time: O(N)
+         Space: O(1)
  **/
 public class TwoSum {
 
-
     public int[] twoSum(int[] nums, int target) {
-        // Note:  when numbers repeat put overrides previous index
-        // hence HashMap of <Integer, Integer> won't work
+        // indexMap values are List<Integers> to allow duplicates
         Map<Integer, List<Integer>> indexMap = new HashMap<>();
         for(int i =0 ; i < nums.length; i++) {
             List<Integer> indexList = indexMap.get(nums[i]);
@@ -49,6 +43,28 @@ public class TwoSum {
                 indexList.add(i);
             }
         }
+
+        for(int i = 0 ; i < nums.length; i++) {
+            List<Integer> indexList = indexMap.get(target-nums[i]);
+            if(indexList != null) {
+                for(int index : indexList) {
+                    if(index != i) {
+                        return new int[]{i, index};
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Note: only works if nums are already sorted
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int[] twoSumConstantSpace(int[] nums, int target) {
         Arrays.sort(nums);
         int startIndex = 0;
         int endIndex = nums.length-1;
@@ -59,16 +75,7 @@ public class TwoSum {
             } else if (currentTarget > target) {
                 endIndex--;
             } else {
-                int[] solution = new int[2];
-                if(nums[startIndex] == nums[endIndex]) {
-                    List<Integer> indexList = indexMap.get(nums[startIndex]);
-                    solution[0] = indexList.get(0);
-                    solution[1] = indexList.get(1);
-                } else {
-                    solution[0] = indexMap.get(nums[startIndex]).get(0);
-                    solution[1] = indexMap.get(nums[endIndex]).get(0);
-                }
-                return solution;
+                return new int[] {startIndex, endIndex};
             }
         }
         return null;

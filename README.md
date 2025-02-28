@@ -86,6 +86,8 @@ class Solution {
 - https://leetcode.com/studyplan/top-interview-150/
 - https://blog.algomaster.io/p/15-leetcode-patterns
 - https://blog.algomaster.io/p/20-patterns-to-master-dynamic-programming
+- https://leetcode.com/problemset/?difficulty=MEDIUM&page=1
+- https://leetcode.com/studyplan/top-sql-50/
 
 ---
 
