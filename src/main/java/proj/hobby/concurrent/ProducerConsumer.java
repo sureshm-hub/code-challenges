@@ -30,7 +30,7 @@ class Producer implements Runnable {
     private BlockingQueue<Message> queue;
 
     public Producer(BlockingQueue<Message> queue) {
-		 this.queue = queue;
+        this.queue = queue;
     }
 
     public void run() {
@@ -53,7 +53,7 @@ class Consumer implements Runnable {
     private BlockingQueue<Message> queue;
 
     public Consumer(BlockingQueue<Message> queue) {
-		this.queue = queue;
+        this.queue = queue;
     }
 
     public void run() {
