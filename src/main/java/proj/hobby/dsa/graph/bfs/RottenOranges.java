@@ -1,4 +1,4 @@
-package proj.hobby.dsa.grpah.bfs;
+package proj.hobby.dsa.graph.bfs;
 
 import java.util.*;
 
