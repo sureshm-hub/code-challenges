@@ -34,10 +34,12 @@ import java.util.*;
  * Complexity:
  *  Time:
  *      BFS: O(N*26*L)  - L is word length, N is wordList size
- *      DFS: O(K) - K is graph size
+ *      DFS: O(P*D) - P paths of D size each, In worst case scenario (a dense graph with many equal length paths), this  can be exponential
  *
  *  Space:
- *      O(N) for graph and distance maps, O(P*D) for storing P paths of D size each
+ *      O(N) for distance map
+ *      O(N*L) for typical english like dictionary and O(N^2)  wort case if every word is connected to every other word
+ *      O(P*D) for storing P paths of D size each
  */
 public class WordLadderII {
 
