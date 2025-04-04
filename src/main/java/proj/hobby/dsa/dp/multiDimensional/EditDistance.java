@@ -84,6 +84,8 @@ public class EditDistance {
         System.out.println("Edit Distance: "+ed.minDistance("horse", "ros"));
         System.out.println("Edit Distance: "+ed.minDistance("horse", "orse"));
         System.out.println("Edit Distance: "+ed.minDistance("intention", "execution"));
+        System.out.println("Edit Distance A AA AAA AAAA -> AAAA AAA AA A: "+ed.minDistance("A AA AAA AAAA", "AAAA AAA AA A"));
+        System.out.println("Edit Distance AAAA AAA AA A -> A AA AAA AAAA: "+ed.minDistance("AAAA AAA AA A", "A AA AAA AAAA"));
 
         System.out.println("======= Recursion");
         System.out.println("Edit Distance: "+ed.minDistanceRecursion("", "h"));
