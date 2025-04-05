@@ -1,6 +1,7 @@
 package proj.hobby.dsa;
 
 import org.junit.jupiter.api.Test;
+import proj.hobby.dsa.heap.TopKElements;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +14,7 @@ class TopKElementsTest {
     @Test
     public void testTopK(){
         TopKElements elem = new TopKElements();
-        int[] result = elem.frequentK(new int[]{1,2,1,2,1,2,3,3,3,3,3,4,4,5,6},3);
+        int[] result = elem.topKFrequent(new int[]{1,2,1,2,1,2,3,3,3,3,3,4,4,5,6},3);
         List<Integer> resultList = Arrays.stream(result).boxed().toList();
         assertEquals(3, resultList.size());
         assertTrue(resultList.contains(1));
