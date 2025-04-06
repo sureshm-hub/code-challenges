@@ -9,7 +9,7 @@ import java.util.*;
  *
  * Complexity:
  *  Time: O(NlogK) - N is total number of elements and K is number of Lists
- *  Space: O(N) total number of elements
+ *  Space: O(N) + O(K) - N - total number of elements & K - for Heap
  *
  * EdgeCases:
  *  handle multiple lists having same val
@@ -17,23 +17,19 @@ import java.util.*;
 public class MergeKLists {
 
     public ListNode mergeKLists(ListNode[] lists) {
-        Map<Integer, List<ListNode>> numMap = new HashMap<>(); // track ListNode next
-        PriorityQueue<Integer> heap = new PriorityQueue<>(); // min Heap
+        PriorityQueue<ListNode> heap = new PriorityQueue<>(Comparator.comparingInt(a -> a.val)); // min Heap
 
         for(int i =0 ; i < lists.length; i++) {
             if(lists[i] != null)  {
-                List<ListNode> indexList = numMap.getOrDefault(lists[i].val, new ArrayList<>());
-                indexList.add(lists[i]);
-                numMap.put(lists[i].val, indexList);// track the ListNode with min element
-                heap.offer(lists[i].val);
+                heap.offer(lists[i]);
             }
         }
         ListNode head = null;
         ListNode prev = null;
         while(!heap.isEmpty()) {
 
-            int min  = heap.poll();
-            ListNode curr = new ListNode(min);
+            ListNode min  = heap.poll();
+            ListNode curr = new ListNode(min.val);
             if(head == null) {
                 head = curr; // track head
             }
@@ -42,17 +38,9 @@ public class MergeKLists {
             }
             prev = curr;
 
-            List<ListNode> indexList = numMap.get(min);
-            ListNode index = indexList.remove(indexList.size() - 1);
-            ListNode temp = index.next;
-            if(temp != null){
-                List<ListNode> nextIndexList = numMap.getOrDefault(temp.val, new ArrayList<>());
-                nextIndexList.add(temp);
-                numMap.put(temp.val, nextIndexList);
-                heap.offer(temp.val);
-            }
-            if(numMap.get(min).isEmpty()) {
-                numMap.remove(min);// clear numMap
+            ListNode nextNode = min.next;
+            if(nextNode != null){
+                heap.offer(nextNode);
             }
         }
         return head;
