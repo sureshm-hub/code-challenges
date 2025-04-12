@@ -3,6 +3,14 @@ package proj.hobby.dsa.binaryTree.bst;
 import proj.hobby.dsa.binaryTree.TreeNode;
 import proj.hobby.dsa.binaryTree.TreeNodeUtil;
 
+/**
+ * https://leetcode.com/problems/delete-node-in-a-bst/description/
+ *
+ * Complexity:
+ *  Time: O(logN)
+ *  Space: O(1)
+ *
+ */
 public class DeleteNodeBst {
 
     public TreeNode deleteNode(TreeNode root, int key) {
@@ -23,7 +31,7 @@ public class DeleteNodeBst {
             }
 
             //case 3: node has both left and right child
-            TreeNode minLarge = findMin(root.right); // find min Large for found Node
+            TreeNode minLarge = findMinLarge(root.right); // find min Large for found Node
             root.val = minLarge.val; // replace current val with successor val
             root.right = deleteNode(root.right, minLarge.val); //delete successor
 
@@ -31,7 +39,7 @@ public class DeleteNodeBst {
         return root;
     }
 
-    private TreeNode findMin(TreeNode node) {
+    private TreeNode findMinLarge(TreeNode node) {
         while(node.left != null) {
             node = node.left;
         }
@@ -57,6 +65,13 @@ public class DeleteNodeBst {
         root = TreeNode.fromArray(new Integer[]{5,3,6,2,4,null,7});
         root = dnb.deleteNode(root, 45);
         System.out.println("After Deletion of 45");
+        TreeNodeUtil.printTree(root);
+
+        System.out.println("Delete Operation # 4: Deletion of 14 - min large with right node");
+        root = TreeNode.fromArray(new Integer[]{19,13,26,2,14,null,27,-5,3,10,17,null, null, null, null, null, null,7,11,15, 18, null, null, null, null, null, 16});
+        TreeNodeUtil.printTree(root);
+        root = dnb.deleteNode(root, 14);
+        System.out.println("After Deletion of 14");
         TreeNodeUtil.printTree(root);
     }
 
