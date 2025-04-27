@@ -1,4 +1,4 @@
-This document maps **each program** to the **Java Standard API classes** and **specific methods** used.
+A mapping of **each program** to the **Java Standard API classes** and **specific methods** used.
 
 | Program/Class Name | Java API Used | Specific Methods / Usage |
 |:---|:---|:---|
@@ -58,3 +58,11 @@ This document maps **each program** to the **Java Standard API classes** and **s
 - Bit Manipulation solutions don't rely on standard libraries
 
 ---
+
+# Guidelines to get program right on first run:
+
+- variable names to align with data structures like heap, min, curr, next, temp
+- scope variable collisions
+- hashMap.putIfAbsent -> will return null for the first time
+- hashMap.compute  -> don't use beyond simple data types
+- priorityQueue.poll() 
