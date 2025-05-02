@@ -27,7 +27,7 @@
 6) Analyze Complexity
     - Time Complexity of all important steps
     - Space Complexity of all important steps
-    - mention trade-offs
+    - **Explain** trade-offs
 
 7) Handle Edge Cases
     - null, empty inputs
@@ -35,8 +35,10 @@
     - early exits
 
 8) Discuss Follow-Ups or Improvements
-    - anticipate interviewer follow-ups
-    - suggest improvements
+    - Anticipate interviewer follow-ups
+    - Suggest improvements & **Simplify**
+    - **Be Ready** to discuss scaling for large inputs (e.g., streaming lists from disk) or handling duplicate values.
+    - **Highlight** Leadership Principles  like **Deep Dive** eg: by explaining heap operations, **invent & simplify** eg: by proposing dummy node approach.
 
 ## Example Walkthrough (Two Sum)
 Clarify: “Can the array have duplicates? Should I return the first pair I find?”
