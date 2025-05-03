@@ -49,3 +49,6 @@ Implement: ...
 Complexity: “O(n) time for one pass, O(n) space for the hash map.”
 Edge Cases: “Empty array returns []. No solution returns [].”
 Follow-Up: “If we need all pairs, I’d modify it to collect multiple results.”
+
+## Complexity Guidelines
+For DFS - include recursion stack for space complexity

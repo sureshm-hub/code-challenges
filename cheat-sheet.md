@@ -64,5 +64,6 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
 - variable names to align with data structures like heap, min, curr, next, temp
 - scope variable collisions
 - hashMap.putIfAbsent -> will return null for the first time
+- hashMap.computeIfAbsent -> will return value retured by mapping function if absent or the  current value
 - hashMap.compute  -> don't use beyond simple data types
 - priorityQueue.poll() 
