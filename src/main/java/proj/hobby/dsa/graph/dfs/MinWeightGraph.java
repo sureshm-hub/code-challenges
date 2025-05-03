@@ -40,6 +40,7 @@ public class MinWeightGraph {
             Arrays.fill(row, Integer.MAX_VALUE);
         }
         minWeight[src][0] = 0;
+        //Arrays.stream(minWeight).forEach(x -> System.out.println(Arrays.toString(x)));
 
         while(!queue.isEmpty()) {
             int[] state = queue.poll();
@@ -59,6 +60,8 @@ public class MinWeightGraph {
                 }
             }
         }
+
+        //Arrays.stream(minWeight).forEach(x -> System.out.println(Arrays.toString(x)));
 
         //find min weight to dest with  at most k edges
         int result = Integer.MAX_VALUE;
