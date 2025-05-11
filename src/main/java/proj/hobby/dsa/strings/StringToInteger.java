@@ -13,78 +13,68 @@ package proj.hobby.dsa.strings;
 public class StringToInteger {
 
     public int myAtoi(String s) {
-        if(s == null || s.trim().isEmpty()) {
-            return 0; // early exit
-        }
 
-        s = s.trim(); // trim leading white spaces
-        char[] digits = s.toCharArray();
+        //input validation
+        if(s == null || s.trim().isEmpty()) return 0;
 
-        // default multiplier & starting digit for strings starting with + or -
-        int sign = 1;
-        int start = 0;
-        if(digits[0] == '+' || digits[0] == '-') {
-            start = 1;
-        }
-        if(digits[0] == '-') {
-            sign = -1;
-        }
+        char[] digits = s.trim().toCharArray();
 
-        // find digit's end in String
+        long result = 0; // for numbers not in Integer.MAX_VALUE or Integer.MIN_VALUE
+
+        int sign = digits[0] == '-' ? -1 : 1;
+        int start = (digits[0] == '-' || digits[0] == '+') ? 1 : 0;
         int end = start;
-        for(int i=start; i < digits.length; i++) {
-            if( digits[i] > '9' || digits[i] < '0') {
-                break;// digits should be in range 0 - 9
+        // find end
+        for(int i = start ; i < digits.length; i ++) {
+            if(digits[i] < '0' || digits[i] > '9') {
+                break;
             }
             end++;
         }
 
-        // optimize start to first non zero digit
-        for(int i = start ; i < end; i++ ) {
+        // adjust for 0
+        for(int i = start ; i < end ; i++) {
             if(digits[i] == '0') {
                 start++;
-            } else {
+            } else{
                 break;
             }
         }
 
-        // early exit if end-start is a very large number
-        if( end - start > 10) {
-            if(sign == 1) {
-                return Integer.MAX_VALUE;
-            } else {
+        // for large numbers we can return values early
+        if(end - start > 10) {
+            if(sign == -1) {
                 return Integer.MIN_VALUE;
+            } else {
+                return Integer.MAX_VALUE;
             }
         }
 
-        long resultL = 0L;
-        // least value digit on the right
-        for( int j = start; j < end; j++) {
-            int current = 0;
-            if( digits[j] > '9' || digits[j] < '0') {
-                break;// digits should be in range 0 - 9
+        for(int i = start; i < end; i ++) {
+            if(digits[i] < '0' || digits[i] > '9') {
+                break;
             }
-
-            resultL = resultL* 10 + (digits[j] - '0');
-
-            if(sign == 1 && resultL > Integer.MAX_VALUE) {
-                return Integer.MAX_VALUE;// boundary condition for MAX
-            }
-            if(sign == -1 && -resultL < Integer.MIN_VALUE) {
-                return  Integer.MIN_VALUE;// boundary condition for MIN
-            }
-
+            result = (result * 10) + (digits[i]  - '0');
         }
-        return (int) resultL * sign;
+
+        if(sign == -1 && sign * result < Integer.MIN_VALUE ) {
+            return Integer.MIN_VALUE;
+        } else if(sign == 1 && result > Integer.MAX_VALUE) {
+            return Integer.MAX_VALUE;
+        }
+
+        return (int)  (result * sign);
     }
 
     public static void main(String[] args) {
         StringToInteger s2i = new StringToInteger();
+        System.out.println(">> "+s2i.myAtoi("-2147483648"));
         System.out.println(">> "+s2i.myAtoi(null));
         System.out.println(">> "+s2i.myAtoi("   "));
         System.out.println(">> "+s2i.myAtoi("   123"));
         System.out.println(">> "+s2i.myAtoi("   +4123"));
         System.out.println(">> "+s2i.myAtoi("   -412"));
+        System.out.println(">> "+s2i.myAtoi("   -042"));
         System.out.println(">> "+s2i.myAtoi("   -412b5"));
         System.out.println(">> "+s2i.myAtoi("   -00000412b5"));
         System.out.println(">> "+s2i.myAtoi("   +00000412b5"));
