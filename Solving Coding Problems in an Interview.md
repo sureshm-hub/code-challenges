@@ -21,6 +21,9 @@
    
 5) Implement the solution
    - Write Clean and Functional Code
+     - Input Validation
+     - Variable naming 
+     - data structures
    - Use appropriate variable names
    - Test it verbally, keep communicating!
 
@@ -36,8 +39,8 @@
 
 8) Discuss Follow-Ups or Improvements
     - Anticipate interviewer follow-ups
-    - Suggest improvements & **Simplify**
-    - **Be Ready** to discuss scaling for large inputs (e.g., streaming lists from disk) or handling duplicate values.
+    - Suggest improvements like **Scaling** 
+      - **Be Ready** to discuss scaling for large inputs (e.g., streaming lists from disk) or handling duplicate values.
     - **Highlight** Leadership Principles  like **Deep Dive** eg: by explaining heap operations, **invent & simplify** eg: by proposing dummy node approach.
 
 ## Example Walkthrough (Two Sum)
@@ -52,3 +55,21 @@ Follow-Up: “If we need all pairs, I’d modify it to collect multiple results.
 
 ## Complexity Guidelines
 For DFS - include recursion stack for space complexity
+
+## solving coding problems in under 8 minutes
+Time Allocation (approximate):
+
+0:00–1:00: Clarify problem, restate, define API (1 min)
+1:00–2:00: Example test cases, edge cases (1 min)
+2:00–3:30: Propose basic solution, state complexity (1.5 min)
+3:30–5:30: Optimize solution, walk through test case (2 min)
+5:30–7:00: Write clean code, verbally test (1.5 min)
+7:00–8:00: Analyze complexity, handle edge cases, mention follow-ups (1 min)
+
+Key Tips for 8-Minute Success
+**Practice Conciseness**: Skip unnecessary details (e.g., don’t over-explain test cases).
+**Leverage Constraints**: For Two Sum II, the sorted array screams “two pointers” or “binary search.” Recognize patterns instantly.
+**Communicate Constantly**: Narrate every step briefly (e.g., “I’m using two pointers to exploit the sorted property”).
+**Prioritize Optimal Solution**: For Medium problems, brute force is rarely acceptable. Jump to the optimized approach if you recognize the pattern (e.g., two pointers for sorted arrays).
+**Mock Interviews**: Practice solving Medium problems in 6–8 minutes with a timer to build speed.
+**Pattern Recognition**: Memorize common patterns (e.g., two pointers, sliding window, hash maps) to skip the brute-force step.
