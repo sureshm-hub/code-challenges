@@ -77,7 +77,7 @@ class Solution {
 ---
 
 ## 📈 Topics Covered
-
+### Software 
 - **Data Structures**: Arrays, Linked Lists, Trees, Graphs
 - **Algorithms**: Sorting, Searching, Dynamic Programming
 - **Complexity Analysis**: Time and Space Trade-offs
@@ -87,7 +87,25 @@ class Solution {
 - https://blog.algomaster.io/p/15-leetcode-patterns
 - https://blog.algomaster.io/p/20-patterns-to-master-dynamic-programming
 - https://leetcode.com/problemset/?difficulty=MEDIUM&page=1
+### SQL
 - https://leetcode.com/studyplan/top-sql-50/
+- https://mode.com/sql-tutorial/sql-window-functions
+- datalemur.com
+- sqlbolt.com
+- https://www.hackerrank.com/domains/sql
+- https://www.stratascratch.com/
+- https://www.youtube.com/@AlexTheAnalyst/playlists
+- https://www.datainterview.com/
+### AI/ML
+https://github.com/NirDiamant/GenAI_Agents
+https://github.com/Shubhamsaboo/awesome-llm-apps
+https://github.com/modelcontextprotocol/servers
+https://github.com/aishwaryanr/awesome-generative-ai-guide
+https://github.com/Hannibal046/Awesome-LLM
+https://github.com/armankhondker/awesome-ai-ml-resources
+https://github.com/patchy631/awesome-mcp-servers
+https://github.com/patchy631/ai-engineering-hub/tree/main
+
 
 ---
 
