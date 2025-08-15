@@ -1,4 +1,4 @@
-package proj.hobby.google;
+package proj.hobby.dsa.dp.multiDimensional;
 
 public class MaxSquare {
 
