@@ -67,3 +67,79 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
 - hashMap.computeIfAbsent -> will return value returned by mapping function if absent or the  current value
 - hashMap.compute  -> don't use beyond simple data types
 - priorityQueue.poll() 
+
+# Problem wise Guidelines
+TwoSum:
+    primitive != null
+    Integer index = indexMap.get(target-nums[i]);
+    if( index != null
+
+Valid Parenthesis:
+    check if stack is empty before pop()  when char is closing
+    LinkedList as Stack
+
+Longest Substring Without Repeating Characters:
+    multi variable initialization in Java
+    check window.contains(s);// not the whole string but just the next char
+
+3Sum:
+    guard conditions before incrementing ex: while(left < right && nums[left] == nums[left+1]) left++; vs while(lnums[left] == nums[left+1] && eft < right) left++;
+    result.add(Arrays.asList(nums[i], nums[left], nums[right]));   vs    result.add(new ArrayList<>(new int[]{nums[i], nums[left], nums[right]}));
+    code commenting
+
+
+Binary Search:
+    Handle null/empty arrays.
+    Use while (lo <= hi) instead of while (nums[lo] < nums[hi]).
+    Compute mid as lo + (hi - lo) / 2 to prevent overflow.
+    Keep bounds updates tight (mid ± 1).
+
+Group Anagrams/MajorityElement:
+    compute/ComputeIfAbsent
+    use _ for lambda if not using the param
+
+LinkedLists:
+    to return head of a new LinkedList start with Dummy LinkedListNode
+    - Saves iteration
+    when using multiple LinkedLists once reached the end of the LinkedList use the other one as temp and link once
+
+Best Time to Buy and Sell Stock:
+    Two pointer: find min and max profit simultaneously
+
+LevelOrderTraversal:
+    Use Queue/LinkedList for LeveL Order Traversal & size
+    LinkedList: poll/offer
+
+Set Matrix Zeroes:
+    don't use marker
+    using marker as 'X' for int will result in assigning 88
+    use firstRowZero, firstColZero flags & row 1/col 1 for setting zero
+
+TopKFrequent Elems:
+    Java Collection Usage
+    PriorityQueue - How does poll() help in TopKFrequent
+
+WordSearch:
+    BFS is great when you're finding shortest paths or any path, but not when you need path integrity, like in this problem.
+    DFS with backtracking is the go-to approach for "find this sequence of steps" problems. 
+
+BFS:
+    LinkedList Queue Size
+    While & for
+    check new grid corrdinates in bounds
+    Use Marker to avoid back loops
+
+Collections:
+    use collection.isEmpty() instead of collection.size() != 0
+    Integer.MAX_VALUE
+    Integer.MIN_VALUE
+
+Product Except Self
+    Prefix & Suffix productx (rolling products)
+
+Water Search
+    Rule of Thumb
+    If you’re finding nearest X from multiple sources, use multi-source BFS from X.
+
+Matrix
+    Spiral/MinOps/Rotate
