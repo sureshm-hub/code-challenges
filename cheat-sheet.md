@@ -142,4 +142,4 @@ Water Search
     If you’re finding nearest X from multiple sources, use multi-source BFS from X.
 
 Matrix
-    Spiral/MinOps/Rotate
+    Spiral/MinOpsForY/Rotate
