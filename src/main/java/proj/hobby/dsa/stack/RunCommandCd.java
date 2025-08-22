@@ -1,10 +1,10 @@
-package proj.hobby.meta;
+package proj.hobby.dsa.stack;
 
 import java.util.Stack;
 
 /**
  * Implement cd (change directory) Command from a Given cwd (current working Directory)
- *
+ * Interview: Meta
  */
 public class RunCommandCd {
 
