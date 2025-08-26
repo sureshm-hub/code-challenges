@@ -1,4 +1,4 @@
-package proj.hobby.dsa.slidingWindow;
+package proj.hobby.dsa.twopointer;
 
 /**
  * https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/?envType=study-plan-v2&envId=leetcode-75

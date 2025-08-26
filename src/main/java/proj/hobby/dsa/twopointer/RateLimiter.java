@@ -1,4 +1,4 @@
-package proj.hobby.dsa.slidingWindow;
+package proj.hobby.dsa.twopointer;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;

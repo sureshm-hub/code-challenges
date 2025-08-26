@@ -1,4 +1,4 @@
-package proj.hobby.dsa.slidingWindow;
+package proj.hobby.dsa.twopointer;
 
 /**
  * https://leetcode.com/problems/trapping-rain-water/description/
