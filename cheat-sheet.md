@@ -133,6 +133,17 @@ Collections:
     use collection.isEmpty() instead of collection.size() != 0
     Integer.MAX_VALUE
     Integer.MIN_VALUE
+    Arrays.asList(nums[1])
+    Adding array elements to List
+        List<List<Integer>> result = new ArrayList<>()
+        ...
+        result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+
+Math
+    for big constants use _ like long MAX = 1000_000_000;
+    option A will result in overflow error, while B will not
+        option A: long curr = 1000_000_000+1000_000_000+1000_000_000+1000_000_000;// nums[i]+nums[j]+nums[k]+nums[l];
+        option B: long curr = nums[i];  curr += nums[j]; curr += nums[k]; curr += +nums[l];
 
 Product Except Self
     Prefix & Suffix productx (rolling products)
