@@ -138,6 +138,16 @@ Collections:
         List<List<Integer>> result = new ArrayList<>()
         ...
         result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+    ArrayList to Array: 
+        list.stream().mapToInt(Integer::intValue).toArray();
+        List<int[]> to int[][]: list.stream().mapToInt(Integer::intValue).toArray(int[][]::new);
+        Object[] list.toArray()
+        String[] list.toArray(new String[0])
+        String[] list.toArray(new String[list.size()])
+
+Arrays
+    Arrays.sort(int[])
+    Arrays.sort(object[], Comparator.comparingInt( x -> x_to_int))
 
 Math
     for big constants use _ like long MAX = 1000_000_000;
@@ -145,6 +155,11 @@ Math
         option A: long curr = 1000_000_000+1000_000_000+1000_000_000+1000_000_000;// nums[i]+nums[j]+nums[k]+nums[l];
         option B: long curr = nums[i];  curr += nums[j]; curr += nums[k]; curr += +nums[l];
 
+Binary Search
+    if nums[0] in sorted array is > target then "end" will be "-1"
+    if nums[length-1] in sorted array is < target then "start" will be "length"
+    mid calculation (start+end)/2 can cuse overflow
+    
 Product Except Self
     Prefix & Suffix productx (rolling products)
 
@@ -154,3 +169,12 @@ Water Search
 
 Matrix
     Spiral/MinOpsForY/Rotate
+
+String
+    convert String to int --> Integer.parseInt(String s) or Integer.valueOf(String s)
+    str.substring()
+    Integer.toString(i)
+    int digit = chat - '0'
+
+StringBuilder
+    stringBuilder.reverse()
