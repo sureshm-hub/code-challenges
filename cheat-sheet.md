@@ -149,6 +149,9 @@ Arrays
     Arrays.sort(int[])
     Arrays.sort(object[], Comparator.comparingInt( x -> x_to_int))
 
+System:
+    System.arraycopy(from,start,to,start,fromLength)
+
 Math
     for big constants use _ like long MAX = 1000_000_000;
     option A will result in overflow error, while B will not
@@ -175,6 +178,12 @@ String
     str.substring()
     Integer.toString(i)
     int digit = chat - '0'
+    ",a,b,c,".split(",") -> splits into 4. First is "" while the last is c 
+    \ is an escape charater (special meaning to compiler) where as / is a regular char
 
 StringBuilder
     stringBuilder.reverse()
+
+java compilation:
+    Sentence ends with ;
+    
