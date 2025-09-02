@@ -115,12 +115,12 @@ Set Matrix Zeroes:
     using marker as 'X' for int will result in assigning 88
     use firstRowZero, firstColZero flags & row 1/col 1 for setting zero
 
-TopKFrequent Elems:
+TopKFrequent Elements:
     Java Collection Usage
     PriorityQueue - How does poll() help in TopKFrequent
 
 WordSearch:
-    BFS is great when you're finding shortest paths or any path, but not when you need path integrity, like in this problem.
+    BFS is great when you're finding the shortest paths or any path, but not when you need path integrity, like in this problem.
     DFS with backtracking is the go-to approach for "find this sequence of steps" problems. 
 
 BFS:
@@ -148,6 +148,8 @@ Collections:
 Arrays
     Arrays.sort(int[])
     Arrays.sort(object[], Comparator.comparingInt( x -> x_to_int))
+    Arrays.fill -> char[] zeros = new char[n]; Arrays.fill(zeros, '0');
+    
 
 System:
     System.arraycopy(from,start,to,start,fromLength)
@@ -157,14 +159,16 @@ Math
     option A will result in overflow error, while B will not
         option A: long curr = 1000_000_000+1000_000_000+1000_000_000+1000_000_000;// nums[i]+nums[j]+nums[k]+nums[l];
         option B: long curr = nums[i];  curr += nums[j]; curr += nums[k]; curr += +nums[l];
+    Math.pow(2,n)  -> returns double cast for int
+    1 << n -> left shift is same as 2 power n and directly int
 
 Binary Search
     if nums[0] in sorted array is > target then "end" will be "-1"
     if nums[length-1] in sorted array is < target then "start" will be "length"
-    mid calculation (start+end)/2 can cuse overflow
+    mid-calculation (start+end)/2 can cuse overflow
     
 Product Except Self
-    Prefix & Suffix productx (rolling products)
+    Prefix & Suffix product x (rolling products)
 
 Water Search
     Rule of Thumb
@@ -179,11 +183,26 @@ String
     Integer.toString(i)
     int digit = chat - '0'
     ",a,b,c,".split(",") -> splits into 4. First is "" while the last is c 
-    \ is an escape charater (special meaning to compiler) where as / is a regular char
+    \ is an escape character (special meaning to compiler) whereas / is a regular char
 
 StringBuilder
     stringBuilder.reverse()
 
 java compilation:
     Sentence ends with ;
+    variable naming 
+        set -> seen/visibinted 
+        list -> path/track
+        String -> start/end
+
+java operators:
+    ternary: simple return and assignment
+
+Bitwise:
+    1 << n -> left shift same as 2^n
+    i >>> 1 -> unsigned right shift
+    num1 ^ num2 -> bitwise xor that results in int 
+
+DFS:
+    Early Pruning exit after finding result -> GraySequence
     
