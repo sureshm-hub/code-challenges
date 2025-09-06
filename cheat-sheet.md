@@ -149,7 +149,9 @@ Arrays
     Arrays.sort(int[])
     Arrays.sort(object[], Comparator.comparingInt( x -> x_to_int))
     Arrays.fill -> char[] zeros = new char[n]; Arrays.fill(zeros, '0');
-    
+    No GenerArrays in Java only raw types.
+        @SuppressWarnings("unchecked")
+        List<String> [][] = new ArrayList[M][N]
 
 System:
     System.arraycopy(from,start,to,start,fromLength)
@@ -206,3 +208,5 @@ Bitwise:
 DFS:
     Early Pruning exit after finding result -> GraySequence
     
+BinarySearchTree(BST):
+    inorder traversal of a BST is increasing -> RecoverBST
