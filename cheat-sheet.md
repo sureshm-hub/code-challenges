@@ -144,6 +144,7 @@ Collections:
         Object[] list.toArray()
         String[] list.toArray(new String[0])
         String[] list.toArray(new String[list.size()])
+    Collections.reverse(List) // inplace & no method on List; only works on List not on Queue or Set
 
 Arrays
     Arrays.sort(int[])
@@ -210,3 +211,14 @@ DFS:
     
 BinarySearchTree(BST):
     inorder traversal of a BST is increasing -> RecoverBST
+
+program struct:
+    Use member/class variables to reduce method params
+    Avoid compile errors
+        Type name;
+        meth(param1, param2, ...)
+        public Type meth(T1 p1, T2 p2, ...) {
+            return Type
+        }
+    No copy & pasting -> introduces more compile errors 
+    focus on the cursor to catch mistakes as typed
