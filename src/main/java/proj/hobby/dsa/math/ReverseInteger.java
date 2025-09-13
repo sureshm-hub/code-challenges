@@ -36,6 +36,5 @@ public class ReverseInteger {
         }
         rev += x;
         return sign * rev;
-
     }
 }

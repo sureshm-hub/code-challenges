@@ -61,12 +61,18 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
 
 # Guidelines to get program right on first run:
 
-- variable names to align with data structures like heap, min, curr, next, temp
+- variable names to align with data structures like heap, min, curr, next, temp, prev, down, downRight -> namingSmell single char alphas, prefix 1, 2 etc
 - scope variable collisions
-- hashMap.putIfAbsent -> will return null for the first time
-- hashMap.computeIfAbsent -> will return value returned by mapping function if absent or the  current value
-- hashMap.compute  -> don't use beyond simple data types
-- priorityQueue.poll() 
+- program struct:
+  Use member/class variables to reduce method params
+  Avoid compile errors
+  Type name;
+  meth(param1, param2, ...)
+  public Type meth(T1 p1, T2 p2, ...) {
+  return Type
+  }
+  No copy & pasting -> introduces more compile errors
+  focus on the cursor to catch mistakes as typed
 
 # Problem wise Guidelines
 TwoSum:
@@ -145,6 +151,16 @@ Collections:
         String[] list.toArray(new String[0])
         String[] list.toArray(new String[list.size()])
     Collections.reverse(List) // inplace & no method on List; only works on List not on Queue or Set
+    Map: 
+        hashMap.getOrDefault(key, default)
+        hashMap.putIfAbsent -> will return null for the first time
+        hashMap.computeIfAbsent -> will return value returned by mapping function if absent or the  current value
+        hashMap.compute  -> don't use beyond simple data types
+    SortedMap/Set:
+        TreeMap is sorted Map
+        TreeSet is sorted set
+    PriorityQueu:
+        priorityQueue.poll()
 
 Arrays
     Arrays.sort(int[])
@@ -155,7 +171,7 @@ Arrays
         List<String> [][] = new ArrayList[M][N]
 
 System:
-    System.arraycopy(from,start,to,start,fromLength)
+    System.arraycopy(from,fromStart,to,toStart,fromLength)
 
 Math
     for big constants use _ like long MAX = 1000_000_000;
@@ -191,6 +207,10 @@ String
 StringBuilder
     stringBuilder.reverse()
 
+Character
+    Character.toLowerCase(c)
+    check if character is alphanumeric -> Character.isDigit(c) || Character.isLetter(c)
+
 java compilation:
     Sentence ends with ;
     variable naming 
@@ -199,7 +219,14 @@ java compilation:
         String -> start/end
 
 java operators:
-    ternary: simple return and assignment
+    simple ternary return 
+    return and assignment
+        return memo[i][partsLeft] = res;
+        store res in memo[i][partsLeft] and return the result
+    assignment as expression
+        int x;
+        System.out.println(x = 42);
+
 
 Bitwise:
     1 << n -> left shift same as 2^n
@@ -212,13 +239,62 @@ DFS:
 BinarySearchTree(BST):
     inorder traversal of a BST is increasing -> RecoverBST
 
-program struct:
-    Use member/class variables to reduce method params
-    Avoid compile errors
-        Type name;
-        meth(param1, param2, ...)
-        public Type meth(T1 p1, T2 p2, ...) {
-            return Type
-        }
-    No copy & pasting -> introduces more compile errors 
-    focus on the cursor to catch mistakes as typed
+Competition/Interview Programming Techniques:
+
+DP Cheat Sheet:
+    1. Identify the Problem Type
+        Is it asking for min/max value (triangle min path, coin change)?
+        Is it about counting ways (climbing stairs, unique paths)?
+        Is it about true/false decisions (subset sum, word break)?
+        - Knowing which bucket helps you anticipate the recurrence.
+    2. Define the State (subproblem)
+        Ask: What’s the smallest unit of the problem I can solve, and how do I index it?
+        Example (triangle min path): f(r, c) = min path sum from (r, c) to bottom.
+        Example (climbing stairs): f(n) = ways to reach step n.
+        Example (knapsack): f(i, w) = max value using first i items with capacity w.
+        - Rule of thumb: state = what changes across recursive calls/iterations.
+    3. Base Case(s)
+        Usually at the “edges” of input (last row, step 0, capacity 0).
+        Example: in triangle, last row: f(r, c) = tri[r][c].
+    4. Transition (recurrence)
+        How do you move from smaller subproblems to the bigger one?
+        Example (triangle):
+        f(r, c) = tri[r][c] + min(f(r+1, c), f(r+1, c+1))
+        Example (climb stairs):
+        f(n) = f(n-1) + f(n-2)
+    5. Memoization or Tabulation
+        Top-down (memo): recursive function + hashmap/array cache.
+        Bottom-up (tab): fill table iteratively (often easier to debug).
+        Optimize space if only last row/column matters.
+    6. Answer
+        Where is the “whole problem” answer?
+        Top-down: usually f(0,0) or f(n)
+        Bottom-up: often dp[0][0] or dp[n].
+    7. Complexity Check
+        Time = #states × work per state.
+        Space = memo/table size (can usually optimize).
+    Mini-Example: Triangle Min Path
+        * State: f(r, c) = min sum from (r, c)
+        * Base: f(last row, c) = tri[last][c]
+        * Transition: tri[r][c] + min(f(r+1,c), f(r+1,c+1))
+        * Answer: f(0,0)
+
+Two-Sum:
+    Need original indices: avoid raw sort.
+    check-then-insert to avoid self-pair bugs.
+    putIfAbsent vs overwrite: how to handle Duplicates
+    -> sorting is possible if you use sort by val & kee index    
+
+ZigZagConversion:
+    Row buffer optimization/Accumulator rows
+    Direction encoding & State compression
+
+Reverse Integer:
+    extract most significant PV using "divisor scaling" vs "modulo based" reversal
+
+String To Integer:
+    Edge case simplification
+
+
+
+
