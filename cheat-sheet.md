@@ -50,7 +50,42 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
 | MaxAreaOfIsland | Queue (LinkedList), HashSet | `offer()`, `poll()`, `add()`, `contains()` |
 
 ---
+# Problem wise notes:
 
+divide-two-integers:
+    is quotient negative?
+    long dividend & divisor
+    dividend > divisor
+        find largest multiple of divisor and reduce the dividend
+        add the multiple to quotient
+        use bit shift for multiplying by 2
+
+next-permutation:
+    - find pivot and swap with the smallest element greater than pivot
+    - reverse the suffix
+
+search-in-rotated-sorted-array:
+    - find sorted half and exclude or include it 
+
+find-first-and-last-position-of-element-in-sorted-array:
+    - find target and then search for first & last
+
+search-insert-position:
+    - [lo, hi) - exclude hi & start with hi = nums.length
+
+combination-sum:
+    skip duplicates at same level by sort & skip index with same value at the given depth
+
+Remove Duplicates from Sorted Array II:
+    Two-Pointer Write Index & Sliding Window
+    - One pointer iterates through the array (the “reader”).
+    - Another pointer marks the position in the array where the next valid element should be written (the “writer”).
+
+Search in Rotated Sorted Array II:
+    - reduce the bounds if(nums[lo] == nums[mid] && nums[mid] == nums[hi]) & continue from start
+    - at least left or right should be sorted  hence check  nums[lo] <= nums[mid] or nums[mid] <= nums[hi]
+
+---
 # Notes:
 - `Deque` usually backed by `ArrayDeque`
 - `Queue` is usually `LinkedList` unless explicitly a `PriorityQueue`
@@ -69,7 +104,7 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
   Type name;
   meth(param1, param2, ...)
   public Type meth(T1 p1, T2 p2, ...) {
-  return Type
+      return typeVar;
   }
   No copy & pasting -> introduces more compile errors
   focus on the cursor to catch mistakes as typed
@@ -92,7 +127,6 @@ Longest Substring Without Repeating Characters:
     guard conditions before incrementing ex: while(left < right && nums[left] == nums[left+1]) left++; vs while(lnums[left] == nums[left+1] && eft < right) left++;
     result.add(Arrays.asList(nums[i], nums[left], nums[right]));   vs    result.add(new ArrayList<>(new int[]{nums[i], nums[left], nums[right]}));
     code commenting
-
 
 Binary Search:
     Handle null/empty arrays.
@@ -129,63 +163,6 @@ WordSearch:
     BFS is great when you're finding the shortest paths or any path, but not when you need path integrity, like in this problem.
     DFS with backtracking is the go-to approach for "find this sequence of steps" problems. 
 
-BFS:
-    LinkedList Queue Size
-    While & for
-    check new grid corrdinates in bounds
-    Use Marker to avoid back loops
-
-Collections:
-    use collection.isEmpty() instead of collection.size() != 0
-    Integer.MAX_VALUE
-    Integer.MIN_VALUE
-    Arrays.asList(nums[1])
-    Adding array elements to List
-        List<List<Integer>> result = new ArrayList<>()
-        ...
-        result.add(Arrays.asList(nums[i], nums[left], nums[right]));
-    ArrayList to Array: 
-        list.stream().mapToInt(Integer::intValue).toArray();
-        List<int[]> to int[][]: list.stream().mapToInt(Integer::intValue).toArray(int[][]::new);
-        Object[] list.toArray()
-        String[] list.toArray(new String[0])
-        String[] list.toArray(new String[list.size()])
-    Collections.reverse(List) // inplace & no method on List; only works on List not on Queue or Set
-    Map: 
-        hashMap.getOrDefault(key, default)
-        hashMap.putIfAbsent -> will return null for the first time
-        hashMap.computeIfAbsent -> will return value returned by mapping function if absent or the  current value
-        hashMap.compute  -> don't use beyond simple data types
-    SortedMap/Set:
-        TreeMap is sorted Map
-        TreeSet is sorted set
-    PriorityQueu:
-        priorityQueue.poll()
-
-Arrays
-    Arrays.sort(int[])
-    Arrays.sort(object[], Comparator.comparingInt( x -> x_to_int))
-    Arrays.fill -> char[] zeros = new char[n]; Arrays.fill(zeros, '0');
-    No GenerArrays in Java only raw types.
-        @SuppressWarnings("unchecked")
-        List<String> [][] = new ArrayList[M][N]
-
-System:
-    System.arraycopy(from,fromStart,to,toStart,fromLength)
-
-Math
-    for big constants use _ like long MAX = 1000_000_000;
-    option A will result in overflow error, while B will not
-        option A: long curr = 1000_000_000+1000_000_000+1000_000_000+1000_000_000;// nums[i]+nums[j]+nums[k]+nums[l];
-        option B: long curr = nums[i];  curr += nums[j]; curr += nums[k]; curr += +nums[l];
-    Math.pow(2,n)  -> returns double cast for int
-    1 << n -> left shift is same as 2 power n and directly int
-
-Binary Search
-    if nums[0] in sorted array is > target then "end" will be "-1"
-    if nums[length-1] in sorted array is < target then "start" will be "length"
-    mid-calculation (start+end)/2 can cuse overflow
-    
 Product Except Self
     Prefix & Suffix product x (rolling products)
 
@@ -193,48 +170,70 @@ Water Search
     Rule of Thumb
     If you’re finding nearest X from multiple sources, use multi-source BFS from X.
 
-Matrix
-    Spiral/MinOpsForY/Rotate
+Two-Sum:
+    Need original indices: avoid raw sort.
+    check-then-insert to avoid self-pair bugs.
+    putIfAbsent vs overwrite: how to handle Duplicates
+    -> sorting is possible if you use sort by val & kee index
 
-String
-    convert String to int --> Integer.parseInt(String s) or Integer.valueOf(String s)
-    str.substring()
-    Integer.toString(i)
-    int digit = chat - '0'
-    ",a,b,c,".split(",") -> splits into 4. First is "" while the last is c 
-    \ is an escape character (special meaning to compiler) whereas / is a regular char
+ZigZagConversion:
+    Row buffer optimization/Accumulator rows
+    Direction encoding & State compression
 
-StringBuilder
-    stringBuilder.reverse()
+Reverse Integer:
+    extract most significant PV using "divisor scaling" vs "modulo based" reversal
 
-Character
-    Character.toLowerCase(c)
-    check if character is alphanumeric -> Character.isDigit(c) || Character.isLetter(c)
+String To Integer:
+    Edge case simplification
 
-java compilation:
-    Sentence ends with ;
-    variable naming 
-        set -> seen/visibinted 
-        list -> path/track
-        String -> start/end
+Unique Binary Search Trees II - Given an integer n:
+    DFS doesn't work
+    Use Catalan “choose-root and combine subtrees”:
+        - Pick each i in [lo..hi] as the root.
+        - Recursively build all left trees from [lo..i-1] and right trees from [i+1..hi].
+        - Cross-product them to form unique trees 
+        - No duplicates arise because each shape is determined by the root split (lo..i-1 | i | i+1..hi).
 
-java operators:
-    simple ternary return 
-    return and assignment
-        return memo[i][partsLeft] = res;
-        store res in memo[i][partsLeft] and return the result
-    assignment as expression
-        int x;
-        System.out.println(x = 42);
+Validate BST:
+    Long.MIN_VALUE & Long.MAX_VALUE for allowing Integer.MIN_VALUE & Integer.MAX_VALUE
 
+Recover BST:
+    - Swapping "on the fly" with a value → node map breaks invariants
+    - Collect inorder and find the 2 inversions where cur.val > next.val (the first time it happens & the last time it happens)
+    - in place swap the node values
+    - Common "it didn’t work" bugs to check:
+        - You set second = inorder.get(i) instead of inorder.get(i+1).
+        - You stopped after the first inversion (missing the non-adjacent case).
+        - You built a List<Integer> and then tried to find nodes by value (breaks with equal values).
+        - You modified node values before finishing the scan (changing comparisons mid-way).
 
-Bitwise:
-    1 << n -> left shift same as 2^n
-    i >>> 1 -> unsigned right shift
-    num1 ^ num2 -> bitwise xor that results in int 
+# Technique Guidelines
+BFS:
+    LinkedList Queue Size
+    While & for
+    check new grid coordinates in bounds
+    Use Marker to avoid back loops
+
+Binary Search
+    if nums[0] in sorted array is > target then "end" will be "-1"
+    if nums[length-1] in sorted array is < target then "start" will be "length"
+    mid-calculation (start+end)/2 can cuse overflow
 
 DFS:
     Early Pruning exit after finding result -> GraySequence
+    n-ary DFS: similar to binary DFS but allows "pick one from many options at each step and avoid duplicates at the same level" like "permutations"
+    binary DFS: each element can be either in or out, like subset generation, subsequences -> not good for permutations
+    Solving Permutations:
+        - n-ary
+        - Dup skipping logic: Using while skips multiple indices at once and can step past valid choices,
+            For permutations-with-duplicates, the standard rule is:
+            After sorting, when you see the same value as the previous index, skip it if the previous identical value hasn’t been used in 
+            the current path (same depth).
+            i.e. if (i > 0 && nums[i] == nums[i-1] && !used[i-1]) continue;
+        - Simple analogy: Think of each duplicate number as siblings in line.
+            Rule: the younger sibling (nums[i]) can only step forward if the older sibling (nums[i-1]) has already stepped in.
+            That way, we never let “younger” go first and cause duplicate scenarios.
+        - start parameter: For permutations (placing numbers in positions), you don’t need start. The stopping condition is cur.size() == N, not start >= N.
     
 BinarySearchTree(BST):
     inorder traversal of a BST is increasing -> RecoverBST
@@ -264,6 +263,7 @@ DP Cheat Sheet:
         f(n) = f(n-1) + f(n-2)
     5. Memoization or Tabulation
         Top-down (memo): recursive function + hashmap/array cache.
+            memoization changes return signature
         Bottom-up (tab): fill table iteratively (often easier to debug).
         Optimize space if only last row/column matters.
     6. Answer
@@ -279,22 +279,135 @@ DP Cheat Sheet:
         * Transition: tri[r][c] + min(f(r+1,c), f(r+1,c+1))
         * Answer: f(0,0)
 
-Two-Sum:
-    Need original indices: avoid raw sort.
-    check-then-insert to avoid self-pair bugs.
-    putIfAbsent vs overwrite: how to handle Duplicates
-    -> sorting is possible if you use sort by val & kee index    
+Two-Pointer:
+    slow & fast pointer
+    Write Index (slow) & Sliding Window:
 
-ZigZagConversion:
-    Row buffer optimization/Accumulator rows
-    Direction encoding & State compression
+Invariant ChecksList:
+    Initialize -> Maintain -> Terminate
+    State one relationship you can keep true every step. Options you’ll reuse a lot:
+        Fixed gap: fast is k nodes ahead of slow.
+        Window coverage: Nodes between slow (exclusive) and fast (inclusive) form the last k nodes seen.
+        Prefix/suffix property: All nodes up to slow are processed; nodes after fast are unprocessed.
 
-Reverse Integer:
-    extract most significant PV using "divisor scaling" vs "modulo based" reversal
+Invariant patterns for linked lists:
+    Two pointers / deletion k-from-end: fixed gap (n+1).
+    Cycle detection (Floyd): fast moves 2X, slow moves 1X; if there’s a cycle, they meet.
+    Reverse sublist [m, n]: rev always points to node before the reversed block; curr is the first node not yet reversed.
+    Merge two lists: All nodes up to tail are correctly merged and sorted.
+    dummy is a standard invariant helper: It makes “predecessor exists” always true, so your invariant can say “slow is predecessor” without branching for head deletion.
 
-String To Integer:
-    Edge case simplification
+Kadanes Algorithm:
+    If currSum < 0, drop it (restart), because any future extension is hurt by a negative prefix.
+    if (nums[i] > currSum) and if (currSum < 0) are just two ways of writing the same reset logic.
 
+In-Place:
+    Use constant extra space for any given input size.
 
+choose-root and combine subtrees/Catalan recipe - It’s the general strategy whenever you see:
+    - recursive combinatorial structures
+    - partition into two sides
+    - multiplication of possibilities
+    - result count = Catalan number.
 
+# Library Guidelines
+Collections:
+    use collection.isEmpty() instead of collection.size() != 0
+    Collections.emptyList() instead of new ArrayList<>()
+    Arrays.asList(nums[1])
+    Adding array elements to List
+        List<List<Integer>> result = new ArrayList<>()
+        ...
+        result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+    ArrayList to Array: 
+        list.stream().mapToInt(Integer::intValue).toArray()  
+            // To convert List<Integer> to int[], there is no unboxed version and you have to use mapToInt, mapToDouble etc;
+        This doesn't work --> list.stream().mapToInt(Integer::intValue).toArray(new int[0]) 
+            // because the overloaded toArray() doesn't exist in IntStream 
+        List<int[]> to int[][]: list.stream().toArray(int[][]::new)
+        Object[] list.toArray()
+        String[] list.toArray(new String[0])
+        String[] list.toArray(new String[list.size()])
+        Collections.reverse(List) // inplace & no method on List; only works on List not on Queue or Set
+    Map: 
+        hashMap.getOrDefault(key, default)
+        hashMap.putIfAbsent -> will return null for the first time
+        hashMap.computeIfAbsent -> will return value returned by mapping function if absent or the  current value
+        hashMap.compute  -> don't use beyond simple data types
+    SortedMap/Set:
+        TreeMap is sorted Map
+        TreeSet is sorted set
+    PriorityQueue:
+        priorityQueue.poll()
+    Stream:
+        stream.collector(Collectors.toList())
+        stream.toArray() --> for converting stream to Array gotcha's above in toArray
+        stream.boxed().collector(Collectors.toList()) // boxing for IntStream to List<Integer>
+        forEach expects a Consumer<int[]> → a void lambda & doesn’t let you short-circuit early using “break” or “return a boolean”
+        Use anyMatch/allMatch (which do short-circuit) or just use normal loops.
 
+Arrays
+    Arrays.sort(int[])
+    Arrays.sort(object[], Comparator.comparingInt( x -> x_to_int))
+    Arrays.fill -> char[] zeros = new char[n]; Arrays.fill(zeros, '0');
+    No GenerArrays in Java only raw types.
+        @SuppressWarnings("unchecked")
+        List<String> [][] = new ArrayList[M][N]
+
+System:
+    System.arraycopy(from,fromStart,to,toStart,fromLength)
+
+Math
+    Integer.MAX_VALUE
+    Integer.MIN_VALUE
+    for big constants use _ like long MAX = 1000_000_000;
+    option A will result in overflow error, while B will not
+        option A: long curr = 1000_000_000+1000_000_000+1000_000_000+1000_000_000;// nums[i]+nums[j]+nums[k]+nums[l];
+        option B: long curr = nums[i];  curr += nums[j]; curr += nums[k]; curr += +nums[l];
+    Math.pow(2,n)  -> returns double cast for int
+    1 << n -> left shift is same as 2 power n and directly int
+    Math.abs(Integer.MIN_VALUE) as an int, it would still be -2,147,483,648 due to overflow
+    
+Matrix
+    Spiral/MinOpsForY/Rotate
+
+String
+    convert String to int --> Integer.parseInt(String s) or Integer.valueOf(String s)
+    str.substring()
+    Integer.toString(i)
+    int digit = chat - '0'
+    ",a,b,c,".split(",") -> splits into 4. First is "" while the last is c 
+    \ is an escape character (special meaning to compiler) whereas / is a regular char
+
+StringBuilder
+    stringBuilder.reverse()
+    sb.deleteCharAt(i)
+
+Character
+    Character.toLowerCase(c)
+    check if character is alphanumeric -> Character.isDigit(c) || Character.isLetter(c)
+
+java compilation:
+    Sentence ends with ;
+    variable naming 
+        set -> seen/visibinted 
+        list -> path/track
+        String -> start/end
+
+java operators:
+    simple ternary return 
+    return and assignment
+        return memo[i][partsLeft] = res;
+        store res in memo[i][partsLeft] and return the result
+    assignment as expression
+        int x;
+        System.out.println(x = 42);
+
+Bitwise:
+    1 << n -> left shift same as 2^n  or Math.pow(2, n)
+    i >>> 1 -> unsigned right shift
+    num1 ^ num2 -> bitwise xor that results in int 
+
+Boolean:
+    ^ - Boolean version of XOR // no shortcut as both operands need eval
+    DIY XOR: boolean negative = (dividend < 0) != (divisor < 0)
