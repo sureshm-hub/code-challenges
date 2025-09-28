@@ -50,42 +50,6 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
 | MaxAreaOfIsland | Queue (LinkedList), HashSet | `offer()`, `poll()`, `add()`, `contains()` |
 
 ---
-# Problem wise notes:
-
-divide-two-integers:
-    is quotient negative?
-    long dividend & divisor
-    dividend > divisor
-        find largest multiple of divisor and reduce the dividend
-        add the multiple to quotient
-        use bit shift for multiplying by 2
-
-next-permutation:
-    - find pivot and swap with the smallest element greater than pivot
-    - reverse the suffix
-
-search-in-rotated-sorted-array:
-    - find sorted half and exclude or include it 
-
-find-first-and-last-position-of-element-in-sorted-array:
-    - find target and then search for first & last
-
-search-insert-position:
-    - [lo, hi) - exclude hi & start with hi = nums.length
-
-combination-sum:
-    skip duplicates at same level by sort & skip index with same value at the given depth
-
-Remove Duplicates from Sorted Array II:
-    Two-Pointer Write Index & Sliding Window
-    - One pointer iterates through the array (the “reader”).
-    - Another pointer marks the position in the array where the next valid element should be written (the “writer”).
-
-Search in Rotated Sorted Array II:
-    - reduce the bounds if(nums[lo] == nums[mid] && nums[mid] == nums[hi]) & continue from start
-    - at least left or right should be sorted  hence check  nums[lo] <= nums[mid] or nums[mid] <= nums[hi]
-
----
 # Notes:
 - `Deque` usually backed by `ArrayDeque`
 - `Queue` is usually `LinkedList` unless explicitly a `PriorityQueue`
@@ -93,23 +57,24 @@ Search in Rotated Sorted Array II:
 - Bit Manipulation solutions don't rely on standard libraries
 
 ---
-
 # Guidelines to get program right on first run:
 
 - variable names to align with data structures like heap, min, curr, next, temp, prev, down, downRight -> namingSmell single char alphas, prefix 1, 2 etc
 - scope variable collisions
 - program struct:
-  Use member/class variables to reduce method params
-  Avoid compile errors
-  Type name;
-  meth(param1, param2, ...)
-  public Type meth(T1 p1, T2 p2, ...) {
+  - Use member/class variables to reduce method params
+  - Avoid compile errors
+  - Type name;
+  - meth(param1, param2, ...)
+  - public Type meth(T1 p1, T2 p2, ...) {
       return typeVar;
-  }
-  No copy & pasting -> introduces more compile errors
-  focus on the cursor to catch mistakes as typed
+    }
+  - No copy & pasting -> introduces more compile errors
+  - focus on the cursor to catch mistakes as typed
+  - avoid keyword typing mistakes
 
 # Problem wise Guidelines
+
 TwoSum:
     primitive != null
     Integer index = indexMap.get(target-nums[i]);
@@ -174,7 +139,7 @@ Two-Sum:
     Need original indices: avoid raw sort.
     check-then-insert to avoid self-pair bugs.
     putIfAbsent vs overwrite: how to handle Duplicates
-    -> sorting is possible if you use sort by val & kee index
+    -> sorting is possible if you use sort by val & key index
 
 ZigZagConversion:
     Row buffer optimization/Accumulator rows
@@ -201,12 +166,74 @@ Recover BST:
     - Swapping "on the fly" with a value → node map breaks invariants
     - Collect inorder and find the 2 inversions where cur.val > next.val (the first time it happens & the last time it happens)
     - in place swap the node values
-    - Common "it didn’t work" bugs to check:
+    - Common bugs to check:
         - You set second = inorder.get(i) instead of inorder.get(i+1).
         - You stopped after the first inversion (missing the non-adjacent case).
         - You built a List<Integer> and then tried to find nodes by value (breaks with equal values).
         - You modified node values before finishing the scan (changing comparisons mid-way).
 
+Binary Tree From Preorder & Inorder: 
+    - Preorder = root | left-subtree | right-subtree
+    - Inorder = left-subtree | root | right-subtree
+    - preorder gives you the order of root nodes visited
+    - inorder is used to build the left & right subtrees
+    - build an inorder map for index lookup, everything to the left is the left subtree & right is the right subtree
+    - keep an "instance level" preorder index - so both left & right calls can access the correct index
+
+Binary tree from Postorder & Inorder:
+    - Postorder = left-subtree | right-subtree| root
+    - After picking the root, build right subtree first, then left (because postorder is consumed from the end)
+
+divide-two-integers:
+    is quotient negative?
+    long dividend & divisor
+    dividend > divisor
+        find largest multiple of divisor and reduce the dividend
+        add the multiple to quotient
+        use bit shift for multiplying by 2
+
+next-permutation:
+  - find pivot and swap with the smallest element greater than pivot
+  - reverse the suffix
+
+search-in-rotated-sorted-array:
+    - find sorted half and exclude or include it
+
+find-first-and-last-position-of-element-in-sorted-array:
+    - find target and then search for first & last
+
+search-insert-position:
+    - [lo, hi) - exclude hi & start with hi = nums.length
+
+combination-sum:
+    - skip duplicates at same level by sort & skip index with same value at the given depth
+
+Remove Duplicates from Sorted Array II:
+    Two-Pointer Write Index & Sliding Window
+    - One pointer iterates through the array (the “reader”).
+    - Another pointer marks the position in the array where the next valid element should be written (the “writer”).
+
+Search in Rotated Sorted Array II:
+    - reduce the bounds if(nums[lo] == nums[mid] && nums[mid] == nums[hi]) & continue from start
+    - at least left or right should be sorted  hence check  nums[lo] <= nums[mid] or nums[mid] <= nums[hi]
+
+Convert Sorted Array to Binary Search Tree:
+    - can use mid or mid + 1 as mid and continue to buildBST 
+
+Minimum Depth of Binary Tree:
+    - separate tree-null vs branch-null handling
+
+Balanced Binary Tree:
+    - return height or falsy (-1)
+
+Flatten Binary Tree to LinkedList:
+    traversing is post order - recurse left, recurse right then relink current node (same as min/max Depth)
+    perform in-place mutation unlike min/max depth which returns int
+    To preserve preorder use splice step. This is order sensitive/commutative:
+        if no left then no splice
+        use rightSaved for right node
+        walk to the tail of left - put's whole left list before right - O(n^2) worst case
+    
 # Technique Guidelines
 BFS:
     LinkedList Queue Size
