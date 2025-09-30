@@ -22,4 +22,20 @@ public class ValidPalindrome {
         }
         return true;
     }
+
+    private boolean isPal(String s, int start, int end) {
+        while(start < end) {
+            if(s.charAt(start++) != s.charAt(end--)) return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        ValidPalindrome vp = new ValidPalindrome();
+        System.out.println(">> "+vp.isPal("a", 0, 0));
+        System.out.println(">> "+vp.isPal("aa", 0, 1));
+        System.out.println(">> "+vp.isPal("ab", 0, 1));
+        System.out.println(">> "+vp.isPal("aab", 0, 2));
+        System.out.println(">> "+vp.isPal("aaa", 0, 2));
+    }
 }

@@ -27,4 +27,49 @@ public class GenParans {
             curr.deleteCharAt(index);
         }
     }
+
+    public List<String> paranthesis(int n) {
+
+        List<String> result = new ArrayList<>();
+        collect("", 0, 0, n, result);
+        return result;
+
+    }
+
+    private void collect(String cur, int left, int right, int n, List<String> result) {
+
+        if(left == n && right == n) {
+            result.add(cur);
+        }
+
+        if(left < n) {
+            collect(cur+"(",left + 1, right, n, result);
+        }
+        if(right < left) {
+            collect(cur+")", left, right + 1, n, result);
+        }
+    }
+
+    public static void main(String[] args) {
+        GenParans gp = new GenParans();
+        List<String> paranthesis = gp.paranthesis(3);
+        System.out.println(paranthesis);
+
+         paranthesis  = gp.generateParenthesis(3);
+        System.out.println(paranthesis);
+
+
+        System.out.println("====");
+
+        paranthesis = gp.paranthesis(6);
+        System.out.println(paranthesis);
+        System.out.println(paranthesis.size());
+        System.out.println("---");
+        paranthesis  = gp.generateParenthesis(6);
+        System.out.println(paranthesis.size());
+        System.out.println(paranthesis);
+
+
+    }
+
 }

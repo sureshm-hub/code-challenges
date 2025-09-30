@@ -153,7 +153,7 @@ String To Integer:
 
 Unique Binary Search Trees II - Given an integer n:
     DFS doesn't work
-    Use Catalan “choose-root and combine subtrees”:
+    Use Catalan "choose-root and combine subtrees":
         - Pick each i in [lo..hi] as the root.
         - Recursively build all left trees from [lo..i-1] and right trees from [i+1..hi].
         - Cross-product them to form unique trees 
@@ -233,6 +233,22 @@ Flatten Binary Tree to LinkedList:
         if no left then no splice
         use rightSaved for right node
         walk to the tail of left - put's whole left list before right - O(n^2) worst case
+
+Palindrome Partitioning:
+    identify recursive structure & backtrack
+    what is the base case returning (in this case an empty array list for the product to continue)
+    Catalan-Like Complexity
+    algo: 
+        - choose a split point and combine left & right sub solutions
+        - worst case "aaaaa..." -> every substring is palindrome & yeilds ~ 2^(N-1) partitions
+
+Gas Station:
+    Kadane problem - greedy "one-pass" algorithm
+    feasibility test: sum(diff) >= 0
+    single pass index finding: if sum(diff[start ... i]) < 0 set index as i + 1
+    prefix-sum/induction can be used to prove why single pass works:
+        - skip when sum(diff[start ... i]) < 0
+        - index is i + 1
     
 # Technique Guidelines
 BFS:
@@ -336,6 +352,30 @@ choose-root and combine subtrees/Catalan recipe - It’s the general strategy wh
     - partition into two sides
     - multiplication of possibilities
     - result count = Catalan number.
+    - pseudo:
+    for (int root = L; root <= R; root++) {
+        for (Tree left : solve(L, root-1))
+            for (Tree right : solve(root+1, R))
+            combine(left, root, right);
+    }
+    Explosion: number of outputs ~ Catalan number C_n.
+    Examples: Unique BSTs, valid parentheses, polygon triangulation
+    Catalan vs Backtrack:
+        Catalan = split & combine both sides.
+        Backtracking = greedy prefix, recurse on suffix.
+    
+Plain Backtracking
+    Structure: "Pick a valid piece at the current index, recurse on the remainder."
+    - pseudo:
+    for (int end = start; end < n; end++) {
+        if (valid(start..end)) {
+            path.add(s[start..end]);
+            dfs(end+1);
+            path.removeLast();
+        }
+    }
+    Explosion: up to 2^(n-1) partitions (Catalan-like, but not true Catalan)
+    Examples: Palindrome partitioning, word break, combination sum
 
 # Library Guidelines
 Collections:
