@@ -50,16 +50,19 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
 | MaxAreaOfIsland | Queue (LinkedList), HashSet | `offer()`, `poll()`, `add()`, `contains()` |
 
 ---
-# Notes:
-- `Deque` usually backed by `ArrayDeque`
-- `Queue` is usually `LinkedList` unless explicitly a `PriorityQueue`
-- Custom comparators are usually Lambda functions: `(a, b) -> a[0] - b[0]`
-- Bit Manipulation solutions don't rely on standard libraries
-
----
 # Guidelines to get program right on first run:
-
-- variable names to align with data structures like heap, min, curr, next, temp, prev, down, downRight -> namingSmell single char alphas, prefix 1, 2 etc
+- avoid java compilation errors
+- Sentence ends with ;
+- variable names to align with data structures like: 
+  heap, min, curr, next, temp, prev, down, downRight 
+  if long word use  2 to 3 chars: 
+    high -> hi 
+    reminder -> rem
+  other names:
+      set -> seen/visited
+      list -> path/track
+      String -> start/end
+  namingSmell single char alphas, prefix 1, 2 etc;
 - scope variable collisions
 - program struct:
   - Use member/class variables to reduce method params
@@ -72,6 +75,19 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
   - No copy & pasting -> introduces more compile errors
   - focus on the cursor to catch mistakes as typed
   - avoid keyword typing mistakes
+
+# Guidelines for debugging the program
+- go over logically
+- isolate sections where program is not working
+- connect output of one section to another
+- avoid hallucination/lazy thinking traps
+- look at the output vs expected to get better understanding
+
+# Guidelines on reconnecting after pause
+- look for continuation with awareness
+- look for closure
+- leave the program in better state
+- let the thought/pause server you
 
 # Problem wise Guidelines
 
@@ -249,7 +265,21 @@ Gas Station:
     prefix-sum/induction can be used to prove why single pass works:
         - skip when sum(diff[start ... i]) < 0
         - index is i + 1
-    
+
+Find Minimum in Rotated Sorted Array:
+    - Binary Search by iteration
+    - compare mid & hi to find the range where lo is located instead of mid + 1
+    - converge when lo = hi
+
+ExcelSheetTitle:
+    - instead of a map use 'A' + rem
+    - edge cases when reminder = 0 -> Z
+    - when rem == 0 you must also reduce the quotient by 1, otherwise multi letter case breaks
+    - sb.append((char)('A'+rem - 1)) // <- note the char casting
+
+BSTIterator:
+    - Use ArrayDeque instead of LinkedList
+
 # Technique Guidelines
 BFS:
     LinkedList Queue Size
@@ -344,6 +374,19 @@ Kadanes Algorithm:
     If currSum < 0, drop it (restart), because any future extension is hurt by a negative prefix.
     if (nums[i] > currSum) and if (currSum < 0) are just two ways of writing the same reset logic.
 
+Greedy Template:
+    Approach 1:
+        - "start new" at nums[i] vs "extend"
+        - swapping technique to keep signs consistent after multiply
+        - 
+    Approach 2:
+        - prefix & suffix will also work with same complexity
+            - Multiplying forward finds all prefix products (subarrays ending at i).
+            - Multiplying backward finds all suffix products (subarrays starting at i).
+            - The combination of both directions ensures every possible subarray is implicitly checked without explicit nested loops
+        - prefix & suffix reset will carry negative and positive products
+        
+
 In-Place:
     Use constant extra space for any given input size.
 
@@ -381,6 +424,11 @@ Plain Backtracking
 Collections:
     use collection.isEmpty() instead of collection.size() != 0
     Collections.emptyList() instead of new ArrayList<>()
+    Collections.sort()
+    Collections.sort(,Collections.reverseOrder()) // reverse sorting
+    List.sort()
+    List.sort(Comparator.naturalorder())
+    List.sort(Comparator.reverseOrder())
     Arrays.asList(nums[1])
     Adding array elements to List
         List<List<Integer>> result = new ArrayList<>()
@@ -412,10 +460,21 @@ Collections:
         stream.boxed().collector(Collectors.toList()) // boxing for IntStream to List<Integer>
         forEach expects a Consumer<int[]> → a void lambda & doesn’t let you short-circuit early using “break” or “return a boolean”
         Use anyMatch/allMatch (which do short-circuit) or just use normal loops.
+        stream.sorted()
+        stream.sorted(Comparator.reverseOrder())
+    LinkedList:
+        used as a stack and linked list
+        `Queue` is usually `LinkedList` unless explicitly a `PriorityQueue`
+    Deque:
+        used as a stack and preferred for stack because of memory overhead
+        `Deque` usually backed by `ArrayDeque`
+    Comparator:
+        Custom comparators are usually Lambda functions: `(a, b) -> a[0] - b[0]`
 
 Arrays
     Arrays.sort(int[])
     Arrays.sort(object[], Comparator.comparingInt( x -> x_to_int))
+    Array.sort(int[], (a,b) -> b.compareTo(a)) // reverse sorting
     Arrays.fill -> char[] zeros = new char[n]; Arrays.fill(zeros, '0');
     No GenerArrays in Java only raw types.
         @SuppressWarnings("unchecked")
@@ -440,11 +499,18 @@ Matrix
 
 String
     convert String to int --> Integer.parseInt(String s) or Integer.valueOf(String s)
+    Integer.valueOf(String s) Integer.valueOf(int i) --> overloaded valueOf Integer
+    String.valueOf(int i) String.valueOf(double price) --> overloaded valueOf String
+    String.valueOf() overloads --> int, long, float, double, boolean, char, char[], and Object.
+    Integer.parseInt("0003") will return the decimal value 3, not octal 3 ignoring any leading 0's
     str.substring()
     Integer.toString(i)
     int digit = chat - '0'
     ",a,b,c,".split(",") -> splits into 4. First is "" while the last is c 
     \ is an escape character (special meaning to compiler) whereas / is a regular char
+    ., *, +, |, ?, \`, ^, $, [, ], {, }, (, )  --> special chars needing escape \\.
+    "1.2".split(".") return array of size zero --> as . matches all & all are "trailing empty strings"", they are discarded, leading to an array of size zero.
+    "1.2".split("\\.") return array of size 2
 
 StringBuilder
     stringBuilder.reverse()
@@ -453,13 +519,6 @@ StringBuilder
 Character
     Character.toLowerCase(c)
     check if character is alphanumeric -> Character.isDigit(c) || Character.isLetter(c)
-
-java compilation:
-    Sentence ends with ;
-    variable naming 
-        set -> seen/visibinted 
-        list -> path/track
-        String -> start/end
 
 java operators:
     simple ternary return 
@@ -474,6 +533,7 @@ Bitwise:
     1 << n -> left shift same as 2^n  or Math.pow(2, n)
     i >>> 1 -> unsigned right shift
     num1 ^ num2 -> bitwise xor that results in int 
+    Bit Manipulation solutions don't rely on standard libraries
 
 Boolean:
     ^ - Boolean version of XOR // no shortcut as both operands need eval
