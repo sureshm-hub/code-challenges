@@ -62,7 +62,7 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
       set -> seen/visited
       list -> path/track
       String -> start/end
-  namingSmell single char alphas, prefix 1, 2 etc;
+  namingSmell: single char alphas, prefix 1, 2, names out of context ex: curr in DFS etc;
 - scope variable collisions
 - program struct:
   - Use member/class variables to reduce method params
@@ -90,7 +90,6 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
 - let the thought/pause server you
 
 # Problem wise Guidelines
-
 TwoSum:
     primitive != null
     Integer index = indexMap.get(target-nums[i]);
@@ -280,6 +279,10 @@ ExcelSheetTitle:
 BSTIterator:
     - Use ArrayDeque instead of LinkedList
 
+Reverse Bits:
+    - Integer.toString(n, base) - higher order zero bits are ignored
+    - reverse & pad with zeros to make 32 bits
+
 # Technique Guidelines
 BFS:
     LinkedList Queue Size
@@ -385,7 +388,6 @@ Greedy Template:
             - Multiplying backward finds all suffix products (subarrays starting at i).
             - The combination of both directions ensures every possible subarray is implicitly checked without explicit nested loops
         - prefix & suffix reset will carry negative and positive products
-        
 
 In-Place:
     Use constant extra space for any given input size.
@@ -448,6 +450,12 @@ Collections:
         hashMap.getOrDefault(key, default)
         hashMap.putIfAbsent -> will return null for the first time
         hashMap.computeIfAbsent -> will return value returned by mapping function if absent or the  current value
+            - replaces following pattern:
+                    Set<Integer> preqCourses = preqs.getOrDefault(p[0], new HashSet<>());
+                    preqCourses.add(p[1]);
+                    preqs.put(p[0], preqCourses);
+            - with:
+                    preqs.computeIfAbsent(p[0], k -> new HashSet<>()).add(p[1])
         hashMap.compute  -> don't use beyond simple data types
     SortedMap/Set:
         TreeMap is sorted Map
@@ -462,6 +470,7 @@ Collections:
         Use anyMatch/allMatch (which do short-circuit) or just use normal loops.
         stream.sorted()
         stream.sorted(Comparator.reverseOrder())
+        primes.stream().filter(x -> x < n).count() // returns long
     LinkedList:
         used as a stack and linked list
         `Queue` is usually `LinkedList` unless explicitly a `PriorityQueue`
@@ -470,6 +479,19 @@ Collections:
         `Deque` usually backed by `ArrayDeque`
     Comparator:
         Custom comparators are usually Lambda functions: `(a, b) -> a[0] - b[0]`
+    Stack vs Queue vs Heaps
+        Stack Methods (LIFO): use LinkedList or ArrayDeque as a stack
+            - push(E e)  - Inserts an element at the front (top) of the deque.
+            - pop() - Removes and returns the element at the front (top) of the deque.
+            - peek() - Returns, but does not remove, the element at the front (top) of the deque.
+        Queue Methods (FIFO): use LinkedList or ArrayDeque as a queue
+            - add(E e) or offer(E e) - Inserts an element at the end (rear) of the deque
+            - remove() NEExcep or poll() - Removes and returns the element at the front (head) of the deque.
+            - element() NEExcep or peek()
+        Heap: use PriorityQueue (Min-heap is default)
+            - add(E e) / offer(E e) - Insertion (Sift-up)  - O(log N)
+            - poll() - Removes and returns the head of the queue - O(log N)
+            - peek() - Retrieves the highest-priority element without removing it from the queue
 
 Arrays
     Arrays.sort(int[])
@@ -479,6 +501,13 @@ Arrays
     No GenerArrays in Java only raw types.
         @SuppressWarnings("unchecked")
         List<String> [][] = new ArrayList[M][N]
+    List<Integer> myIntList = Arrays.asList(int1, int2, int3)
+    X List<Integer> myIntList = Arrays.asList(new int[]{int1, int2, int3}) // does NOT work - converts into a single int[] element in a list
+    List<Integer> primes = Arrays.stream(new int[] {2, 3, 5, 7, 11, 13, 17, 19})
+                            .boxed()
+                            .collect(Collectors.toList());
+    Arrays.stream only supports int[], long[] & double[]
+    X Arrays.stream(char[]) // this is not supported
 
 System:
     System.arraycopy(from,fromStart,to,toStart,fromLength)
@@ -493,9 +522,16 @@ Math
     Math.pow(2,n)  -> returns double cast for int
     1 << n -> left shift is same as 2 power n and directly int
     Math.abs(Integer.MIN_VALUE) as an int, it would still be -2,147,483,648 due to overflow
-    
-Matrix
-    Spiral/MinOpsForY/Rotate
+    String bits = Integer.toString(n, base); 
+        - String representation of int in a different base
+        - not padded to 32 bits as higher order zero bits are ignored
+    Double to int:
+        int val = (int) 4.3 // 4
+        int val = (int) 9.9 // 10
+    Double:
+        Math.round()
+        Math.ceil()
+        Math.floor()
 
 String
     convert String to int --> Integer.parseInt(String s) or Integer.valueOf(String s)
@@ -511,6 +547,9 @@ String
     ., *, +, |, ?, \`, ^, $, [, ], {, }, (, )  --> special chars needing escape \\.
     "1.2".split(".") return array of size zero --> as . matches all & all are "trailing empty strings"", they are discarded, leading to an array of size zero.
     "1.2".split("\\.") return array of size 2
+
+Matrix
+    Spiral/MinOpsForY/Rotate
 
 StringBuilder
     stringBuilder.reverse()
