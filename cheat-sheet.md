@@ -59,10 +59,17 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
     high -> hi 
     reminder -> rem
   other names:
-      set -> seen/visited
-      list -> path/track
-      String -> start/end
-  namingSmell: single char alphas, prefix 1, 2, names out of context ex: curr in DFS etc;
+    cache: seen, visited, etc;
+    set -> seen/visited
+    list -> path/track
+    String -> start/end
+    window/range -> left/right/l/r
+    knapsack -> take/skip
+   namingSmell: single char alphas, prefix 1, 2, names out of context ex: curr in DFS etc;
+- Java class naming pitfalls:
+  - Deque
+  - str.substring()
+  - HashSet
 - scope variable collisions
 - program struct:
   - Use member/class variables to reduce method params
@@ -283,6 +290,18 @@ Reverse Bits:
     - Integer.toString(n, base) - higher order zero bits are ignored
     - reverse & pad with zeros to make 32 bits
 
+Basic Calculator II:
+    - use Character.isDigit()
+    - when applying +-*/ order left to right matters along with precedence (*/ are same precednce hence apply left to right)
+    - use Stack for clarity & avoid StringBuilders & complex parse/collecting logic by using Character.isDigit()
+
+Additive Number:
+    - problem with lots of edge cases
+    - boundary errors
+    - offset errors
+    - special cases like allow 0 but not allow 02 for num2 & num1
+    - cases with large inputs
+
 # Technique Guidelines
 BFS:
     LinkedList Queue Size
@@ -456,7 +475,14 @@ Collections:
                     preqs.put(p[0], preqCourses);
             - with:
                     preqs.computeIfAbsent(p[0], k -> new HashSet<>()).add(p[1])
-        hashMap.compute  -> don't use beyond simple data types
+        Merge & Similars:
+            charMap.put(c, charMap.getOrDefault(c, 0) + 1);
+            charMap.merge(c, 1, (oldVal, one) -> oldVal + one);
+            charMap.merge(c, 1, Integer::sum);
+        hashMap.remove(key) -> remove Entry with key
+        hashMap.remove(key,v al) -> remove Entry only when key mapped to val
+        hashMap.clear() -> clear all entries
+        hashMap.isEmpty()
     SortedMap/Set:
         TreeMap is sorted Map
         TreeSet is sorted set
@@ -478,7 +504,9 @@ Collections:
         used as a stack and preferred for stack because of memory overhead
         `Deque` usually backed by `ArrayDeque`
     Comparator:
-        Custom comparators are usually Lambda functions: `(a, b) -> a[0] - b[0]`
+        Custom comparators are usually Lambda functions: `(a, b) -> a[0] - b[0]
+        Comparator<int[]> c = Comparator.comparingInt(p -> p[0]);
+        Comparator<int[]> c = (p1, p2) -> p1[0] - p2[0];
     Stack vs Queue vs Heaps
         Stack Methods (LIFO): use LinkedList or ArrayDeque as a stack
             - push(E e)  - Inserts an element at the front (top) of the deque.
@@ -548,13 +576,16 @@ String
     "1.2".split(".") return array of size zero --> as . matches all & all are "trailing empty strings"", they are discarded, leading to an array of size zero.
     "1.2".split("\\.") return array of size 2
 
+RegEx:
+    String clean = s.replaceAll("\\s+",""); // drop all spaces
+
 Matrix
     Spiral/MinOpsForY/Rotate
 
 StringBuilder
     stringBuilder.reverse()
     sb.deleteCharAt(i)
-
+    sb.setLength(0) // clear string Builder
 Character
     Character.toLowerCase(c)
     check if character is alphanumeric -> Character.isDigit(c) || Character.isLetter(c)
@@ -567,7 +598,18 @@ java operators:
     assignment as expression
         int x;
         System.out.println(x = 42);
-
+    java 14+ Enhanced Switch:
+        String result = switch(op) {
+            case '/' -> Integer.toString(n1/n2);
+            case '*' -> Integer.toString(n1*n2);
+            case '-' -> Integer.toString(n1-n2);
+            case '+' -> Integer.toString(n1+n2);
+            default -> Integer.toString(n1+n2);
+        };
+        allowed types for op: byte, short, char, int (primitive/boxed), String & Enum
+        case null, default ->
+        
+        
 Bitwise:
     1 << n -> left shift same as 2^n  or Math.pow(2, n)
     i >>> 1 -> unsigned right shift
