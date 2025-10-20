@@ -536,6 +536,7 @@ Arrays
                             .collect(Collectors.toList());
     Arrays.stream only supports int[], long[] & double[]
     X Arrays.stream(char[]) // this is not supported
+    arr.clone() // Shallow Copy
 
 System:
     System.arraycopy(from,fromStart,to,toStart,fromLength)
