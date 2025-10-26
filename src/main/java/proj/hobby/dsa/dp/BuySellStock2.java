@@ -1,4 +1,4 @@
-package proj.hobby.dsa;
+package proj.hobby.dsa.dp;
 
 /**
 

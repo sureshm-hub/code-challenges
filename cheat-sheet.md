@@ -62,10 +62,16 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
     cache: seen, visited, etc;
     set -> seen/visited
     list -> path/track
+    map -> byHeight or byKey avoid rootHeights 
     String -> start/end
     window/range -> left/right/l/r
     knapsack -> take/skip
-   namingSmell: single char alphas, prefix 1, 2, names out of context ex: curr in DFS etc;
+    dp -> bestLen, bestEnd
+  naming:
+    consonants: size -> sz
+    prefix: reminder -> rem
+    single alphabets g -> graph, h -> height, n -> next
+- namingSmell: single char alphas, prefix 1, 2, names out of context ex: curr in DFS etc;
 - Java class naming pitfalls:
   - Deque
   - str.substring()
@@ -82,6 +88,15 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
   - No copy & pasting -> introduces more compile errors
   - focus on the cursor to catch mistakes as typed
   - avoid keyword typing mistakes
+  - every return should match the return type or empty when return is void
+  - all Generics are for a type, no  primitives
+  - read out loud program as you type
+  - common gotchas: 
+    - return type
+    - indexes
+    - type1 -> type2
+    - adding elements to generics
+    - using variable w/o declaration/initialization 
 
 # Guidelines for debugging the program
 - go over logically
@@ -308,6 +323,12 @@ BFS:
     While & for
     check new grid coordinates in bounds
     Use Marker to avoid back loops
+    New Technique: 
+        Use ArrayDeque instead of List with start/end pointers
+        for markers if index/integer based elements avoid Set and use boolean[]
+
+Graph:
+    Use AdjacencyList instead of AdjacencyMap if index/integer based keys
 
 Binary Search
     if nums[0] in sorted array is > target then "end" will be "-1"
@@ -447,14 +468,16 @@ Collections:
     Collections.emptyList() instead of new ArrayList<>()
     Collections.sort()
     Collections.sort(,Collections.reverseOrder()) // reverse sorting
+    Collections.min(collection), Collections.min(collection, Comparator)
     List.sort()
     List.sort(Comparator.naturalorder())
-    List.sort(Comparator.reverseOrder())
+    List.sort(Comparator.reverseOrder()) // supported for Examples include Integer, String, and Date 
+    Comparator.reversed()//non static 
     Arrays.asList(nums[1])
     Adding array elements to List
         List<List<Integer>> result = new ArrayList<>()
         ...
-        result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+        result.add(Arrays.asList(nums[i], nums[left], nums[right])); // immutable
     ArrayList to Array: 
         list.stream().mapToInt(Integer::intValue).toArray()  
             // To convert List<Integer> to int[], there is no unboxed version and you have to use mapToInt, mapToDouble etc;
@@ -465,6 +488,7 @@ Collections:
         String[] list.toArray(new String[0])
         String[] list.toArray(new String[list.size()])
         Collections.reverse(List) // inplace & no method on List; only works on List not on Queue or Set
+    List.of(1,2,3) // List factory - immutable
     Map: 
         hashMap.getOrDefault(key, default)
         hashMap.putIfAbsent -> will return null for the first time
@@ -497,6 +521,7 @@ Collections:
         stream.sorted()
         stream.sorted(Comparator.reverseOrder())
         primes.stream().filter(x -> x < n).count() // returns long
+        words.stream().collect(Collectors.toSet())
     LinkedList:
         used as a stack and linked list
         `Queue` is usually `LinkedList` unless explicitly a `PriorityQueue`
@@ -504,9 +529,11 @@ Collections:
         used as a stack and preferred for stack because of memory overhead
         `Deque` usually backed by `ArrayDeque`
     Comparator:
-        Custom comparators are usually Lambda functions: `(a, b) -> a[0] - b[0]
+        Custom comparators are usually Lambda functions: (a, b) -> a[0] - b[0]
         Comparator<int[]> c = Comparator.comparingInt(p -> p[0]);
         Comparator<int[]> c = (p1, p2) -> p1[0] - p2[0];
+        Comparator<int[]> c = Comparator.comparingInt(x -> x[0]).reversed();//doesn't compile, use below options
+        Comparator<int[]> c = Comparator.comparingInt(x -> x[0]); c.reversed();
     Stack vs Queue vs Heaps
         Stack Methods (LIFO): use LinkedList or ArrayDeque as a stack
             - push(E e)  - Inserts an element at the front (top) of the deque.
@@ -514,14 +541,38 @@ Collections:
             - peek() - Returns, but does not remove, the element at the front (top) of the deque.
         Queue Methods (FIFO): use LinkedList or ArrayDeque as a queue
             - add(E e) or offer(E e) - Inserts an element at the end (rear) of the deque
-            - remove() NEExcep or poll() - Removes and returns the element at the front (head) of the deque.
-            - element() NEExcep or peek()
+            - remove() NSEExcep or poll() - Removes and returns the element at the front (head) of the deque.
+            - element() NSEExcep or peek()
         Heap: use PriorityQueue (Min-heap is default)
             - add(E e) / offer(E e) - Insertion (Sift-up)  - O(log N)
             - poll() - Removes and returns the head of the queue - O(log N)
             - peek() - Retrieves the highest-priority element without removing it from the queue
+    Iterator<T>:
+        next - Advances the iterator, after returning an element
 
+        
 Arrays
+    Creation & Initialization:
+        int[] numbers = new int[3] {1, 2, 3}; // ILLEGAL array creation with both dimension expression and initialization
+        int[] numbers = new int[3];// Legal (Using dimension expression)
+        int[] numbers = {1, 2, 3};//Legal (Using an initializer)
+        int[] numbers = new int[] {1, 2, 3};//Legal (Using new type[] with an initializer)
+        Object[] objectArray = {1, 2, 3}; // OK. Compiler boxes 1, 2, and 3 into Integer objects.
+        Number[] numberArray = {1, 2, 3}; // OK. Compiler boxes 1, 2, and 3 into Integer objects.
+    Arrays are covariant, but generics are not.
+        Integer[] integerArray = {1, 2, 3};
+        Number[] numberArray = integerArray; // This is allowed due to array covariance.
+        // Illegal. Compiler cannot infer a non-Object type for the array.
+        Number[] mixedArray = {1, 3.14}; // ILLEGAL. 1 is an Integer, 3.14 is a Double.
+        // The correct way is to explicitly type the initializer for mixed types.
+        Number[] correctMixedArray = {Integer.valueOf(1), Double.valueOf(3.14)};
+    Array initializer can not be passed directly as an argument to a method
+        pass in {1,2,3,4} to a method that takes an int[]//  illegal start of expression
+        // Correct way: Pass a new anonymous array
+        printArray(new int[]{1, 2, 3, 4}); 
+        // Correct way: Create a named array first
+        int[] myArray = {1, 2, 3, 4};
+        printArray(myArray);
     Arrays.sort(int[])
     Arrays.sort(object[], Comparator.comparingInt( x -> x_to_int))
     Array.sort(int[], (a,b) -> b.compareTo(a)) // reverse sorting
@@ -561,6 +612,17 @@ Math
         Math.round()
         Math.ceil()
         Math.floor()
+    Math log:
+        Natural Logarithm (base e): The Math.log(double a)
+        Base 10 Logarithm: The Math.log10(double a)
+        Logarithm to an arbitrary base:
+            double value = 64.0;
+            double base = 2.0;
+            double customBaseLog = Math.log(value) / Math.log(base); // Calculates log2(64)
+        Special Cases:
+            If the argument to Math.log() or Math.log10() is NaN or a negative number, the result is NaN.
+            If the argument is positive infinity, the result is positive infinity.
+            If the argument is positive or negative zero, the result is negative infinity.
 
 String
     convert String to int --> Integer.parseInt(String s) or Integer.valueOf(String s)
@@ -609,14 +671,20 @@ java operators:
         };
         allowed types for op: byte, short, char, int (primitive/boxed), String & Enum
         case null, default ->
-        
-        
+
 Bitwise:
+    left shift:
     1 << n -> left shift same as 2^n  or Math.pow(2, n)
+    x << n is equivalent to x * 2^n
+    right shift:
+    x >> n is equivalent to floor(x / 2^n)
     i >>> 1 -> unsigned right shift
     num1 ^ num2 -> bitwise xor that results in int 
     Bit Manipulation solutions don't rely on standard libraries
-
+    * "Left to Lift (multiply), Right to Reduce (divide)."
+    n is a power of 2 if and only if n>0 and (n & (n - 1)) == 0
+        - The key insight is that any power of 2 (e.g., 4, 8, 16) has only one bit set to '1' in its binary form. Subtracting 1 from that number flips the '1' to a '0' and all trailing '0's to '1's. This means a bitwise AND operation between a number and its predecessor will result in 0 only if the number is a power of 2.
+    
 Boolean:
     ^ - Boolean version of XOR // no shortcut as both operands need eval
     DIY XOR: boolean negative = (dividend < 0) != (divisor < 0)
