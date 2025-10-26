@@ -71,7 +71,9 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
     consonants: size -> sz
     prefix: reminder -> rem
     single alphabets g -> graph, h -> height, n -> next
-- namingSmell: single char alphas, prefix 1, 2, names out of context ex: curr in DFS etc;
+- namingSmell: 
+  - single char alphas, prefix 1, 2, names out of context ex: curr in DFS etc;
+  - naming collision
 - Java class naming pitfalls:
   - Deque
   - str.substring()
@@ -549,7 +551,13 @@ Collections:
             - peek() - Retrieves the highest-priority element without removing it from the queue
     Iterator<T>:
         next - Advances the iterator, after returning an element
-
+    Lambdas:
+        method references:
+            - Kind	Syntax	Examples
+            - Reference to a static method	ContainingClass::staticMethodName	Math::abs
+            - Reference to an instance method of a particular object	containingObject::instanceMethodName	str::isEmpty
+            - Reference to an instance method of an arbitrary object of a particular type	ContainingType::methodName	String::compareToIgnoreCase,  String::concat
+            - Reference to a constructor	ClassName::new	HashSet::new
         
 Arrays
     Creation & Initialization:
@@ -577,6 +585,11 @@ Arrays
     Arrays.sort(object[], Comparator.comparingInt( x -> x_to_int))
     Array.sort(int[], (a,b) -> b.compareTo(a)) // reverse sorting
     Arrays.fill -> char[] zeros = new char[n]; Arrays.fill(zeros, '0');
+        - supports [from, to) ex: char[] zeros_1_to_3 = new char[n]; Arrays.fill(zeros, 1, 3 '0');
+        - supports 1 Dim only
+        - For 2 Dim's:
+                int[][] mem = new int[n + 1][n + 1];
+                Arrays.stream(mem).forEach(x -> Arrays.fill(x, Integer.MAX_VALUE));
     No GenerArrays in Java only raw types.
         @SuppressWarnings("unchecked")
         List<String> [][] = new ArrayList[M][N]
