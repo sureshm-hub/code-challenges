@@ -75,9 +75,12 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
   - single char alphas, prefix 1, 2, names out of context ex: curr in DFS etc;
   - naming collision
 - Java class naming pitfalls:
-  - Deque
-  - str.substring()
-  - HashSet
+  - ## Special Names 
+    - Deque
+    - HashSet
+  - ## No Capitalize Names
+    - str.substring()
+    - System.arraycopy
 - scope variable collisions
 - program struct:
   - Use member/class variables to reduce method params
@@ -319,6 +322,8 @@ Additive Number:
     - special cases like allow 0 but not allow 02 for num2 & num1
     - cases with large inputs
 
+RemoveZeros: various collectors
+    
 # Technique Guidelines
 BFS:
     LinkedList Queue Size
@@ -520,10 +525,12 @@ Collections:
         stream.boxed().collector(Collectors.toList()) // boxing for IntStream to List<Integer>
         forEach expects a Consumer<int[]> → a void lambda & doesn’t let you short-circuit early using “break” or “return a boolean”
         Use anyMatch/allMatch (which do short-circuit) or just use normal loops.
-        stream.sorted()
+        stream.sorted()  stream.count()
         stream.sorted(Comparator.reverseOrder())
         primes.stream().filter(x -> x < n).count() // returns long
         words.stream().collect(Collectors.toSet())
+        String joined = things.stream().map(Object::toString).collect(Collectors.joining(", "));
+        stream.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append) //stream.collect(supplier, accumulator, combiner)
     LinkedList:
         used as a stack and linked list
         `Queue` is usually `LinkedList` unless explicitly a `PriorityQueue`
@@ -615,6 +622,7 @@ Math
     Math.pow(2,n)  -> returns double cast for int
     1 << n -> left shift is same as 2 power n and directly int
     Math.abs(Integer.MIN_VALUE) as an int, it would still be -2,147,483,648 due to overflow
+    Math::abs  int, long, float, double
     String bits = Integer.toString(n, base); 
         - String representation of int in a different base
         - not padded to 32 bits as higher order zero bits are ignored
@@ -645,6 +653,9 @@ String
     Integer.parseInt("0003") will return the decimal value 3, not octal 3 ignoring any leading 0's
     str.substring()
     Integer.toString(i)
+    str.contains(str2)
+    str.chars() -> IntStream
+    str.chars().mapToObj( i -> (char)i) ->  Stream<Character>  //mapToObj on IntStream vs map on Stream<Character>
     int digit = chat - '0'
     ",a,b,c,".split(",") -> splits into 4. First is "" while the last is c 
     \ is an escape character (special meaning to compiler) whereas / is a regular char
@@ -701,3 +712,8 @@ Bitwise:
 Boolean:
     ^ - Boolean version of XOR // no shortcut as both operands need eval
     DIY XOR: boolean negative = (dividend < 0) != (divisor < 0)
+
+java.util.Random:
+    random.nextInt(), Long, Double, Boolean
+    random.nextInt(hi) [0, hi)
+    
