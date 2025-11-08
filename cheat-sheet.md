@@ -469,6 +469,13 @@ Plain Backtracking
     Explosion: up to 2^(n-1) partitions (Catalan-like, but not true Catalan)
     Examples: Palindrome partitioning, word break, combination sum
 
+Monotonic Stack:
+    - suitable for finding montonic sequences ( 4 of them)
+    - https://leetcode.com/discuss/post/2347639/a-comprehensive-guide-and-template-for-m-irii/
+    - DFS "Try removing digits in different combinations / recursively decide keep vs remove and track the minimum" 
+      won't work here because of exponential combinations for large strings 2^n for a 100K long string it is astronomically 
+      impossible
+    
 # Library Guidelines
 Collections:
     use collection.isEmpty() instead of collection.size() != 0
@@ -476,10 +483,13 @@ Collections:
     Collections.sort()
     Collections.sort(,Collections.reverseOrder()) // reverse sorting
     Collections.min(collection), Collections.min(collection, Comparator)
+    List.add(indx, val)// overload where val is inserted at indx
     List.sort()
     List.sort(Comparator.naturalorder())
     List.sort(Comparator.reverseOrder()) // supported for Examples include Integer, String, and Date 
-    Comparator.reversed()//non static 
+    Comparator.reversed()//non static
+    Arrays.sort(people, Comparator.comparingInt((int[] person) -> - person[0]) // chaining comparators in reverse order 
+            .thenComparingInt((int[] person) -> person[1])); // then another element; note Generic casting
     Arrays.asList(nums[1])
     Adding array elements to List
         List<List<Integer>> result = new ArrayList<>()
@@ -550,7 +560,8 @@ Collections:
             - peek() - Returns, but does not remove, the element at the front (top) of the deque.
         Queue Methods (FIFO): use LinkedList or ArrayDeque as a queue
             - add(E e) or offer(E e) - Inserts an element at the end (rear) of the deque
-            - remove() NSEExcep or poll() - Removes and returns the element at the front (head) of the deque.
+            - remove() NSEExcep or poll() - Removes and returns the element at the front (head) of the deque
+            - pollLast() & getLast() - remove & get element at the end (tail) of the deque  
             - element() NSEExcep or peek()
         Heap: use PriorityQueue (Min-heap is default)
             - add(E e) / offer(E e) - Insertion (Sift-up)  - O(log N)
@@ -662,6 +673,9 @@ String
     ., *, +, |, ?, \`, ^, $, [, ], {, }, (, )  --> special chars needing escape \\.
     "1.2".split(".") return array of size zero --> as . matches all & all are "trailing empty strings"", they are discarded, leading to an array of size zero.
     "1.2".split("\\.") return array of size 2
+    substring vs subsequence: primary distinction between a subsequence and a substring lies in the requirement of contiguity.
+        - A substring is a contiguous sequence of characters within a string.
+        - A subsequence is a sequence of characters derived from another sequence by deleting zero or more elements without changing the order of the remaining elements.
 
 RegEx:
     String clean = s.replaceAll("\\s+",""); // drop all spaces
