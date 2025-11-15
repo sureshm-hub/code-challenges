@@ -1,0 +1,49 @@
+package proj.hobby.dsa.array;
+
+/**
+ *
+ * https://leetcode.com/problems/third-maximum-number/description/
+ */
+public class ThirdMaxNumber {
+
+    public int thirdMax(int[] nums) {
+
+        // Arrays.sort(nums);
+        // int n = nums.length;
+
+        // if(n < 3) return nums[n - 1];
+
+        // int distinct = 1;
+        // int last = nums[n - 1];
+        // int i = nums.length - 2;
+        // while( i >= 0) {
+        //     if(nums[i] != last) {
+        // 		distinct++;
+        // 		last = nums[i];
+        // 		if(distinct == 3) return nums[i];
+        // 	}
+        //     i--;
+        // }
+
+        // return nums[n - 1];
+
+        long max1 = Long.MIN_VALUE; // the maximum
+        long max2 = Long.MIN_VALUE; // the second maximum
+        long max3 = Long.MIN_VALUE; // the third maximum
+
+        for (final int num : nums) {
+            if (num > max1) {
+                max3 = max2;
+                max2 = max1;
+                max1 = num;
+            } else if (max1 > num && num > max2) {
+                max3 = max2;
+                max2 = num;
+            } else if (max2 > num && num > max3) {
+                max3 = num;
+            }
+        }
+
+        return max3 == Long.MIN_VALUE ? (int) max1 : (int) max3;
+    }
+}

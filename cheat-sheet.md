@@ -50,6 +50,19 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
 | MaxAreaOfIsland | Queue (LinkedList), HashSet | `offer()`, `poll()`, `add()`, `contains()` |
 
 ---
+
+# General Framework for Solving Coding Problems in an Interview:
+Mnemonic: CE-BICRE-F
+    Clarify - Show you're thoughtful and avoid assumptions.
+    Example - Show you're grounded and building intuition.
+    Basic/Brute Force - Shows your thought process is transparent and structured (Outline clearly)
+        Implement (if needed) - Shows communication + coding skills/Shows you're ready to move incrementally
+        Complexity - Helps you decide correctness & scope for optimization
+    Optimize & Refine - Shows problem-solving depth.
+        Write clean, functional code in your chosen language.
+        Edge Cases - Shows thoroughness and reliability.
+    Follow-Ups / Improvements - Shows flexibility and seniority.
+
 # Guidelines to get program right on first run:
 - avoid java compilation errors
 - Sentence ends with ;
@@ -323,6 +336,10 @@ Additive Number:
     - cases with large inputs
 
 RemoveZeros: various collectors
+
+Number of Segments in a String:
+    - boundary detection
+    - 2 pointer is overkill
     
 # Technique Guidelines
 BFS:
@@ -619,6 +636,7 @@ Arrays
     Arrays.stream only supports int[], long[] & double[]
     X Arrays.stream(char[]) // this is not supported
     arr.clone() // Shallow Copy
+    A subarray is a contiguous subsequence of the array.
 
 System:
     System.arraycopy(from,fromStart,to,toStart,fromLength)
@@ -690,6 +708,7 @@ StringBuilder
 Character
     Character.toLowerCase(c)
     check if character is alphanumeric -> Character.isDigit(c) || Character.isLetter(c)
+    Character.isSpace(c)
 
 java operators:
     simple ternary return 
