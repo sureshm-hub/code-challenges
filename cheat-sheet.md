@@ -515,6 +515,10 @@ Collections:
             List<List<Integer>> result = new ArrayList<>()
             ...
             result.add(Arrays.asList(nums[i], nums[left], nums[right])); // immutable
+        Arrays.binarySearch(arr, key) -> index of the search key, if it is contained in the array; otherwise, (-(insertion point) - 1)
+        Arrays.stream()
+            - For primitive arrays int[], double[], long[] -> returns specialized primitive streams IntStream, DoubleStream, LongStream
+            - For object arraysString[], Integer[], MyObject[], it returns a generic Stream<T>
     ArrayList to Array: 
         list.stream().mapToInt(Integer::intValue).toArray()  
             // To convert List<Integer> to int[], there is no unboxed version and you have to use mapToInt, mapToDouble etc;
@@ -540,15 +544,18 @@ Collections:
             charMap.put(c, charMap.getOrDefault(c, 0) + 1);
             charMap.merge(key, 1, (oldVal, newVal) -> oldVal + newVal);
             charMap.merge(key, 1, Integer::sum);
+            - If the key is not present in the map (or is associated with null): The merge() method adds the key with the provided value. The remappingFunction is not invoked in this scenario.
+            - If the key already exists in the map: The remappingFunction is invoked. It takes the existing value associated with the key and the new value provided to the merge() method as input. The result of this remappingFunction then becomes the new value associated with the key in the map.
+            - Handling null from remappingFunction: If the remappingFunction returns null, the key-value pair is removed from the map.
         streams:
-            map.keySet().stream()
-            map.values().stream()
-            map.entrySet().stream()
-            map.entrySet().stream().filter(entry -> entry.getValue() == ...).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
-        hashMap.remove(key) -> remove Entry with key
-        hashMap.remove(key,val) -> remove Entry only when key mapped to val
-        hashMap.clear() -> clear all entries
-        hashMap.isEmpty()
+                map.keySet().stream()
+                map.values().stream()
+                map.entrySet().stream()
+                map.entrySet().stream().filter(entry -> entry.getValue() == ...).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
+            hashMap.remove(key) -> remove Entry with key
+            hashMap.remove(key,val) -> remove Entry only when key mapped to val
+            hashMap.clear() -> clear all entries
+            hashMap.isEmpty()
     SortedMap/Set:
         TreeMap is sorted Map
         TreeSet is sorted set
@@ -568,6 +575,9 @@ Collections:
         words.stream().collect(Collectors.toSet())
         String joined = things.stream().map(Object::toString).collect(Collectors.joining(", "));
         stream.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append) //stream.collect(supplier, accumulator, combiner)
+        Stream Operations: apply various intermediate and terminal operations to process in a functional and declarative manner. These operations include:
+            - Intermediate operations: filter(), map(), flatMap(), distinct(), sorted(), limit(), skip(), etc.
+            - Terminal operations: forEach(), collect(), reduce(), count(), min(), max(), anyMatch(), allMatch(), noneMatch(), toArray(), etc.
     LinkedList:
         used as a stack and linked list
         `Queue` is usually `LinkedList` unless explicitly a `PriorityQueue`
