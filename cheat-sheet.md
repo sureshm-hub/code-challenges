@@ -321,11 +321,12 @@ BSTIterator:
 
 Reverse Bits:
     - Integer.toString(n, base) - higher order zero bits are ignored
+    - Integer.parseInt(str, base) -  causes overflow or throw NumberFormatException for long length strings
     - reverse & pad with zeros to make 32 bits
 
 Basic Calculator II:
     - use Character.isDigit()
-    - when applying +-*/ order left to right matters along with precedence (*/ are same precednce hence apply left to right)
+    - when applying +-*/ order left to right matters along with precedence (*/ are same precedence hence apply left to right)
     - use Stack for clarity & avoid StringBuilders & complex parse/collecting logic by using Character.isDigit()
 
 Additive Number:
@@ -495,23 +496,25 @@ Monotonic Stack:
     
 # Library Guidelines
 Collections:
-    use collection.isEmpty() instead of collection.size() != 0
-    Collections.emptyList() instead of new ArrayList<>()
-    Collections.sort()
-    Collections.sort(,Collections.reverseOrder()) // reverse sorting
-    Collections.min(collection), Collections.min(collection, Comparator)
-    List.add(indx, val)// overload where val is inserted at indx
-    List.sort()
-    List.sort(Comparator.naturalorder())
-    List.sort(Comparator.reverseOrder()) // supported for Examples include Integer, String, and Date 
-    Comparator.reversed()//non static
-    Arrays.sort(people, Comparator.comparingInt((int[] person) -> - person[0]) // chaining comparators in reverse order 
-            .thenComparingInt((int[] person) -> person[1])); // then another element; note Generic casting
-    Arrays.asList(nums[1])
-    Adding array elements to List
-        List<List<Integer>> result = new ArrayList<>()
-        ...
-        result.add(Arrays.asList(nums[i], nums[left], nums[right])); // immutable
+    Collections:
+        use collection.isEmpty() instead of collection.size() != 0
+        Collections.emptyList() instead of new ArrayList<>()
+        Collections.sort()
+        Collections.sort(,Collections.reverseOrder()) // reverse sorting
+        Collections.min(collection), Collections.min(collection, Comparator)
+        List.add(indx, val)// overload where val is inserted at indx
+        List.sort()
+        List.sort(Comparator.naturalorder())
+        List.sort(Comparator.reverseOrder()) // supported for Examples include Integer, String, and Date 
+        Comparator.reversed()//non static
+    Arrays:
+        Arrays.sort(people, Comparator.comparingInt((int[] person) -> - person[0]) // chaining comparators in reverse order 
+                .thenComparingInt((int[] person) -> person[1])); // then another element; note Generic casting
+        Arrays.asList(nums[1])
+        Adding array elements to List
+            List<List<Integer>> result = new ArrayList<>()
+            ...
+            result.add(Arrays.asList(nums[i], nums[left], nums[right])); // immutable
     ArrayList to Array: 
         list.stream().mapToInt(Integer::intValue).toArray()  
             // To convert List<Integer> to int[], there is no unboxed version and you have to use mapToInt, mapToDouble etc;
@@ -522,7 +525,7 @@ Collections:
         String[] list.toArray(new String[0])
         String[] list.toArray(new String[list.size()])
         Collections.reverse(List) // inplace & no method on List; only works on List not on Queue or Set
-    List.of(1,2,3) // List factory - immutable
+        List.of(1,2,3) // List factory - immutable
     Map: 
         hashMap.getOrDefault(key, default)
         hashMap.putIfAbsent -> will return null for the first time
@@ -535,10 +538,15 @@ Collections:
                     preqs.computeIfAbsent(p[0], k -> new HashSet<>()).add(p[1])
         Merge & Similars:
             charMap.put(c, charMap.getOrDefault(c, 0) + 1);
-            charMap.merge(c, 1, (oldVal, one) -> oldVal + one);
-            charMap.merge(c, 1, Integer::sum);
+            charMap.merge(key, 1, (oldVal, newVal) -> oldVal + newVal);
+            charMap.merge(key, 1, Integer::sum);
+        streams:
+            map.keySet().stream()
+            map.values().stream()
+            map.entrySet().stream()
+            map.entrySet().stream().filter(entry -> entry.getValue() == ...).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
         hashMap.remove(key) -> remove Entry with key
-        hashMap.remove(key,v al) -> remove Entry only when key mapped to val
+        hashMap.remove(key,val) -> remove Entry only when key mapped to val
         hashMap.clear() -> clear all entries
         hashMap.isEmpty()
     SortedMap/Set:
@@ -552,9 +560,11 @@ Collections:
         stream.boxed().collector(Collectors.toList()) // boxing for IntStream to List<Integer>
         forEach expects a Consumer<int[]> → a void lambda & doesn’t let you short-circuit early using “break” or “return a boolean”
         Use anyMatch/allMatch (which do short-circuit) or just use normal loops.
-        stream.sorted()  stream.count()
+        stream.sorted()  stream.count() --> returns long
+        Arrays.stream(nums).min().getAsInt() //IntStream -> returning OptionalInt || min/max on IntStream returns an optionalInt
         stream.sorted(Comparator.reverseOrder())
         primes.stream().filter(x -> x < n).count() // returns long
+        stream.limit()
         words.stream().collect(Collectors.toSet())
         String joined = things.stream().map(Object::toString).collect(Collectors.joining(", "));
         stream.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append) //stream.collect(supplier, accumulator, combiner)
@@ -570,6 +580,11 @@ Collections:
         Comparator<int[]> c = (p1, p2) -> p1[0] - p2[0];
         Comparator<int[]> c = Comparator.comparingInt(x -> x[0]).reversed();//doesn't compile, use below options
         Comparator<int[]> c = Comparator.comparingInt(x -> x[0]); c.reversed();
+        stream.max(Integer::compare)
+        stream.max(Comparator.naturalOrder())
+    Optional:
+        optional.orElse()       // used for Object Streams
+        optionalInt.getAsInt() // used for IntStream
     Stack vs Queue vs Heaps
         Stack Methods (LIFO): use LinkedList or ArrayDeque as a stack
             - push(E e)  - Inserts an element at the front (top) of the deque.
@@ -616,7 +631,7 @@ Arrays
         // Correct way: Create a named array first
         int[] myArray = {1, 2, 3, 4};
         printArray(myArray);
-    Arrays.sort(int[])
+    Arrays.sort(int[]) // increasing order
     Arrays.sort(object[], Comparator.comparingInt( x -> x_to_int))
     Array.sort(int[], (a,b) -> b.compareTo(a)) // reverse sorting
     Arrays.fill -> char[] zeros = new char[n]; Arrays.fill(zeros, '0');
@@ -675,7 +690,7 @@ Math
             If the argument is positive or negative zero, the result is negative infinity.
 
 String
-    convert String to int --> Integer.parseInt(String s) or Integer.valueOf(String s)
+    convert String to int --> Integer.parseInt(String s) or Integer.valueOf(String s) // drops leading 0
     Integer.valueOf(String s) Integer.valueOf(int i) --> overloaded valueOf Integer
     String.valueOf(int i) String.valueOf(double price) --> overloaded valueOf String
     String.valueOf() overloads --> int, long, float, double, boolean, char, char[], and Object.
@@ -683,7 +698,11 @@ String
     str.substring()
     Integer.toString(i)
     str.contains(str2)
+    str.isEmpty()
+    str.endsWith(str2) & str.startsWith(str1) both take string arguments 
+    str.toCharArray()
     str.chars() -> IntStream
+    ex: queryIP.chars().filter(c -> c == ':').count() == 7
     str.chars().mapToObj( i -> (char)i) ->  Stream<Character>  //mapToObj on IntStream vs map on Stream<Character>
     int digit = chat - '0'
     ",a,b,c,".split(",") -> splits into 4. First is "" while the last is c 
@@ -708,7 +727,10 @@ StringBuilder
 Character
     Character.toLowerCase(c)
     check if character is alphanumeric -> Character.isDigit(c) || Character.isLetter(c)
-    Character.isSpace(c)
+    Character.isSpace(c), Character.isLowerCase(c),
+    char ch = '7'; int asciiDigit = ch; // asciiOfDigit will be 55
+    char ch = 'A'; int asciiValue = ch; // asciiValue will be 65
+    char digitChar = '7'; int numericValue = digitChar - '0';// numericValue will be 7
 
 java operators:
     simple ternary return 
@@ -728,25 +750,47 @@ java operators:
         };
         allowed types for op: byte, short, char, int (primitive/boxed), String & Enum
         case null, default ->
+        values used in the case labels must be compile-time constants not run time 
 
 Bitwise:
     left shift:
-    1 << n -> left shift same as 2^n  or Math.pow(2, n)
-    x << n is equivalent to x * 2^n
+        1 << n -> left shift same as 2^n  or Math.pow(2, n)
+        x << n is equivalent to x * 2^n
     right shift:
-    x >> n is equivalent to floor(x / 2^n)
-    i >>> 1 -> unsigned right shift
+        x >> n is equivalent to floor(x / 2^n)
+        i >>> 1 -> unsigned right shift
+        Used in: 
+            Binary trie traversal
+            Bitwise comparison from MSB to LSB
+            Detecting when two numbers fall into different “bit groups”
+        Example:   
+            x = 13 → 1101b
+            xbit = x >> 1
+            xbit = 6 -> 110b
+    check LSB:
+        x & 1  -> check if LSB is 1 or not
     num1 ^ num2 -> bitwise xor that results in int 
     Bit Manipulation solutions don't rely on standard libraries
     * "Left to Lift (multiply), Right to Reduce (divide)."
     n is a power of 2 if and only if n>0 and (n & (n - 1)) == 0
         - The key insight is that any power of 2 (e.g., 4, 8, 16) has only one bit set to '1' in its binary form. Subtracting 1 from that number flips the '1' to a '0' and all trailing '0's to '1's. This means a bitwise AND operation between a number and its predecessor will result in 0 only if the number is a power of 2.
-    
+    >> = Arithmetic right shift
+        -   Preserves the sign.
+        -   For negative numbers, the MSB = 1 (sign bit) is replicated on the left.
+    >>> = Logical right shift
+        -   Does NOT preserve sign.
+        -   Zero is shifted into the MSB.
+
 Boolean:
     ^ - Boolean version of XOR // no shortcut as both operands need eval
     DIY XOR: boolean negative = (dividend < 0) != (divisor < 0)
 
 java.util.Random:
-    random.nextInt(), Long, Double, Boolean
+    random.nextInt(), nextLong(), nextDouble(), nextBoolean()
     random.nextInt(hi) [0, hi)
+    random.nextDouble() // Generate random double between 0.0 and 1.0
+    alternatively, Math.random() // Generate a random double between 0.0 and 1.0
     
+casting:
+    long to int, double to int -> explicit - narrow/lossy, possible overflow
+    int to long, char to int -> auto - widening
