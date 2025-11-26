@@ -1,4 +1,4 @@
-package proj.hobby.dsa;
+package proj.hobby.dsa.strings;
 
 // https://leetcode.com/problems/is-subsequence/description/?envType=study-plan-v2&envId=leetcode-75
 
