@@ -592,8 +592,12 @@ Collections:
         Comparator<int[]> c = Comparator.comparingInt(x -> x[0]); c.reversed();
         stream.max(Integer::compare)
         stream.max(Comparator.naturalOrder())
+        Chaining:
+            Comparator<String> byLen = (a, b) -> b.length() - a.length();
+            Comparator<String> byLenByLexical = byLen.thenComparing(Comparator.naturalOrder());
+            dictionary.sort(byLenByLexical);
     Optional:
-        optional.orElse()       // used for Object Streams
+        optional.orElse()      // used for Object Streams
         optionalInt.getAsInt() // used for IntStream
     Stack vs Queue vs Heaps
         Stack Methods (LIFO): use LinkedList or ArrayDeque as a stack
