@@ -94,6 +94,7 @@ Mnemonic: CE-BICRE-F
   - ## No Capitalize Names
     - str.substring()
     - System.arraycopy
+    - Character.isWhitespace(c)
 - scope variable collisions
 - program struct:
   - Use member/class variables to reduce method params
@@ -577,7 +578,7 @@ Collections:
         stream.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append) //stream.collect(supplier, accumulator, combiner)
         Stream Operations: apply various intermediate and terminal operations to process in a functional and declarative manner. These operations include:
             - Intermediate operations: filter(), map(), flatMap(), distinct(), sorted(), limit(), skip(), etc.
-            - Terminal operations: forEach(), collect(), reduce(), count(), min(), max(), anyMatch(), allMatch(), noneMatch(), toArray(), etc.
+            - Terminal operations: forEach(), collect(), reduce(), count(), min(<Comparator>), max(<Comparator>), anyMatch(<predicate>), allMatch(<predicate>), noneMatch(<predicate>), toArray(), etc.
     LinkedList:
         used as a stack and linked list
         `Queue` is usually `LinkedList` unless explicitly a `PriorityQueue`
@@ -704,24 +705,27 @@ Math
             If the argument is positive or negative zero, the result is negative infinity.
 
 String
-    convert String to int --> Integer.parseInt(String s) or Integer.valueOf(String s) // drops leading 0
+    convert String to int --> Integer.parseInt(String s) or Integer.valueOf(String s) // drops leading 0 & -ve sign is taken care when converting -123
     Integer.valueOf(String s) Integer.valueOf(int i) --> overloaded valueOf Integer
     String.valueOf(int i) String.valueOf(double price) --> overloaded valueOf String
     String.valueOf() overloads --> int, long, float, double, boolean, char, char[], and Object.
     Integer.parseInt("0003") will return the decimal value 3, not octal 3 ignoring any leading 0's
-    str.substring()
+    str.substring(start, end)  ~  [start, end)
+     -  IndexOutOfBoundsException when (*) start > end, (*) start or end > str.length(), (*) start or end < 0
+     -  allowed: 0 <= start, end <= str.length()
     Integer.toString(i)
     str.contains(str2)
     str.isEmpty()
     str.endsWith(str2) & str.startsWith(str1) both take string arguments 
     str.toCharArray()
+    str.charAt(index)
     str.chars() -> IntStream
     ex: queryIP.chars().filter(c -> c == ':').count() == 7
     str.chars().mapToObj( i -> (char)i) ->  Stream<Character>  //mapToObj on IntStream vs map on Stream<Character>
     int digit = chat - '0'
     ",a,b,c,".split(",") -> splits into 4. First is "" while the last is c 
     \ is an escape character (special meaning to compiler) whereas / is a regular char
-    ., *, +, |, ?, \`, ^, $, [, ], {, }, (, )  --> special chars needing escape \\.
+    ., *, +, |, ?, \, ^, $, [, ], {, }, (, )  --> special chars needing escape \\.
     "1.2".split(".") return array of size zero --> as . matches all & all are "trailing empty strings"", they are discarded, leading to an array of size zero.
     "1.2".split("\\.") return array of size 2
     substring vs subsequence: primary distinction between a subsequence and a substring lies in the requirement of contiguity.
@@ -741,7 +745,7 @@ StringBuilder
 Character
     Character.toLowerCase(c)
     check if character is alphanumeric -> Character.isDigit(c) || Character.isLetter(c)
-    Character.isSpace(c), Character.isLowerCase(c),
+    Character.isWhitespace(c), Character.isLowerCase(c),
     char ch = '7'; int asciiDigit = ch; // asciiOfDigit will be 55
     char ch = 'A'; int asciiValue = ch; // asciiValue will be 65
     char digitChar = '7'; int numericValue = digitChar - '0';// numericValue will be 7

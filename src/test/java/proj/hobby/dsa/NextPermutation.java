@@ -1,5 +1,10 @@
 package proj.hobby.dsa;
 
+/**
+ * Backtracking solution causes TLE, NextPermutation performs in O(K)
+ *
+ * https://leetcode.com/problems/next-permutation/description
+ */
 public class NextPermutation {
 
     public void nextPermutation(int[] nums) {
