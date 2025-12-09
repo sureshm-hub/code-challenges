@@ -678,7 +678,10 @@ Math
     option A will result in overflow error, while B will not
         option A: long curr = 1000_000_000+1000_000_000+1000_000_000+1000_000_000;// nums[i]+nums[j]+nums[k]+nums[l];
         option B: long curr = nums[i];  curr += nums[j]; curr += nums[k]; curr += +nums[l];
-    Math.pow(2,n)  -> returns double cast for int
+    exponent:
+        Math.pow(2,n)  -> returns double cast for int
+        java has no power operator & Math.pow returns double and casting can cause issues
+            int mod = 1_000_000_007; // 1e9 + 7
     1 << n -> left shift is same as 2 power n and directly int
     Math.abs(Integer.MIN_VALUE) as an int, it would still be -2,147,483,648 due to overflow
     Math::abs  int, long, float, double
@@ -703,6 +706,14 @@ Math
             If the argument to Math.log() or Math.log10() is NaN or a negative number, the result is NaN.
             If the argument is positive infinity, the result is positive infinity.
             If the argument is positive or negative zero, the result is negative infinity.
+    GCD:
+        Euclidean Algorithm:
+            private int gcd(int a, int b) {
+                a = Math.abs(a);
+                b = Math.abs(b);
+                if(b == 0) return a;
+                return gcd(b, a % b);
+            }
 
 String
     convert String to int --> Integer.parseInt(String s) or Integer.valueOf(String s) // drops leading 0 & -ve sign is taken care when converting -123
