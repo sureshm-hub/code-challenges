@@ -54,7 +54,7 @@ A mapping of **each program** to the **Java Standard API classes** and **specifi
 # General Framework for Solving Coding Problems in an Interview:
 Mnemonic: CE-BICRE-F
     Clarify - Show you're thoughtful and avoid assumptions.
-    Example - Show you're grounded and building intuition.
+    Example - Show you're grounded and "build" intuition.
     Basic/Brute Force - Shows your thought process is transparent and structured (Outline clearly)
         Implement (if needed) - Shows communication + coding skills/Shows you're ready to move incrementally
         Complexity - Helps you decide correctness & scope for optimization
@@ -109,6 +109,7 @@ Mnemonic: CE-BICRE-F
   - avoid keyword typing mistakes
   - every return should match the return type or empty when return is void
   - all Generics are for a type, no  primitives
+  - casting (upcasting int to long, downcasting double to int, Generics: (int[] p))
   - read out loud program as you type
   - common gotchas: 
     - return type
