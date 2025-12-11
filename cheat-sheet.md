@@ -725,6 +725,7 @@ String
     str.substring(start, end)  ~  [start, end)
      -  IndexOutOfBoundsException when (*) start > end, (*) start or end > str.length(), (*) start or end < 0
      -  allowed: 0 <= start, end <= str.length()
+    str.substring(end)  ~  [0, end)
     Integer.toString(i)
     str.contains(str2)
     str.isEmpty()
