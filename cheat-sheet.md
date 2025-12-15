@@ -67,7 +67,8 @@ Mnemonic: CE-BICRE-F
 - avoid java compilation errors
 - Sentence ends with ;
 - variable names to align with data structures like: 
-  heap, min, curr, next, temp, prev, down, downRight 
+  heap, min, curr, node, root, next, temp, prev, down, downRight
+  const - reserved keyword in java
   if long word use  2 to 3 chars: 
     high -> hi 
     reminder -> rem
@@ -343,7 +344,10 @@ RemoveZeros: various collectors
 Number of Segments in a String:
     - boundary detection
     - 2 pointer is overkill
-    
+
+Sum of Square Numbers:
+    cast into to long instead of long to int  to avoid Overflow error
+
 # Technique Guidelines
 BFS:
     LinkedList Queue Size
@@ -624,6 +628,10 @@ Collections:
             - Reference to an instance method of a particular object	containingObject::instanceMethodName	str::isEmpty
             - Reference to an instance method of an arbitrary object of a particular type	ContainingType::methodName	String::compareToIgnoreCase,  String::concat
             - Reference to a constructor	ClassName::new	HashSet::new
+        target typing:
+            (int[]) p --> casting  and not used in lambdas
+            (int[] p) --> explicit typing a lambda param used when compiler cannot infer the type of params
+            Comparator.comparingInt((int[] p) -> p[1]);  -> not casting typing target param
         
 Arrays
     Creation & Initialization:
@@ -825,3 +833,6 @@ java.util.Random:
 casting:
     long to int, double to int -> explicit - narrow/lossy, possible overflow
     int to long, char to int -> auto - widening
+    Gotcha's:
+    When adding an int to a List<Double>, casting is required because Java cannot perform primitive widening and autoboxing in a single step. 
+    While an int can automatically widen to a double when assigned to a variable, generic collections like List<Double> work only with objects, not primitives.
