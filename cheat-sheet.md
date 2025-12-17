@@ -505,14 +505,15 @@ Collections:
     Collections:
         use collection.isEmpty() instead of collection.size() != 0
         Collections.emptyList() instead of new ArrayList<>()
-        Collections.sort()
-        Collections.sort(,Collections.reverseOrder()) // reverse sorting
+        Collections.sort(list)
+        Collections.sort(list,Collections.reverseOrder()) // reverse sorting
         Collections.min(collection), Collections.min(collection, Comparator)
-        List.add(indx, val)// overload where val is inserted at indx
-        List.sort()
-        List.sort(Comparator.naturalorder())
-        List.sort(Comparator.reverseOrder()) // supported for Examples include Integer, String, and Date 
-        Comparator.reversed()//non static
+    List:
+        list.add(indx, val)// overload where val is inserted at indx; It is an Insertion operation, not a replacement operation; index must be valid based on the current size
+        list = new ArrayList<>(capacity); // You still have to use methods like add() or addAll() to populate the list, otherwise list.set(index, element) throws IndexOutOfBoundsException as list's size is zero
+        list.sort()// Compiler Error - No such method
+        list.sort(Comparator.naturalorder())
+        list.sort(Comparator.reverseOrder()) // supported for Examples include Integer, String, and Date
     Arrays:
         Arrays.sort(people, Comparator.comparingInt((int[] person) -> - person[0]) // chaining comparators in reverse order 
                 .thenComparingInt((int[] person) -> person[1])); // then another element; note Generic casting
@@ -590,7 +591,8 @@ Collections:
     Deque:
         used as a stack and preferred for stack because of memory overhead
         `Deque` usually backed by `ArrayDeque`
-    Comparator:
+        no direct access elements by index (like a get(index) or set(index) method), API supports efficient insertions and removals from both the front and the back.
+Comparator:
         Custom comparators are usually Lambda functions: (a, b) -> a[0] - b[0]
         Comparator<int[]> c = Comparator.comparingInt(p -> p[0]);
         Comparator<int[]> c = (p1, p2) -> p1[0] - p2[0];
@@ -602,6 +604,8 @@ Collections:
             Comparator<String> byLen = (a, b) -> b.length() - a.length();
             Comparator<String> byLenByLexical = byLen.thenComparing(Comparator.naturalOrder());
             dictionary.sort(byLenByLexical);
+        comparator.reversed()//non static a.k.a object method
+        Comparator.reverseOrder()
     Optional:
         optional.orElse()      // used for Object Streams
         optionalInt.getAsInt() // used for IntStream
@@ -655,9 +659,11 @@ Arrays
         // Correct way: Create a named array first
         int[] myArray = {1, 2, 3, 4};
         printArray(myArray);
-    Arrays.sort(int[]) // increasing order
+    Arrays.sort(int[]) // increasing order  
+    Arrays.sort(int[], (a,b) -> b.compareTo(a)) // Compiler Error !!!  No overloaded primitive int[] method
+    int[] → Integer[] // casting not allowed autoboxing doesn't  apply to arrays 
     Arrays.sort(object[], Comparator.comparingInt( x -> x_to_int))
-    Array.sort(int[], (a,b) -> b.compareTo(a)) // reverse sorting
+    Array.sort(Integer[], (a,b) -> b.compareTo(a)) // reverse sorting
     Arrays.fill -> char[] zeros = new char[n]; Arrays.fill(zeros, '0');
         - supports [from, to) ex: char[] zeros_1_to_3 = new char[n]; Arrays.fill(zeros, 1, 3 '0');
         - supports 1 Dim only
@@ -836,3 +842,10 @@ casting:
     Gotcha's:
     When adding an int to a List<Double>, casting is required because Java cannot perform primitive widening and autoboxing in a single step. 
     While an int can automatically widen to a double when assigned to a variable, generic collections like List<Double> work only with objects, not primitives.
+
+# Java Versions/Releases:
+Java 8 additions as three parallel upgrades:
+    #1  Streams API => stream(), map, filter, collect
+    #2  Functional interfaces + lambdas => Function, BiFunction, Predicate
+    #3  Enhanced Collections API => Map.merge, computeIfAbsent, forEach, replaceAll
+        Map.merge belongs to #3, powered by #2, but not #1.
