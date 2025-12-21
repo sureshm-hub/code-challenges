@@ -526,6 +526,10 @@ Collections:
         Arrays.stream()
             - For primitive arrays int[], double[], long[] -> returns specialized primitive streams IntStream, DoubleStream, LongStream
             - For object arraysString[], Integer[], MyObject[], it returns a generic Stream<T>
+        int[] nums ... 
+            int sum = Arrays.stream(nums).sum();
+            int max = Arrays.stream(nums).max().OrElse(0);// Optional
+            boolean match = Arrays.stream(nums).AnyMatch(x -> x > 10);
     ArrayList to Array: 
         list.stream().mapToInt(Integer::intValue).toArray()  
             // To convert List<Integer> to int[], there is no unboxed version and you have to use mapToInt, mapToDouble etc;
