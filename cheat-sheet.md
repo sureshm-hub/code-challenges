@@ -85,13 +85,15 @@ Mnemonic: CE-BICRE-F
     consonants: size -> sz
     prefix: reminder -> rem
     single alphabets g -> graph, h -> height, n -> next
+    lambda unused params  _  use underscore as a convention to show not used
 - namingSmell: 
   - single char alphas, prefix 1, 2, names out of context ex: curr in DFS etc;
   - naming collision
-- Java class naming pitfalls:
+- Java class naming/API pitfalls:
   - ## Special Names 
     - Deque
     - HashSet
+    - Character.isAlphabet(c) //compiler failure use Character.isLetter(c)
   - ## No Capitalize Names
     - str.substring()
     - System.arraycopy
@@ -541,6 +543,10 @@ Collections:
         String[] list.toArray(new String[list.size()])
         Collections.reverse(List) // inplace & no method on List; only works on List not on Queue or Set
         List.of(1,2,3) // List factory - immutable
+    Array to ArrayList:
+        List<List<Integer>> res = new ArrayList<>();
+        res.add(Arrays.asList(new Integer[]{1})); // works
+        res.add(Arrays.asList(new int[]{1})); // Doesn't work
     Map: 
         hashMap.getOrDefault(key, default)
         hashMap.putIfAbsent -> will return null for the first time
@@ -558,6 +564,7 @@ Collections:
             - If the key is not present in the map (or is associated with null): The merge() method adds the key with the provided value. The remappingFunction is not invoked in this scenario.
             - If the key already exists in the map: The remappingFunction is invoked. It takes the existing value associated with the key and the new value provided to the merge() method as input. The result of this remappingFunction then becomes the new value associated with the key in the map.
             - Handling null from remappingFunction: If the remappingFunction returns null, the key-value pair is removed from the map.
+        ** merge is for accumulation like int, computeIfAbsent is for references 
         streams:
                 map.keySet().stream()
                 map.values().stream()

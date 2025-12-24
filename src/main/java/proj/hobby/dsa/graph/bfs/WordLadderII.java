@@ -16,7 +16,7 @@ import java.util.*;
  * This reverse mapping significantly reduces the number of DFS paths to explore, improving time and space
  * efficiency in dense transformation graphs.
  *
- * Successor Graph:
+ * Successor Graph: **causes TLE**
  *      1) bfs to find the shortest Path to endWord
  *          1.1) build an adjacency list of graph of all words
  *          1.2) find all neighbors of a  word
@@ -24,9 +24,10 @@ import java.util.*;
  *      2) dfs to find all paths from beginWord to end Word
  *
  * Predecessor Graph:
- * Successor Map doesn't prune well for trees with large branches.
- * Hence, we start with the end word and work our way back prunning any visited wrods, limiting the branches to be visited
- * We can reconstruct the path using Deque visiting from endWord to beginWord
+ *      Successor Map doesn't prune well for trees with large branches.
+ *      Hence, we start with the end word and work our way back pruning any visited words, limiting the branches to be
+ *      visited.
+ *      We can reconstruct the path using Deque visiting from endWord to beginWord
  *
  *      1) bfs of predecessor Map
  *      2) dfs using Deque
@@ -121,6 +122,7 @@ public class WordLadderII {
                     if(!distance.containsKey(next)) {
                         distance.put(next, distance.get(curr)+1);
                         wordQueue.offer(next);
+                        // curr points to next
                         graph.computeIfAbsent(curr, k -> new ArrayList<>()).add(next);// build adjacency list
                         if(next.equals(endWord)) found = true; // found the end word
                     } else if(distance.get(next) == distance.get(curr) + 1) { // add an edge even if visited, if the neighbor is at the next level
@@ -152,10 +154,11 @@ public class WordLadderII {
                     if(!distance.containsKey(next)) {
                         distance.put(next, distance.get(curr)+1);
                         wordQueue.offer(next);
-                        graph.computeIfAbsent(next, k -> new ArrayList<>()).add(curr);// build adjacency list
+                        // Predecessor graph edges point from next to current
+                        graph.computeIfAbsent(next, _ -> new ArrayList<>()).add(curr);// build adjacency list
                         if(next.equals(endWord)) found = true; // found the end word
                     } else if(distance.get(next) == distance.get(curr) + 1) { // add an edge even if visited, if the neighbor is at the next level
-                        graph.computeIfAbsent(next, k -> new ArrayList<>()).add(curr);
+                        graph.computeIfAbsent(next, _ -> new ArrayList<>()).add(curr);
                     }
                 }
             }
