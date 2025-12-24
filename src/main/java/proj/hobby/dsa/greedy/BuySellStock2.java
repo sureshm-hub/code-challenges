@@ -1,14 +1,11 @@
-package proj.hobby.dsa.dp;
+package proj.hobby.dsa.greedy;
 
 /**
 
  Problem:
     https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/description/?envType=study-plan-v2&envId=top-interview-150
 
- Clarifying Q's:
-
- Pseudo Code:
-    Greedy Algo
+    Greedy Algo  because Local Optimum = Global Solution
 
 Complexity:
     O(N)
