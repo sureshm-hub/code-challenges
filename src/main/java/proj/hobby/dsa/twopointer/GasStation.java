@@ -2,6 +2,9 @@ package proj.hobby.dsa.twopointer;
 
 /**
  * https://leetcode.com/problems/gas-station
+ *
+ * TLE for large inputs of size 10^5 and O(N^2) solution.
+ * This solution runs in O(N) to find start in single pss.
  */
 public class GasStation {
 
