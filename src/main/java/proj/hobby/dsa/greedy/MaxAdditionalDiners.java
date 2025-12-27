@@ -1,4 +1,4 @@
-package proj.hobby.meta;
+package proj.hobby.dsa.greedy;
 
 import java.util.Arrays;
 
@@ -28,7 +28,7 @@ public class MaxAdditionalDiners {
 
     private long getMaxDinersCount(long N, long K) {
         long diners = N/(K+1);
-        if(N%(K+1) > 0) {
+        if(N % (K+1) > 0) {
             diners++;
         }
         return diners;

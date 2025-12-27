@@ -1,5 +1,9 @@
-package proj.hobby.dsa;
+package proj.hobby.dsa.bitwise;
 
+/**
+ *
+ * https://leetcode.com/problems/single-number/
+ */
 public class SingleNumber {
     public int singleNumber(int[] nums) {
         int result =0;

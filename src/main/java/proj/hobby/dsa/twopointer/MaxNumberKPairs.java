@@ -1,7 +1,12 @@
-package proj.hobby.dsa;
+package proj.hobby.dsa.twopointer;
 
 import java.util.Arrays;
 
+/**
+ *
+ * https://leetcode.com/problems/max-number-of-k-sum-pairs/description/
+ *
+ */
 public class MaxNumberKPairs {
     public int maxOperations(int[] nums, int k) {
         Arrays.sort(nums);

@@ -1,4 +1,4 @@
-package proj.hobby.dsa;
+package proj.hobby.dsa.greedy;
 
 /**
  * https://leetcode.com/problems/container-with-most-water/description/

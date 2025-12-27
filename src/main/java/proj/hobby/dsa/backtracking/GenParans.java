@@ -1,7 +1,11 @@
-package proj.hobby.dsa;
+package proj.hobby.dsa.backtracking;
 
 import java.util.*;
 
+/**
+ *
+ * https://leetcode.com/problems/generate-parentheses/description/
+ */
 public class GenParans {
 
     public List<String> generateParenthesis(int n) {

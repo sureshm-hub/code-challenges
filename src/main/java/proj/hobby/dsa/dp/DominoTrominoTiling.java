@@ -1,5 +1,9 @@
-package proj.hobby.dsa;
+package proj.hobby.dsa.dp;
 
+/**
+ *
+ * https://leetcode.com/problems/domino-and-tromino-tiling/
+ */
 public class DominoTrominoTiling {
 
     public int numTilings(int N) {

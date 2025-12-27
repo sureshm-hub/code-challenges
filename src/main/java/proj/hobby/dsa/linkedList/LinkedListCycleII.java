@@ -1,5 +1,8 @@
 package proj.hobby.dsa.linkedList;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
  * https://leetcode.com/problems/linked-list-cycle-ii/
@@ -26,6 +29,17 @@ public class LinkedListCycleII {
             }
         }
         return null;
+
+
+        // Option 2: Using HashSet
+        //        ListNode cur = head;
+        //        Set<ListNode> nextSet = new HashSet<>();
+        //        nextSet.add(cur);
+        //        while(cur != null && cur.next != null) {
+        //            if(!nextSet.add(cur.next)) return cur.next;
+        //            cur = cur.next;
+        //        }
+        //        return null;
     }
 
 }

@@ -1,6 +1,7 @@
 package proj.hobby.meta;
 
 import org.junit.jupiter.api.Test;
+import proj.hobby.dsa.array.Photography;
 
 import static org.junit.jupiter.api.Assertions.*;
 

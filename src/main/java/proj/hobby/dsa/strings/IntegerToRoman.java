@@ -1,4 +1,4 @@
-package proj.hobby.dsa;
+package proj.hobby.dsa.strings;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package proj.hobby.dsa;
+package proj.hobby.dsa.linkedList;
 
 /**
  * https://leetcode.com/problems/swap-nodes-in-pairs/description/

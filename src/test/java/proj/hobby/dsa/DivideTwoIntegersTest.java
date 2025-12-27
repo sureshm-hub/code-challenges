@@ -1,6 +1,7 @@
 package proj.hobby.dsa;
 
 import org.junit.jupiter.api.Test;
+import proj.hobby.dsa.math.DivideTwoIntegers;
 
 import static org.junit.jupiter.api.Assertions.*;
 

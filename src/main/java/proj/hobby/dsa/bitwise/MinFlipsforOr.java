@@ -1,5 +1,10 @@
-package proj.hobby.dsa;
+package proj.hobby.dsa.bitwise;
 
+/**
+ *
+ * https://leetcode.com/problems/minimum-flips-to-make-a-or-b-equal-to-c/description/
+ *
+ */
 public class MinFlipsforOr {
     public int minFlips(int a, int b, int c) {
         int count = 0;

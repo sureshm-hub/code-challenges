@@ -1,56 +1,3 @@
-A mapping of **each program** to the **Java Standard API classes** and **specific methods** used.
-
-| Program/Class Name | Java API Used | Specific Methods / Usage |
-|:---|:---|:---|
-| DailyTemperature | Stack | `push()`, `pop()`, `peek()` |
-| WordLadderII | HashMap, HashSet, Deque (ArrayDeque) | `put()`, `get()`, `contains()`, `add()`, `pollFirst()`, `addLast()` |
-| LRUCache | HashMap, Deque (ArrayDeque) | `put()`, `get()`, `removeLast()`, `addFirst()` |
-| TopKFrequentElements | HashMap, PriorityQueue | `put()`, `get()`, `new PriorityQueue<>((a,b) -> b[1]-a[1])`, `offer()`, `poll()` |
-| MergeKSortedLists | PriorityQueue | `new PriorityQueue<>((a,b) -> a.val - b.val)`, `offer()`, `poll()` |
-| KthLargestElementInArray | PriorityQueue | `new PriorityQueue<>()`, `offer()`, `poll()`, `peek()` |
-| MeetingRoomsII | PriorityQueue, Arrays | `sort()`, `new PriorityQueue<>()`, `offer()`, `poll()`, `peek()` |
-| DesignTwitter | HashMap, HashSet, PriorityQueue, Deque | `put()`, `get()`, `add()`, `remove()`, `offer()`, `poll()` |
-| FindMedianFromDataStream | PriorityQueue | `new PriorityQueue<>()`, `offer()`, `poll()`, `peek()` |
-| SlidingWindowMaximum | Deque (ArrayDeque) | `addLast()`, `pollFirst()`, `peekFirst()` |
-| ValidParentheses | Stack | `push()`, `pop()`, `peek()` |
-| BinaryTreeLevelOrderTraversal | Queue (LinkedList) | `offer()`, `poll()`, `isEmpty()` |
-| CloneGraph | HashMap, Queue (LinkedList) | `put()`, `get()`, `offer()`, `poll()` |
-| CourseSchedule | HashMap, HashSet, Queue (LinkedList) | `put()`, `get()`, `contains()`, `offer()`, `poll()` |
-| PacificAtlanticWaterFlow | Queue (LinkedList), HashSet | `offer()`, `poll()`, `add()`, `contains()` |
-| AlienDictionary | HashMap, HashSet, Queue (LinkedList) | `put()`, `get()`, `add()`, `contains()`, `offer()`, `poll()` |
-| LongestConsecutiveSequence | HashSet | `add()`, `contains()`, `remove()` |
-| MinimumWindowSubstring | HashMap, HashSet | `put()`, `get()`, `contains()`, `remove()` |
-| SubstringWithConcatenationOfAllWords | HashMap | `put()`, `get()`, `containsKey()` |
-| GroupAnagrams | HashMap | `put()`, `get()`, `computeIfAbsent()` |
-| LetterCombinationsPhoneNumber | HashMap, List (ArrayList) | `put()`, `get()`, `add()` |
-| CombinationSum | List (ArrayList) | `add()`, `remove()` |
-| Permutations | List (ArrayList) | `add()`, `remove()`, `addAll()` |
-| UniquePathsIII | HashSet | `add()`, `remove()`, `contains()` |
-| DecodeWays | HashMap | `put()`, `getOrDefault()` |
-| HouseRobberIII | HashMap | `put()`, `getOrDefault()` |
-| NumberOfIslands | Queue (LinkedList), HashSet | `offer()`, `poll()`, `add()`, `contains()` |
-| RottingOranges | Queue (LinkedList) | `offer()`, `poll()`, `isEmpty()` |
-| DijkstraShortestPath | PriorityQueue, HashMap | `new PriorityQueue<>((a,b) -> a[1]-b[1])`, `offer()`, `poll()`, `put()`, `get()` |
-| ReconstructItinerary | HashMap, PriorityQueue, LinkedList | `put()`, `get()`, `new PriorityQueue<>()`, `offer()`, `poll()`, `addFirst()` |
-| FindDuplicateNumber | Set (HashSet) | `add()`, `contains()` |
-| TaskScheduler | PriorityQueue, HashMap | `new PriorityQueue<>((a,b) -> b - a)`, `offer()`, `poll()`, `put()`, `get()` |
-| EvaluateReversePolishNotation | Stack (Deque) | `push()`, `pop()` |
-| MaximalRectangle | Stack (Deque), Arrays | `push()`, `pop()`, `peek()`, `Arrays.fill()` |
-| MergeIntervals | Arrays, List (ArrayList) | `sort()`, `add()` |
-| InsertInterval | Arrays, List (ArrayList) | `sort()`, `add()` |
-| Search2DMatrixII | Binary Search, Arrays | `sort()`, `binarySearch()` |
-| SearchRotatedSortedArray | Binary Search | Manual binary search logic |
-| MinStack | Stack (Deque) | `push()`, `pop()`, `peek()`, `isEmpty()` |
-| ImplementTrie | HashMap | `put()`, `get()`, `containsKey()` |
-| RandomizedSet | HashMap, ArrayList | `put()`, `remove()`, `get()`, `add()` |
-| KClosestPointsToOrigin | PriorityQueue | `new PriorityQueue<>((a,b) -> distance(a) - distance(b))`, `offer()`, `poll()` |
-| BinaryTreeRightSideView | Queue (LinkedList) | `offer()`, `poll()` |
-| SumOfTwoIntegers | Bit Manipulation | No standard APIs, manual bit ops |
-| SingleNumber | Bit Manipulation | No standard APIs, manual bit ops |
-| MaxAreaOfIsland | Queue (LinkedList), HashSet | `offer()`, `poll()`, `add()`, `contains()` |
-
----
-
 # General Framework for Solving Coding Problems in an Interview:
 Mnemonic: CE-BICRE-F
     Clarify - Show you're thoughtful and avoid assumptions.
@@ -72,6 +19,7 @@ Mnemonic: CE-BICRE-F
   if long word use  2 to 3 chars: 
     high -> hi 
     reminder -> rem
+    neighbors -> nbrs, adj
   other names:
     cache: seen, visited, etc;
     set -> seen/visited
@@ -80,7 +28,8 @@ Mnemonic: CE-BICRE-F
     String -> start/end
     window/range -> left/right/l/r
     knapsack -> take/skip
-    dp -> bestLen, bestEnd
+    dp -> best, bestLen, bestEnd
+    dfs -> node, edges(paths between nodes)
   naming:
     consonants: size -> sz
     prefix: reminder -> rem
@@ -351,6 +300,9 @@ Sum of Square Numbers:
     cast into to long instead of long to int  to avoid Overflow error
 
 # Technique Guidelines
+loops:
+    for list/array where i: [0, sz-1] & j: [sz-1, 0] make loop termination condition i <= j to visit last element
+
 BFS:
     LinkedList Queue Size
     While & for

@@ -1,4 +1,4 @@
-package proj.hobby.meta;
+package proj.hobby.dsa.array;
 
 /**
  *

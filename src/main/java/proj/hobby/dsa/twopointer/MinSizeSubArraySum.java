@@ -1,9 +1,9 @@
-package proj.hobby.dsa;
+package proj.hobby.dsa.twopointer;
 
 /**
 
  Problem:
-    https://leetcode.com/problems/minimum-size-subarray-sum/submissions/1408145813/?envType=study-plan-v2&envId=top-interview-150
+ https://leetcode.com/problems/minimum-size-subarray-sum/description/
 
  Complexity: O(N)
 

@@ -1,6 +1,7 @@
 package proj.hobby.dsa;
 
 import org.junit.jupiter.api.Test;
+import proj.hobby.dsa.linkedList.SwapNodePairs;
 
 class SwapNodePairsTest {
 
