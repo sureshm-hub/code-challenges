@@ -1,4 +1,4 @@
-package proj.hobby.dsa.cache;
+package proj.hobby.lld.cache;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,7 @@ import java.util.Map;
  * get- O(1)
  *
  */
-public class LRUCacheLeet {
+public class LRUCache {
 
     class Node{
         Integer key;
@@ -39,7 +39,7 @@ public class LRUCacheLeet {
     private Map<Integer, Node> cache = new HashMap<>();
     Node head = new Node(0,0), tail = new Node(0, 0);
 
-    public LRUCacheLeet(int capacity){
+    public LRUCache(int capacity){
         this.capacity = capacity;
         head.next = tail;
         tail.prev = head;
@@ -112,7 +112,7 @@ public class LRUCacheLeet {
     }
 
     public static void main(String[] args) {
-        LRUCacheLeet lru = new LRUCacheLeet(2);
+        LRUCache lru = new LRUCache(2);
         System.out.println("k99 = "+lru.get(99));
         lru.put(1, 1);
         lru.put(2, 2);
