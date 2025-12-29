@@ -1,4 +1,6 @@
-package proj.hobby.dsa.linkedList;
+package proj.hobby.dsa.sort;
+
+import proj.hobby.dsa.linkedList.ListNode;
 
 import java.util.ArrayList;
 import java.util.Collections;

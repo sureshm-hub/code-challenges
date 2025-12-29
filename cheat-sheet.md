@@ -586,6 +586,7 @@ Comparator:
             - add(E e) / offer(E e) - Insertion (Sift-up)  - O(log N)
             - poll() - Removes and returns the head of the queue - O(log N)
             - peek() - Retrieves the highest-priority element without removing it from the queue
+    Deque offers both stack & queue methods in a single class
     Iterator<T>:
         next - Advances the iterator, after returning an element
     Lambdas:
