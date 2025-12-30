@@ -1,4 +1,4 @@
-package proj.hobby.lld.cache;
+package proj.hobby.lld;
 
 import java.util.*;
 
