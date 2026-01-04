@@ -1,4 +1,4 @@
-package proj.hobby.dsa.binaryTree.dfs;
+package proj.hobby.lld;
 
 import proj.hobby.dsa.binaryTree.TreeNode;
 

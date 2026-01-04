@@ -14,12 +14,12 @@ public class ExcelSheetColumnTitle {
 
         while( n > 0) {
             int rem = n % 26;
+            n = n/26;
             if(rem == 0) {
                 title.append('Z');
-                n = n/26 - 1;
+                n--;
             } else {
                 title.append((char) ('A'+ rem - 1));
-                n /= 26;
             }
         }
         return title.reverse().toString();

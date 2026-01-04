@@ -12,17 +12,19 @@ package proj.hobby.dsa.binarySearch;
  */
 public class PeakElement {
 
+    // think of nums as array of mountains and valleys.
     public int findPeakElement(int[] nums) {
-        int hi = nums.length-1, lo = 0;
-        while(lo < hi ) {
-            int mid = lo + (hi-lo)/2;
-            if(nums[mid] < nums[mid+1]) { // peak in right half
-                lo = mid+1;
+        int hi = nums.length - 1, lo = 0;
+
+        while(lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            if(nums[mid] < nums[mid + 1]) {
+                lo = mid + 1; // we are in ascending slope - peak in right half
             } else {
-                hi = mid; // peak in left half
+                hi = mid; // we are in descending slope - peak in left half or we are at peak
             }
         }
-        return lo; //hi == lo we found peak
+        return lo;//hi == lo we found peak
     }
 
     public static void main(String[] args) {

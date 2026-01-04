@@ -269,6 +269,7 @@ ExcelSheetTitle:
     - edge cases when reminder = 0 -> Z
     - when rem == 0 you must also reduce the quotient by 1, otherwise multi letter case breaks
     - sb.append((char)('A'+rem - 1)) // <- note the char casting
+    - tags: L3 interview question
 
 BSTIterator:
     - Use ArrayDeque instead of LinkedList
@@ -740,6 +741,9 @@ Character
     char ch = '7'; int asciiDigit = ch; // asciiOfDigit will be 55
     char ch = 'A'; int asciiValue = ch; // asciiValue will be 65
     char digitChar = '7'; int numericValue = digitChar - '0';// numericValue will be 7
+
+Enum:
+    Enum names are Capitalized, enum constants are CAPITAL
 
 java operators:
     simple ternary return 
