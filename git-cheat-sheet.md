@@ -4,6 +4,9 @@ git untrack previously tracked files:
     git rm -r --cached directory_name
     git commit  & git push
 
-common git tasks:
-    git creating a new repo
-    
+git creating a new repo:
+    git init
+    git branch -M main
+    git commit -m "first commit"
+    git remote add origin https://github.com/<account>/<url>.git
+    git push -u origin main

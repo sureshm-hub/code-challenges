@@ -43,6 +43,7 @@ Mnemonic: CE-BICRE-F
     - Deque
     - HashSet
     - Character.isAlphabet(c) //compiler failure use Character.isLetter(c)
+    - obj1.equals(obj2) //not obj1.equalsTo(...) or obj1.equalTo(...)
   - ## No Capitalize Names
     - str.substring()
     - System.arraycopy
