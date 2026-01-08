@@ -505,12 +505,16 @@ Collections:
         hashMap.getOrDefault(key, default)
         hashMap.putIfAbsent -> will return null for the first time
         hashMap.computeIfAbsent -> will return value returned by mapping function if absent or the  current value
-            - replaces following pattern:
-                    Set<Integer> preqCourses = preqs.getOrDefault(p[0], new HashSet<>());
-                    preqCourses.add(p[1]);
-                    preqs.put(p[0], preqCourses);
-            - with:
-                    preqs.computeIfAbsent(p[0], k -> new HashSet<>()).add(p[1])
+            - Collection Value Pattern
+                - replaces following pattern:
+                        Set<Integer> preqCourses = preqs.getOrDefault(p[0], new HashSet<>());
+                        preqCourses.add(p[1]);
+                        preqs.put(p[0], preqCourses);
+                - with:
+                        preqs.computeIfAbsent(p[0], k -> new HashSet<>()).add(p[1])
+            - for primitivie int's tracking unique values
+                int[] id = {0};
+                int existingOrNew = seen.computeIfAbsent(key, k -> id[0]++);
         Merge & Similars:
             charMap.put(c, charMap.getOrDefault(c, 0) + 1);
             charMap.merge(key, 1, (oldVal, newVal) -> oldVal + newVal);
@@ -518,7 +522,7 @@ Collections:
             - If the key is not present in the map (or is associated with null): The merge() method adds the key with the provided value. The remappingFunction is not invoked in this scenario.
             - If the key already exists in the map: The remappingFunction is invoked. It takes the existing value associated with the key and the new value provided to the merge() method as input. The result of this remappingFunction then becomes the new value associated with the key in the map.
             - Handling null from remappingFunction: If the remappingFunction returns null, the key-value pair is removed from the map.
-        ** merge is for accumulation like int, computeIfAbsent is for references 
+        ** merge is for accumulation like int, computeIfAbsent is for references (ex: Collections or primitive array's) 
         streams:
                 map.keySet().stream()
                 map.values().stream()
