@@ -473,6 +473,7 @@ Collections:
         list.sort(Comparator.naturalorder())
         list.sort(Comparator.reverseOrder()) // supported for Examples include Integer, String, and Date
     Arrays:
+        Empty Array: new int[0] vs new int[]{}
         Arrays.sort(people, Comparator.comparingInt((int[] person) -> - person[0]) // chaining comparators in reverse order 
                 .thenComparingInt((int[] person) -> person[1])); // then another element; note Generic casting
         Arrays.asList(nums[1])

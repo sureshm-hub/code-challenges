@@ -1,50 +1,89 @@
 package proj.hobby.dsa.prefixTree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * https://leetcode.com/problems/design-add-and-search-words-data-structure/description/
+ *
  */
 public class WordDictionary {
 
-    private static class Node {
-        Node[] child = new Node[26];
-        boolean isWord;
-    }
-
-    private final Node root = new Node();
+    private WordDictionary[] nodes = new WordDictionary[26];
+    private boolean isWord;
 
     public WordDictionary() {
     }
 
     public void addWord(String word) {
-        Node cur = root;
-        for(int i = 0; i < word.length(); i++) {
-            int idx = word.charAt(i) - 'a';
-
-            if(cur.child[idx] == null) cur.child[idx] = new Node();
-            cur = cur.child[idx];
+        WordDictionary current = this;
+        for(char c : word.toCharArray()) {
+            int idx = c - 'a';
+            if(current.nodes[idx] == null) {
+                current.nodes[idx] = new WordDictionary();
+            }
+            current = current.nodes[idx];
         }
-        cur.isWord = true;
+        current.isWord = true;
     }
 
     public boolean search(String word) {
-        return dfs(word, 0, root);
+        return dfs(word, this, 0);
     }
 
-    private boolean dfs(String word, int i, Node cur) {
-
-        if (cur == null) return false;
-        if (i == word.length()) return cur.isWord;
-
-        char c = word.charAt(i);
-        if (c == '.') {
-            for(int k =0; k < 26; k++) {
-                if(cur.child[k] != null && dfs(word, i+1, cur.child[k])) return true;
-            }
-            return false;
-        } else {
-            int idx = c - 'a';
-            return dfs(word, i + 1, cur.child[idx]);
+    private boolean dfs(String word, WordDictionary node, int idx) {
+        if(idx == word.length()) {
+            return node != null && node.isWord;
         }
+
+        char c = word.charAt(idx);
+        if(c != '.') {
+            int nodeIdx = c - 'a';
+            if(node.nodes[nodeIdx] == null) return false;
+            return dfs(word, node.nodes[nodeIdx], idx + 1);
+        } else {
+            for(int i = 0; i < 26; i++) {
+                if(node.nodes[i] != null && dfs(word, node.nodes[i], idx + 1)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
+
+    public boolean searchBFS(String word) {
+        List<WordDictionary> currentLevel = new ArrayList<>();
+        currentLevel.add(this);
+
+        for(char c : word.toCharArray()) {
+            List<WordDictionary> nextLevel = new ArrayList<>();
+
+            if(c != '.') {
+                int idx = c - 'a';
+                for(WordDictionary current: currentLevel) {
+                    if(current.nodes[idx] != null) {
+                        nextLevel.add(current.nodes[idx]);
+                    }
+                }
+            } else {
+                for(WordDictionary current: currentLevel) {
+                    for(int i = 0; i < 26; i++) {
+                        if(current.nodes[i] != null) {
+                            nextLevel.add(current.nodes[i]);
+                        }
+                    }
+                }
+            }
+
+            if(nextLevel.isEmpty()) return false;
+            currentLevel = nextLevel;
+        }
+
+        for(WordDictionary node : currentLevel) {
+            if(node.isWord) return true;
+        }
+        return false;
     }
 }
