@@ -384,7 +384,9 @@ DP Cheat Sheet:
 
 Two-Pointer:
     slow & fast pointer
-    Write Index (slow) & Sliding Window:
+    Write Index (slow) & Sliding Window
+    SlidingWindow: 
+        for loop to expand window, inner while loop to shrink & collect valid answer. ex: MinSizeSubArraySum
 
 Invariant ChecksList:
     Initialize -> Maintain -> Terminate
