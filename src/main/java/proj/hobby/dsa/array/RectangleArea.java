@@ -11,6 +11,21 @@ public class RectangleArea {
 
     public int computeArea(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
 
+        int Aarea = Math.abs((ax2 - ax1) * (ay2 - ay1));
+        int Barea = Math.abs((bx2 - bx1) * (by2 - by1));
+
+        int coveredArea = Aarea + Barea;
+
+        if(ax2 < bx1 || bx2  < ax1 || ay2 < by1 ||by2 < ay1) return coveredArea; // no overlap
+
+        int xOverlap = Math.abs(Math.min(ax2, bx2) - Math.max(ax1, bx1));
+        int yOverlap = Math.abs(Math.min(ay2, by2) - Math.max(ay1, by1));
+
+        return coveredArea - xOverlap * yOverlap;
+    }
+
+    public int computeArea2(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
+
         int[][] xpoints = new int[][]{{ax1, 1}, {ax2, 1}, {bx1, 2}, {bx2, 2}};
         int[][] ypoints = new int[][]{{ay1, 1}, {ay2, 1}, {by1, 2}, {by2, 2}};
 
