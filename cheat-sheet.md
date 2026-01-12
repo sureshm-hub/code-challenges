@@ -385,8 +385,10 @@ DP Cheat Sheet:
 Two-Pointer:
     slow & fast pointer
     Write Index (slow) & Sliding Window
-    SlidingWindow: 
-        for loop to expand window, inner while loop to shrink & collect valid answer. ex: MinSizeSubArraySum
+    SlidingWindow (Fixed or Variable Size): 
+        for loop to expand window, inner while loop to shrink & collect valid answer.
+        single point  to shrink window
+        ex: MinSizeSubArraySum & ContainsDuplicateII
 
 Invariant ChecksList:
     Initialize -> Maintain -> Terminate
@@ -535,9 +537,13 @@ Collections:
             hashMap.remove(key,val) -> remove Entry only when key mapped to val
             hashMap.clear() -> clear all entries
             hashMap.isEmpty()
-    SortedMap/Set:
+    SortedMap:
         TreeMap is sorted Map
-        TreeSet is sorted set
+    SortedSet:
+        TreeSet is sorted set of unique elements 
+        doesn't permit nulls
+        implements NavigableSet Interface: first(), last(), floor(), ceiling(), higher(), and lower()
+                    pollFirst(), pollLast(), headSet(toElement, inclusive), tailSet(fromElement, inclusive)
     PriorityQueue:
         priorityQueue.poll()
     Stream:

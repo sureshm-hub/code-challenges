@@ -1,7 +1,9 @@
 package proj.hobby.dsa.twopointer;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -11,6 +13,20 @@ import java.util.Map;
 public class ContainsDuplicateII {
 
     public boolean containsNearbyDuplicate(int[] nums, int k) {
+        int l = 0, r = 0;
+        Set<Integer> set = new HashSet<>();
+        for(; r < nums.length; r++) {
+            if(!set.add(nums[r])) return true; // check duplicates
+
+            if(set.size() > k && l <= r) { // maintain window size
+                set.remove(nums[l]);
+                l++;
+            }
+        }
+        return false;
+    }
+
+    public boolean containsNearbyDuplicate2(int[] nums, int k) {
 
         Map<Integer, Integer> numsMap = new HashMap<>();
         int n = nums.length;
