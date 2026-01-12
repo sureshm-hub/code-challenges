@@ -35,6 +35,7 @@ Mnemonic: CE-BICRE-F
     prefix: reminder -> rem
     single alphabets g -> graph, h -> height, n -> next
     lambda unused params  _  use underscore as a convention to show not used
+    specific name: maxSide (vs max), rows/cols (vs M/N for matrix), y/x (vs i/j for matrix indices) ex: MaximalSquare
 - namingSmell: 
   - single char alphas, prefix 1, 2, names out of context ex: curr in DFS etc;
   - naming collision
