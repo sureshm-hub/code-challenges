@@ -1,51 +1,52 @@
 # General Framework for Solving Coding Problems in an Interview:
-Mnemonic: CE-BICRE-F
-    Clarify - Show you're thoughtful and avoid assumptions.
-    Example - Show you're grounded and "build" intuition.
-    Basic/Brute Force - Shows your thought process is transparent and structured (Outline clearly)
-        Implement (if needed) - Shows communication + coding skills/Shows you're ready to move incrementally
-        Complexity - Helps you decide correctness & scope for optimization
-    Optimize & Refine - Shows problem-solving depth.
-        Write clean, functional code in your chosen language.
-        Edge Cases - Shows thoroughness and reliability.
-    Follow-Ups / Improvements - Shows flexibility and seniority.
 
-# Guidelines to get program right on first run:
+## Mnemonic: CE-BICRE-F
+- Clarify - Show you're thoughtful and avoid assumptions.
+- Example - Show you're grounded and "build" intuition.
+- Basic/Brute Force - Shows your thought process is transparent and structured (Outline clearly)
+  * Implement (if needed) - Shows communication + coding skills/Shows you're ready to move incrementally
+  * Complexity - Helps you decide correctness & scope for optimization
+- Optimize & Refine - Shows problem-solving depth.
+  * Write clean, functional code in your chosen language.
+  * Edge Cases - Shows thoroughness and reliability.
+- Follow-Ups / Improvements - Shows flexibility and seniority.
+
+## Guidelines to get program right on first run:
 - avoid java compilation errors
 - Sentence ends with ;
 - variable names to align with data structures like: 
-  heap, min, curr, node, root, next, temp, prev, down, downRight
-  const - reserved keyword in java
-  if long word use  2 to 3 chars: 
-    high -> hi 
-    reminder -> rem
-    neighbors -> nbrs, adj
-  other names:
-    cache: seen, visited, etc;
-    set -> seen/visited
-    list -> path/track
-    map -> byHeight or byKey avoid rootHeights 
-    String -> start/end
-    window/range -> left/right/l/r
-    knapsack -> take/skip
-    dp -> best, bestLen, bestEnd
-    dfs -> node, edges(paths between nodes)
-  naming:
-    consonants: size -> sz
-    prefix: reminder -> rem
-    single alphabets g -> graph, h -> height, n -> next
-    lambda unused params  _  use underscore as a convention to show not used
-    specific name: maxSide (vs max), rows/cols (vs M/N for matrix), y/x (vs i/j for matrix indices) ex: MaximalSquare
+  * heap, min, curr, node, root, next, temp, prev, down, downRight
+  * const - reserved keyword in java
+  * if long word use  2 to 3 chars: 
+    - high -> hi 
+    - reminder -> rem
+    - neighbors -> nbrs, adj
+  * other names:
+    - cache: seen, visited, etc;
+    - set -> seen/visited
+    - list -> path/track
+    - map -> byHeight or byKey avoid rootHeights 
+    - String -> start/end
+    - window/range -> left/right/l/r
+    - knapsack -> take/skip
+    - dp -> best, bestLen, bestEnd
+    - dfs -> node, edges(paths between nodes)
+  * naming:
+    - consonants: size -> sz
+    - prefix: reminder -> rem
+    - single alphabets g -> graph, h -> height, n -> next
+    - lambda unused params  _  use underscore as a convention to show not used
+    - specific name: maxSide (vs max), rows/cols (vs M/N for matrix), y/x (vs i/j for matrix indices) ex: MaximalSquare
 - namingSmell: 
   - single char alphas, prefix 1, 2, names out of context ex: curr in DFS etc;
   - naming collision
 - Java class naming/API pitfalls:
-  - ## Special Names 
+  * Special Names 
     - Deque
     - HashSet
     - Character.isAlphabet(c) //compiler failure use Character.isLetter(c)
     - obj1.equals(obj2) //not obj1.equalsTo(...) or obj1.equalTo(...)
-  - ## No Capitalize Names
+  * No Capitalize Names
     - str.substring()
     - System.arraycopy
     - Character.isWhitespace(c)
@@ -72,97 +73,98 @@ Mnemonic: CE-BICRE-F
     - adding elements to generics
     - using variable w/o declaration/initialization 
 
-# Guidelines for debugging the program
+## Guidelines for debugging the program
 - go over logically
 - isolate sections where program is not working
 - connect output of one section to another
 - avoid hallucination/lazy thinking traps
 - look at the output vs expected to get better understanding
 
-# Guidelines on reconnecting after pause
+## Guidelines on reconnecting after pause
 - look for continuation with awareness
 - look for closure
 - leave the program in better state
 - let the thought/pause server you
 
-# Problem wise Guidelines
-TwoSum:
+## Problem wise Guidelines
+
+### TwoSum:
     primitive != null
     Integer index = indexMap.get(target-nums[i]);
     if( index != null
 
-Valid Parenthesis:
+### Valid Parenthesis:
     check if stack is empty before pop()  when char is closing
     LinkedList as Stack
 
-Longest Substring Without Repeating Characters:
+### Longest Substring Without Repeating Characters:
     multi variable initialization in Java
     check window.contains(s);// not the whole string but just the next char
 
-3Sum:
+### 3Sum:
     guard conditions before incrementing ex: while(left < right && nums[left] == nums[left+1]) left++; vs while(lnums[left] == nums[left+1] && eft < right) left++;
     result.add(Arrays.asList(nums[i], nums[left], nums[right]));   vs    result.add(new ArrayList<>(new int[]{nums[i], nums[left], nums[right]}));
     code commenting
 
-Binary Search:
+### Binary Search:
     Handle null/empty arrays.
     Use while (lo <= hi) instead of while (nums[lo] < nums[hi]).
     Compute mid as lo + (hi - lo) / 2 to prevent overflow.
     Keep bounds updates tight (mid ± 1).
 
-Group Anagrams/MajorityElement:
+### Group Anagrams/MajorityElement:
     compute/ComputeIfAbsent
     use _ for lambda if not using the param
 
-LinkedLists:
+### LinkedLists:
     to return head of a new LinkedList start with Dummy LinkedListNode
     - Saves iteration
     when using multiple LinkedLists once reached the end of the LinkedList use the other one as temp and link once
 
-Best Time to Buy and Sell Stock:
+### Best Time to Buy and Sell Stock:
     Two pointer: find min and max profit simultaneously
 
-LevelOrderTraversal:
+### LevelOrderTraversal:
     Use Queue/LinkedList for LeveL Order Traversal & size
     LinkedList: poll/offer
 
-Set Matrix Zeroes:
+### Set Matrix Zeroes:
     don't use marker
     using marker as 'X' for int will result in assigning 88
     use firstRowZero, firstColZero flags & row 1/col 1 for setting zero
 
-TopKFrequent Elements:
+### TopKFrequent Elements:
     Java Collection Usage
     PriorityQueue - How does poll() help in TopKFrequent
 
-WordSearch:
+### WordSearch:
     BFS is great when you're finding the shortest paths or any path, but not when you need path integrity, like in this problem.
     DFS with backtracking is the go-to approach for "find this sequence of steps" problems. 
 
-Product Except Self
+### Product Except Self
     Prefix & Suffix product x (rolling products)
 
-Water Search
+### Water Search
     Rule of Thumb
     If you’re finding nearest X from multiple sources, use multi-source BFS from X.
 
-Two-Sum:
+### Two-Sum:
     Need original indices: avoid raw sort.
     check-then-insert to avoid self-pair bugs.
     putIfAbsent vs overwrite: how to handle Duplicates
     -> sorting is possible if you use sort by val & key index
 
-ZigZagConversion:
+### ZigZagConversion:
     Row buffer optimization/Accumulator rows
     Direction encoding & State compression
 
-Reverse Integer:
+### Reverse Integer:
     extract most significant PV using "divisor scaling" vs "modulo based" reversal
 
-String To Integer:
+### String To Integer:
     Edge case simplification
 
-Unique Binary Search Trees II - Given an integer n:
+### Unique Binary Search Trees II - Given an integer n:
     DFS doesn't work
     Use Catalan "choose-root and combine subtrees":
         - Pick each i in [lo..hi] as the root.
@@ -170,10 +172,10 @@ Unique Binary Search Trees II - Given an integer n:
         - Cross-product them to form unique trees 
         - No duplicates arise because each shape is determined by the root split (lo..i-1 | i | i+1..hi).
 
-Validate BST:
+### Validate BST:
     Long.MIN_VALUE & Long.MAX_VALUE for allowing Integer.MIN_VALUE & Integer.MAX_VALUE
 
-Recover BST:
+### Recover BST:
     - Swapping "on the fly" with a value → node map breaks invariants
     - Collect inorder and find the 2 inversions where cur.val > next.val (the first time it happens & the last time it happens)
     - in place swap the node values
@@ -183,7 +185,7 @@ Recover BST:
         - You built a List<Integer> and then tried to find nodes by value (breaks with equal values).
         - You modified node values before finishing the scan (changing comparisons mid-way).
 
-Binary Tree From Preorder & Inorder: 
+### Binary Tree From Preorder & Inorder: 
     - Preorder = root | left-subtree | right-subtree
     - Inorder = left-subtree | root | right-subtree
     - preorder gives you the order of root nodes visited
@@ -191,11 +193,11 @@ Binary Tree From Preorder & Inorder:
     - build an inorder map for index lookup, everything to the left is the left subtree & right is the right subtree
     - keep an "instance level" preorder index - so both left & right calls can access the correct index
 
-Binary tree from Postorder & Inorder:
+### Binary tree from Postorder & Inorder:
     - Postorder = left-subtree | right-subtree| root
     - After picking the root, build right subtree first, then left (because postorder is consumed from the end)
 
-divide-two-integers:
+### divide-two-integers:
     is quotient negative?
     long dividend & divisor
     dividend > divisor
@@ -203,41 +205,41 @@ divide-two-integers:
         add the multiple to quotient
         use bit shift for multiplying by 2
 
-next-permutation:
+### next-permutation:
   - find pivot and swap with the smallest element greater than pivot
   - reverse the suffix
 
-search-in-rotated-sorted-array:
+### search-in-rotated-sorted-array:
     - find sorted half and exclude or include it
 
-find-first-and-last-position-of-element-in-sorted-array:
+### find-first-and-last-position-of-element-in-sorted-array:
     - find target and then search for first & last
 
-search-insert-position:
+### search-insert-position:
     - [lo, hi) - exclude hi & start with hi = nums.length
 
-combination-sum:
+### combination-sum:
     - skip duplicates at same level by sort & skip index with same value at the given depth
 
-Remove Duplicates from Sorted Array II:
+### Remove Duplicates from Sorted Array II:
     Two-Pointer Write Index & Sliding Window
     - One pointer iterates through the array (the “reader”).
     - Another pointer marks the position in the array where the next valid element should be written (the “writer”).
 
-Search in Rotated Sorted Array II:
+### Search in Rotated Sorted Array II:
     - reduce the bounds if(nums[lo] == nums[mid] && nums[mid] == nums[hi]) & continue from start
     - at least left or right should be sorted  hence check  nums[lo] <= nums[mid] or nums[mid] <= nums[hi]
 
-Convert Sorted Array to Binary Search Tree:
+### Convert Sorted Array to Binary Search Tree:
     - can use mid or mid + 1 as mid and continue to buildBST 
 
-Minimum Depth of Binary Tree:
+### Minimum Depth of Binary Tree:
     - separate tree-null vs branch-null handling
 
-Balanced Binary Tree:
+### Balanced Binary Tree:
     - return height or falsy (-1)
 
-Flatten Binary Tree to LinkedList:
+### Flatten Binary Tree to LinkedList:
     traversing is post order - recurse left, recurse right then relink current node (same as min/max Depth)
     perform in-place mutation unlike min/max depth which returns int
     To preserve preorder use splice step. This is order sensitive/commutative:
@@ -245,7 +247,7 @@ Flatten Binary Tree to LinkedList:
         use rightSaved for right node
         walk to the tail of left - put's whole left list before right - O(n^2) worst case
 
-Palindrome Partitioning:
+### Palindrome Partitioning:
     identify recursive structure & backtrack
     what is the base case returning (in this case an empty array list for the product to continue)
     Catalan-Like Complexity
@@ -253,7 +255,7 @@ Palindrome Partitioning:
         - choose a split point and combine left & right sub solutions
         - worst case "aaaaa..." -> every substring is palindrome & yeilds ~ 2^(N-1) partitions
 
-Gas Station:
+### Gas Station:
     Kadane problem - greedy "one-pass" algorithm
     feasibility test: sum(diff) >= 0
     single pass index finding: if sum(diff[start ... i]) < 0 set index as i + 1
@@ -261,52 +263,53 @@ Gas Station:
         - skip when sum(diff[start ... i]) < 0
         - index is i + 1
 
-Find Minimum in Rotated Sorted Array:
+### Find Minimum in Rotated Sorted Array:
     - Binary Search by iteration
     - compare mid & hi to find the range where lo is located instead of mid + 1
     - converge when lo = hi
 
-ExcelSheetTitle:
+### ExcelSheetTitle:
     - instead of a map use 'A' + rem
     - edge cases when reminder = 0 -> Z
     - when rem == 0 you must also reduce the quotient by 1, otherwise multi letter case breaks
     - sb.append((char)('A'+rem - 1)) // <- note the char casting
     - tags: L3 interview question
 
-BSTIterator:
+### BSTIterator:
     - Use ArrayDeque instead of LinkedList
 
-Reverse Bits:
+### Reverse Bits:
     - Integer.toString(n, base) - higher order zero bits are ignored
     - Integer.parseInt(str, base) -  causes overflow or throw NumberFormatException for long length strings
     - reverse & pad with zeros to make 32 bits
 
-Basic Calculator II:
+### Basic Calculator II:
     - use Character.isDigit()
     - when applying +-*/ order left to right matters along with precedence (*/ are same precedence hence apply left to right)
     - use Stack for clarity & avoid StringBuilders & complex parse/collecting logic by using Character.isDigit()
 
-Additive Number:
+### Additive Number:
     - problem with lots of edge cases
     - boundary errors
     - offset errors
     - special cases like allow 0 but not allow 02 for num2 & num1
     - cases with large inputs
 
-RemoveZeros: various collectors
+### RemoveZeros: various collectors
 
-Number of Segments in a String:
+### Number of Segments in a String:
     - boundary detection
     - 2 pointer is overkill
 
-Sum of Square Numbers:
+### Sum of Square Numbers:
     cast into to long instead of long to int  to avoid Overflow error
 
-# Technique Guidelines
-loops:
+## Technique Guidelines
+
+### loops:
     for list/array where i: [0, sz-1] & j: [sz-1, 0] make loop termination condition i <= j to visit last element
 
-BFS:
+### BFS:
     LinkedList Queue Size
     While & for
     check new grid coordinates in bounds
@@ -315,15 +318,15 @@ BFS:
         Use ArrayDeque instead of List with start/end pointers
         for markers if index/integer based elements avoid Set and use boolean[]
 
-Graph:
+### Graph:
     Use AdjacencyList instead of AdjacencyMap if index/integer based keys
 
-Binary Search
+### Binary Search
     if nums[0] in sorted array is > target then "end" will be "-1"
     if nums[length-1] in sorted array is < target then "start" will be "length"
     mid-calculation (start+end)/2 can cuse overflow
 
-DFS:
+### DFS:
     Early Pruning exit after finding result -> GraySequence
     n-ary DFS: similar to binary DFS but allows "pick one from many options at each step and avoid duplicates at the same level" like "permutations"
     binary DFS: each element can be either in or out, like subset generation, subsequences -> not good for permutations
@@ -338,13 +341,13 @@ DFS:
             Rule: the younger sibling (nums[i]) can only step forward if the older sibling (nums[i-1]) has already stepped in.
             That way, we never let “younger” go first and cause duplicate scenarios.
         - start parameter: For permutations (placing numbers in positions), you don’t need start. The stopping condition is cur.size() == N, not start >= N.
-    
-BinarySearchTree(BST):
+
+### BinarySearchTree(BST):
     inorder traversal of a BST is increasing -> RecoverBST
 
-Competition/Interview Programming Techniques:
+### Competition/Interview Programming Techniques:
 
-DP Cheat Sheet:
+### DP Cheat Sheet:
     1. Identify the Problem Type
         Is it asking for min/max value (triangle min path, coin change)?
         Is it about counting ways (climbing stairs, unique paths)?
@@ -383,7 +386,7 @@ DP Cheat Sheet:
         * Transition: tri[r][c] + min(f(r+1,c), f(r+1,c+1))
         * Answer: f(0,0)
 
-Two-Pointer:
+### Two-Pointer:
     slow & fast pointer
     Write Index (slow) & Sliding Window
     SlidingWindow (Fixed or Variable Size): 
@@ -391,25 +394,25 @@ Two-Pointer:
         single point  to shrink window
         ex: MinSizeSubArraySum & ContainsDuplicateII
 
-Invariant ChecksList:
+### Invariant ChecksList:
     Initialize -> Maintain -> Terminate
     State one relationship you can keep true every step. Options you’ll reuse a lot:
         Fixed gap: fast is k nodes ahead of slow.
         Window coverage: Nodes between slow (exclusive) and fast (inclusive) form the last k nodes seen.
         Prefix/suffix property: All nodes up to slow are processed; nodes after fast are unprocessed.
 
-Invariant patterns for linked lists:
+### Invariant patterns for linked lists:
     Two pointers / deletion k-from-end: fixed gap (n+1).
     Cycle detection (Floyd): fast moves 2X, slow moves 1X; if there’s a cycle, they meet.
     Reverse sublist [m, n]: rev always points to node before the reversed block; curr is the first node not yet reversed.
     Merge two lists: All nodes up to tail are correctly merged and sorted.
     dummy is a standard invariant helper: It makes “predecessor exists” always true, so your invariant can say “slow is predecessor” without branching for head deletion.
 
-Kadanes Algorithm:
+### Kadanes Algorithm:
     If currSum < 0, drop it (restart), because any future extension is hurt by a negative prefix.
     if (nums[i] > currSum) and if (currSum < 0) are just two ways of writing the same reset logic.
 
-Greedy Template:
+### Greedy Template:
     Approach 1:
         - "start new" at nums[i] vs "extend"
         - swapping technique to keep signs consistent after multiply
@@ -421,10 +424,10 @@ Greedy Template:
             - The combination of both directions ensures every possible subarray is implicitly checked without explicit nested loops
         - prefix & suffix reset will carry negative and positive products
 
-In-Place:
+### In-Place:
     Use constant extra space for any given input size.
 
-choose-root and combine subtrees/Catalan recipe - It’s the general strategy whenever you see:
+### choose-root and combine subtrees/Catalan recipe - It’s the general strategy whenever you see:
     - recursive combinatorial structures
     - partition into two sides
     - multiplication of possibilities
@@ -440,8 +443,8 @@ choose-root and combine subtrees/Catalan recipe - It’s the general strategy wh
     Catalan vs Backtrack:
         Catalan = split & combine both sides.
         Backtracking = greedy prefix, recurse on suffix.
-    
-Plain Backtracking
+
+### Plain Backtracking
     Structure: "Pick a valid piece at the current index, recurse on the remainder."
     - pseudo:
     for (int end = start; end < n; end++) {
@@ -454,28 +457,30 @@ Plain Backtracking
     Explosion: up to 2^(n-1) partitions (Catalan-like, but not true Catalan)
     Examples: Palindrome partitioning, word break, combination sum
 
-Monotonic Stack:
+### Monotonic Stack:
     - suitable for finding montonic sequences ( 4 of them)
     - https://leetcode.com/discuss/post/2347639/a-comprehensive-guide-and-template-for-m-irii/
     - DFS "Try removing digits in different combinations / recursively decide keep vs remove and track the minimum" 
       won't work here because of exponential combinations for large strings 2^n for a 100K long string it is astronomically 
       impossible
     
-# Library Guidelines
-Collections:
-    Collections:
+## Library Guidelines
+
+### Collections:
         use collection.isEmpty() instead of collection.size() != 0
         Collections.emptyList() instead of new ArrayList<>()
         Collections.sort(list)
         Collections.sort(list,Collections.reverseOrder()) // reverse sorting
         Collections.min(collection), Collections.min(collection, Comparator)
-    List:
+
+### List:
         list.add(indx, val)// overload where val is inserted at indx; It is an Insertion operation, not a replacement operation; index must be valid based on the current size
         list = new ArrayList<>(capacity); // You still have to use methods like add() or addAll() to populate the list, otherwise list.set(index, element) throws IndexOutOfBoundsException as list's size is zero
         list.sort()// Compiler Error - No such method
         list.sort(Comparator.naturalorder())
         list.sort(Comparator.reverseOrder()) // supported for Examples include Integer, String, and Date
-    Arrays:
+
+### Arrays:
         Empty Array: new int[0] vs new int[]{}
         Arrays.sort(people, Comparator.comparingInt((int[] person) -> - person[0]) // chaining comparators in reverse order 
                 .thenComparingInt((int[] person) -> person[1])); // then another element; note Generic casting
@@ -492,7 +497,8 @@ Collections:
             int sum = Arrays.stream(nums).sum();
             int max = Arrays.stream(nums).max().OrElse(0);// Optional
             boolean match = Arrays.stream(nums).AnyMatch(x -> x > 10);
-    ArrayList to Array: 
+
+### ArrayList to Array: 
         list.stream().mapToInt(Integer::intValue).toArray()  
             // To convert List<Integer> to int[], there is no unboxed version and you have to use mapToInt, mapToDouble etc;
         This doesn't work --> list.stream().mapToInt(Integer::intValue).toArray(new int[0]) 
@@ -503,11 +509,13 @@ Collections:
         String[] list.toArray(new String[list.size()])
         Collections.reverse(List) // inplace & no method on List; only works on List not on Queue or Set
         List.of(1,2,3) // List factory - immutable
-    Array to ArrayList:
+
+### Array to ArrayList:
         List<List<Integer>> res = new ArrayList<>();
         res.add(Arrays.asList(new Integer[]{1})); // works
         res.add(Arrays.asList(new int[]{1})); // Doesn't work
-    Map: 
+
+### Map: 
         hashMap.getOrDefault(key, default)
         hashMap.putIfAbsent -> will return null for the first time
         hashMap.computeIfAbsent -> will return value returned by mapping function if absent or the  current value
@@ -538,16 +546,20 @@ Collections:
             hashMap.remove(key,val) -> remove Entry only when key mapped to val
             hashMap.clear() -> clear all entries
             hashMap.isEmpty()
-    SortedMap:
+
+### SortedMap:
         TreeMap is sorted Map
-    SortedSet:
+
+### SortedSet:
         TreeSet is sorted set of unique elements 
         doesn't permit nulls
         implements NavigableSet Interface: first(), last(), floor(), ceiling(), higher(), and lower()
                     pollFirst(), pollLast(), headSet(toElement, inclusive), tailSet(fromElement, inclusive)
-    PriorityQueue:
+
+### PriorityQueue:
         priorityQueue.poll()
-    Stream:
+
+### Stream:
         stream.collector(Collectors.toList())
         stream.toArray() --> for converting stream to Array gotcha's above in toArray
         stream.boxed().collector(Collectors.toList()) // boxing for IntStream to List<Integer>
@@ -564,14 +576,17 @@ Collections:
         Stream Operations: apply various intermediate and terminal operations to process in a functional and declarative manner. These operations include:
             - Intermediate operations: filter(), map(), flatMap(), distinct(), sorted(), limit(), skip(), etc.
             - Terminal operations: forEach(), collect(), reduce(), count(), min(<Comparator>), max(<Comparator>), anyMatch(<predicate>), allMatch(<predicate>), noneMatch(<predicate>), toArray(), etc.
-    LinkedList:
+
+### LinkedList:
         used as a stack and linked list
         `Queue` is usually `LinkedList` unless explicitly a `PriorityQueue`
-    Deque:
+
+### Deque:
         used as a stack and preferred for stack because of memory overhead
         `Deque` usually backed by `ArrayDeque`
         no direct access elements by index (like a get(index) or set(index) method), API supports efficient insertions and removals from both the front and the back.
-Comparator:
+
+### Comparator:
         Custom comparators are usually Lambda functions: (a, b) -> a[0] - b[0]
         Comparator<int[]> c = Comparator.comparingInt(p -> p[0]);
         Comparator<int[]> c = (p1, p2) -> p1[0] - p2[0];
@@ -585,10 +600,12 @@ Comparator:
             dictionary.sort(byLenByLexical);
         comparator.reversed()//non static a.k.a object method
         Comparator.reverseOrder()
-    Optional:
+
+### Optional:
         optional.orElse()      // used for Object Streams
         optionalInt.getAsInt() // used for IntStream
-    Stack vs Queue vs Heaps
+
+### Stack vs Queue vs Heaps
         Stack Methods (LIFO): use LinkedList or ArrayDeque as a stack
             - push(E e)  - Inserts an element at the front (top) of the deque.
             - pop() - Removes and returns the element at the front (top) of the deque.
@@ -603,9 +620,11 @@ Comparator:
             - poll() - Removes and returns the head of the queue - O(log N)
             - peek() - Retrieves the highest-priority element without removing it from the queue
     Deque offers both stack & queue methods in a single class
-    Iterator<T>:
+
+### Iterator<T>:
         next - Advances the iterator, after returning an element
-    Lambdas:
+
+### Lambdas:
         method references:
             - Kind	Syntax	Examples
             - Reference to a static method	ContainingClass::staticMethodName	Math::abs
@@ -616,8 +635,8 @@ Comparator:
             (int[]) p --> casting  and not used in lambdas
             (int[] p) --> explicit typing a lambda param used when compiler cannot infer the type of params
             Comparator.comparingInt((int[] p) -> p[1]);  -> not casting typing target param
-        
-Arrays
+
+### Arrays
     Creation & Initialization:
         int[] numbers = new int[3] {1, 2, 3}; // ILLEGAL array creation with both dimension expression and initialization
         int[] numbers = new int[3];// Legal (Using dimension expression)
@@ -663,10 +682,10 @@ Arrays
     arr.clone() // Shallow Copy
     A subarray is a contiguous subsequence of the array.
 
-System:
+### System:
     System.arraycopy(from,fromStart,to,toStart,fromLength)
 
-Math
+### Math
     Integer.MAX_VALUE
     Integer.MIN_VALUE
     for big constants use _ like long MAX = 1000_000_000;
@@ -710,7 +729,7 @@ Math
                 return gcd(b, a % b);
             }
 
-String
+### String
     convert String to int --> Integer.parseInt(String s) or Integer.valueOf(String s) // drops leading 0 & -ve sign is taken care when converting -123
     Integer.valueOf(String s) Integer.valueOf(int i) --> overloaded valueOf Integer
     String.valueOf(int i) String.valueOf(double price) --> overloaded valueOf String
@@ -739,17 +758,18 @@ String
         - A substring is a contiguous sequence of characters within a string.
         - A subsequence is a sequence of characters derived from another sequence by deleting zero or more elements without changing the order of the remaining elements.
 
-RegEx:
+### RegEx:
     String clean = s.replaceAll("\\s+",""); // drop all spaces
 
-Matrix
+### Matrix
     Spiral/MinOpsForY/Rotate
 
-StringBuilder
+### StringBuilder
     stringBuilder.reverse()
     sb.deleteCharAt(i)
     sb.setLength(0) // clear string Builder
-Character
+
+### Character
     Character.toLowerCase(c)
     check if character is alphanumeric -> Character.isDigit(c) || Character.isLetter(c)
     Character.isWhitespace(c), Character.isLowerCase(c),
@@ -757,10 +777,10 @@ Character
     char ch = 'A'; int asciiValue = ch; // asciiValue will be 65
     char digitChar = '7'; int numericValue = digitChar - '0';// numericValue will be 7
 
-Enum:
+### Enum:
     Enum names are Capitalized, enum constants are CAPITAL
 
-java operators:
+### java operators:
     simple ternary return 
     return and assignment
         return memo[i][partsLeft] = res;
@@ -780,7 +800,7 @@ java operators:
         case null, default ->
         values used in the case labels must be compile-time constants not run time 
 
-Bitwise:
+### Bitwise:
     left shift:
         1 << n -> left shift same as 2^n  or Math.pow(2, n)
         x << n is equivalent to x * 2^n
@@ -809,25 +829,26 @@ Bitwise:
         -   Does NOT preserve sign.
         -   Zero is shifted into the MSB.
 
-Boolean:
+### Boolean:
     ^ - Boolean version of XOR // no shortcut as both operands need eval
     DIY XOR: boolean negative = (dividend < 0) != (divisor < 0)
 
-java.util.Random:
+### java.util.Random:
     random.nextInt(), nextLong(), nextDouble(), nextBoolean()
     random.nextInt(hi) [0, hi)
     random.nextDouble() // Generate random double between 0.0 and 1.0
     alternatively, Math.random() // Generate a random double between 0.0 and 1.0
-    
-casting:
+
+### casting:
     long to int, double to int -> explicit - narrow/lossy, possible overflow
     int to long, char to int -> auto - widening
     Gotcha's:
     When adding an int to a List<Double>, casting is required because Java cannot perform primitive widening and autoboxing in a single step. 
     While an int can automatically widen to a double when assigned to a variable, generic collections like List<Double> work only with objects, not primitives.
 
-# Java Versions/Releases:
-Java 8 additions as three parallel upgrades:
+## Java Versions/Releases:
+
+### Java 8 additions as three parallel upgrades:
     #1  Streams API => stream(), map, filter, collect
     #2  Functional interfaces + lambdas => Function, BiFunction, Predicate
     #3  Enhanced Collections API => Map.merge, computeIfAbsent, forEach, replaceAll
