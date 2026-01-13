@@ -1,4 +1,4 @@
-package proj.hobby.dsa.stack;
+package proj.hobby.lld;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
