@@ -287,6 +287,8 @@
     - use Character.isDigit()
     - when applying +-*/ order left to right matters along with precedence (*/ are same precedence hence apply left to right)
     - use Stack for clarity & avoid StringBuilders & complex parse/collecting logic by using Character.isDigit()
+    - +-*/ are binary ops, so you need 2 nums surroinding ops first. Start with default op "+" then every time you 
+      hit an op use previous op on the current number and store the op 
 
 ### Additive Number:
     - problem with lots of edge cases
