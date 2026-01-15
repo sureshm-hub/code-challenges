@@ -273,7 +273,7 @@
     - edge cases when reminder = 0 -> Z
     - when rem == 0 you must also reduce the quotient by 1, otherwise multi letter case breaks
     - sb.append((char)('A'+rem - 1)) // <- note the char casting
-    - tags: L3 interview question
+    - tags: L2/3 interview question
 
 ### BSTIterator:
     - Use ArrayDeque instead of LinkedList
@@ -305,6 +305,9 @@
 
 ### Sum of Square Numbers:
     cast into to long instead of long to int  to avoid Overflow error
+
+### Summary Range
+    - tags: L1/2 interview question
 
 ## Technique Guidelines
 

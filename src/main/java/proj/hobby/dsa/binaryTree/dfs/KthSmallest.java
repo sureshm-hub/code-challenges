@@ -11,7 +11,24 @@ import java.util.List;
  */
 public class KthSmallest {
 
+    private int kthSmall = 0;
+
     public int kthSmallest(TreeNode root, int k) {
+        findKthSmall(root, k, 0);
+        return kthSmall;
+    }
+
+    private int findKthSmall(TreeNode node, int k, int count) {
+        if(node == null) return count;
+        int left = findKthSmall(node.left, k, count);
+        if(left + 1 == k) {
+            kthSmall = node.val;
+        }
+        int right = findKthSmall(node.right, k, left + 1);
+        return right;
+    }
+
+    public int kthSmallest2(TreeNode root, int k) {
 
         List<Integer> result = new ArrayList<>();
         List<Integer> count = new ArrayList<>();
