@@ -10,34 +10,34 @@ import java.util.Queue;
  */
 public class MyStack {
 
-    Queue<Integer> q1 = new ArrayDeque<>();
-    Queue<Integer> q2 = new ArrayDeque<>();
+    Queue<Integer> in = new ArrayDeque<>();
+    Queue<Integer> out = new ArrayDeque<>();
 
     public MyStack() {
     }
 
     // O(N)
     public void push(int x) {
-        q2.offer(x);
-        while(!q1.isEmpty()) {
-            q2.offer(q1.poll());
+        in.offer(x);
+        while(!out.isEmpty()) {
+            in.offer(out.poll());
         }
-        Queue temp = q1;
-        q1 = q2;
-        q2 = temp;
+        Queue temp = out;
+        out = in;
+        in = temp;
     }
 
     // O(1)
     public int pop() {
-        return q1.poll();
+        return out.poll();
     }
 
     // O(1)
     public int top() {
-        return q1.peek();
+        return out.peek();
     }
 
     public boolean empty() {
-        return q1.isEmpty();
+        return out.isEmpty();
     }
 }

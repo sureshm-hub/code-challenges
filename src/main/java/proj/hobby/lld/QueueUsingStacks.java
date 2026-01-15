@@ -1,4 +1,4 @@
-package proj.hobby.dsa.queue;
+package proj.hobby.lld;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

@@ -309,6 +309,19 @@
 ### Summary Range
     - tags: L1/2 interview question
 
+### Stack using Queue & Queue using Stack
+    - second container acts as a “reversal buffer”
+    - Queue using Stacks - push is cheap & expensive on demand
+        * push(x) => just push into in (cheap)
+        * pop/peek O(N)  => if out is empty, pour everything from in to out (this reverses order) 
+        * After transfer: out has the oldest element on top => behaves like queue front
+    - Stack using Queues — expensive on insertion (eager)
+        * push(x) does: O(N)
+            1) in.offer(x) (put new item in) 
+            2) Move everything from out into in 
+            3) Swap in and out
+        * Result: out always has the newest element in front => stack top.
+
 ## Technique Guidelines
 
 ### loops:
