@@ -12,6 +12,31 @@ import java.util.List;
 public class BinaryTreePaths {
 
     public List<String> binaryTreePaths(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        dfs(root, result, new ArrayList<>());
+        return result;
+    }
+
+    private void dfs(TreeNode node, List<String> result, List<Integer> path) {
+        if(node == null) return;
+
+        if(node.left == null && node.right == null) {
+            StringBuilder sb  = new StringBuilder();
+            for(int p : path) {
+                sb.append(p).append("->");
+            }
+            sb.append(node.val);
+            result.add(sb.toString());
+            return;
+        }
+        path.add(node.val);
+        dfs(node.left, result, path);
+        dfs(node.right, result, path);
+        path.remove(path.size()-1);
+    }
+
+
+    public List<String> binaryTreePaths2(TreeNode root) {
 
         List<String> paths = new ArrayList<>();
 

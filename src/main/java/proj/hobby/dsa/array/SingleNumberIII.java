@@ -8,7 +8,7 @@ import java.util.Set;
  *
  * https://leetcode.com/problems/single-number-iii/
  */
-public class SingleNumberII {
+public class SingleNumberIII {
 
     public int[] singleNumber(int[] nums) {
         if(nums.length <= 2) return nums;

@@ -10,6 +10,25 @@ public class ValidAnagram {
 
     public boolean isAnagram(String s, String t) {
 
+        if(s.length() != t.length()) return false;
+
+        char[] counts = new char[26];
+        for(int i = 0; i < s.length(); i++) {
+            int idx1 = s.charAt(i) - 'a';
+            int idx2 = t.charAt(i) - 'a';
+            counts[idx1]++;
+            counts[idx2]--;
+        }
+
+        for(int i = 0; i < 26; i++) {
+            if(counts[i] != 0) return false;
+        }
+
+        return true;
+    }
+
+    public boolean isAnagram2(String s, String t) {
+
         Map<Character, Integer> charMap = new HashMap<>();
 
         for(char c : s.toCharArray()) {

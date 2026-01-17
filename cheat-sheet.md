@@ -210,10 +210,10 @@
   - reverse the suffix
 
 ### search-in-rotated-sorted-array:
-    - find sorted half and exclude or include it
+  - find sorted half and exclude or include it
 
 ### find-first-and-last-position-of-element-in-sorted-array:
-    - find target and then search for first & last
+  - find target and then search for first & last
 
 ### search-insert-position:
     - [lo, hi) - exclude hi & start with hi = nums.length
@@ -273,7 +273,7 @@
     - edge cases when reminder = 0 -> Z
     - when rem == 0 you must also reduce the quotient by 1, otherwise multi letter case breaks
     - sb.append((char)('A'+rem - 1)) // <- note the char casting
-    - tags: L2/3 interview question
+    - tag: L2/3 interview question
 
 ### BSTIterator:
     - Use ArrayDeque instead of LinkedList
@@ -289,6 +289,7 @@
     - use Stack for clarity & avoid StringBuilders & complex parse/collecting logic by using Character.isDigit()
     - +-*/ are binary ops, so you need 2 nums surroinding ops first. Start with default op "+" then every time you 
       hit an op use previous op on the current number and store the op 
+    - tag: interview prep
 
 ### Additive Number:
     - problem with lots of edge cases
@@ -307,7 +308,7 @@
     cast into to long instead of long to int  to avoid Overflow error
 
 ### Summary Range
-    - tags: L1/2 interview question
+    - tag: L1/2 interview question
 
 ### Stack using Queue & Queue using Stack
     - second container acts as a “reversal buffer”
@@ -321,6 +322,9 @@
             2) Move everything from out into in 
             3) Swap in and out
         * Result: out always has the newest element in front => stack top.
+
+## Add Parenthesis:
+    - tag: divide‑and‑conquer pattern: “choose a split point, recurse on left and right, combine” 
 
 ## Technique Guidelines
 
