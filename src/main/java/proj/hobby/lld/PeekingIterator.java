@@ -1,4 +1,4 @@
-package proj.hobby.dsa.collections;
+package proj.hobby.lld;
 
 import java.util.Iterator;
 

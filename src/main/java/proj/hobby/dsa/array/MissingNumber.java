@@ -9,7 +9,23 @@ import java.util.Set;
  */
 public class MissingNumber {
 
+    // use boolean instead of Set<Integer>
     public int missingNumber(int[] nums) {
+        int L = nums.length;
+        boolean[] seen = new boolean[L + 1];
+
+        for(int num : nums) {
+            seen[num] = true;
+        }
+
+        for(int i = 0; i < L + 1; i++) {
+            if(!seen[i]) return i;
+        }
+
+        return -1;
+    }
+
+    public int missingNumber2(int[] nums) {
 
         int n = nums.length;
 

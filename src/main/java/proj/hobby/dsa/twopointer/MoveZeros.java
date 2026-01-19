@@ -6,7 +6,21 @@ import java.util.List;
 // https://leetcode.com/problems/move-zeroes/?envType=study-plan-v2&envId=leetcode-75
 public class MoveZeros  {
 
+
+    // using temp array
     public void moveZeroes(int[] nums) {
+        int[] temp = new int[nums.length];
+        for(int i = 0, j = 0; i < nums.length; i++) {
+            if(nums[i] != 0) {
+                temp[j++] = nums[i];
+            }
+        }
+        for(int i = 0; i < nums.length; i++) {
+            nums[i] = temp[i];
+        }
+    }
+
+    public void moveZeroes2(int[] nums) {
         int index = 0, currZero = -1, currNonZero = -1;
         while(index < nums.length) {
             if(nums[index] == 0 && currZero == -1) currZero = index;
