@@ -7,6 +7,40 @@ package proj.hobby.dsa.array;
 public class GameOfLife {
 
     public void gameOfLife(int[][] board) {
+        int rows = board.length;
+        int cols = board[0].length;
+
+        int[][] nextBoard = new int[rows][cols];
+        int[][] nbrs = new int[][]{{-1, 0}, {1, 0}, {0, 1}, {0, -1}, {-1, -1}, {-1,1}, {1, -1}, {1, 1}};
+        for(int r = 0;  r < rows; r++) {
+            for(int c = 0; c < cols; c++) {
+                int liveNbr = 0;
+                for(int[] nbr : nbrs) {
+                    int x = nbr[0] + r, y = nbr[1] + c;
+                    if(x >= 0 && x < rows && y >= 0 && y <  cols && board[x][y] == 1) {
+                        liveNbr++;
+                    }
+                }
+                nextBoard[r][c] = nextState(board[r][c], liveNbr);
+            }
+        }
+
+        for(int r = 0; r < rows; r++) {
+            System.arraycopy(nextBoard[r], 0, board[r], 0, cols);
+        }
+
+    }
+
+    private int nextState(int cur, int liveNbrs) {
+        if(cur == 1) {
+            if (liveNbrs == 2 || liveNbrs == 3) return 1;
+            return 0;
+        }
+        if(liveNbrs == 3) return 1;
+        return 0;
+    }
+
+    public void gameOfLife2(int[][] board) {
 
         int M = board.length;
         int N = board[0].length;
