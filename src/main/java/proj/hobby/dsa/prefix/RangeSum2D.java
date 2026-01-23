@@ -9,14 +9,18 @@ public class RangeSum2D {
     private int[][] pre;
 
     public RangeSum2D(int[][] matrix) {
-        int M = matrix.length;
-        int N = matrix[0].length;
+        int rows = matrix.length;
+        int cols = matrix[0].length;
 
-        pre = new int[M + 1][N + 1];
+        pre = new int[rows + 1][cols + 1];
 
-        for(int i = 0; i < M; i++) {
-            for(int j = 0; j < N; j++) {
-                pre[i+1][j+1] = pre[i+1][j] + pre[i][j+1] - pre[i][j] + matrix[i][j];
+        for(int r = 0; r < rows; r++) {
+            for(int c = 0; c < cols; c++) {
+                // pre[r+1][c] - region from prefix[0,0] to col before current cell
+                // pre[r][c+1] - region from prefix[0,0] to row before current cell
+                // pre[r][c]  - "remove" region from prefix[0,0] to row, col before current cell
+                // matrix[r][c] - "current cell"
+                pre[r+1][c+1] = pre[r+1][c] + pre[r][c+1] - pre[r][c] + matrix[r][c];
             }
         }
     }

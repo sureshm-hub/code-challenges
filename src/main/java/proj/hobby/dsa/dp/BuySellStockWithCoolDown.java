@@ -18,6 +18,7 @@ public class BuySellStockWithCoolDown {
                 int prev = (j >= 2) ? dp[j-2] : 0;
                 maxProfitI = Math.max(maxProfitI, prices[i] - prices[j] + prev);
             }
+            // DP state is “best over a prefix/time so far” -> carry forward: dp[i] = max(dp[i], dp[i-1])
             dp[i] = Math.max(dp[i - 1], maxProfitI);
         }
 

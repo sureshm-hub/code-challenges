@@ -1,4 +1,6 @@
-package proj.hobby.dsa.strings;
+package proj.hobby.dsa.binaryTree.dfs;
+
+import java.math.BigInteger;
 
 /**
  *
@@ -7,6 +9,37 @@ package proj.hobby.dsa.strings;
 public class AdditiveNumber {
 
     public boolean isAdditiveNumber(String num) {
+        int n = num.length();
+
+        // num[0..i] ->  firstNum
+        for(int i = 1; i <= n - 2; i++) {
+            if(num.charAt(0) == '0' && i != 1) continue;
+            String firstNum = num.substring(0, i);
+            for(int j = i + 1; j <= n - 1; j++) {
+                if(num.charAt(i) == '0' && j > i + 1) continue;
+                String secondNum = num.substring(i, j);
+                if(dfs(num, firstNum, secondNum, j)) return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean dfs(String num, String firstNum, String secondNum, int s) {
+        if(s == num.length()) return true;
+
+        // String thirdNum = String.valueOf(Long.parseLong(firstNum) + Long.parseLong(secondNum));
+        // NumberFormat for large input string: "9999999999999999999"
+        BigInteger x = new BigInteger(firstNum);
+        BigInteger y = new BigInteger(secondNum);
+        String thirdNum = x.add(y).toString();
+
+        if(!num.startsWith(thirdNum, s)) return false;
+
+        return dfs(num, secondNum, thirdNum, s + thirdNum.length());
+    }
+
+
+    public boolean isAdditiveNumberParse(String num) {
         for(int i = 1; i <= num.length() - 2; i++) {
             if (num.charAt(0) == '0' && i != 1) continue;
             String prev1 = num.substring(0, i);

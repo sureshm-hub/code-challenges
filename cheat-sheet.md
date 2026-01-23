@@ -407,6 +407,13 @@
         * Base: f(last row, c) = tri[last][c]
         * Transition: tri[r][c] + min(f(r+1,c), f(r+1,c+1))
         * Answer: f(0,0)
+    Edge Cases:
+      LIS: 
+        // DP state is “best with a specific endpoint/condition”
+        dp[i] = Math.max(dp[i], 1 + dp[j]);
+      BuySellStockWithCoolDown:
+        // DP state is “best over a prefix/time so far” -> carry forward: dp[i] = max(dp[i], dp[i-1])
+        dp[i] = Math.max(dp[i - 1], maxProfitI);
 
 ### Two-Pointer:
     slow & fast pointer
@@ -750,6 +757,11 @@
                 if(b == 0) return a;
                 return gcd(b, a % b);
             }
+    java.math.BigInteger
+        BigInteger x = new BigInteger(aStr);
+        BigInteger y = new BigInteger(bStr);
+        String cStr = x.add(y).toString();
+  
 
 ### String
     convert String to int --> Integer.parseInt(String s) or Integer.valueOf(String s) // drops leading 0 & -ve sign is taken care when converting -123
@@ -779,6 +791,8 @@
     substring vs subsequence: primary distinction between a subsequence and a substring lies in the requirement of contiguity.
         - A substring is a contiguous sequence of characters within a string.
         - A subsequence is a sequence of characters derived from another sequence by deleting zero or more elements without changing the order of the remaining elements.
+    str.startsWith(prefix),  str.startsWith(prefix, offset)
+    str.indexOf(prefix), str.indexOf(prefix, offset)
 
 ### RegEx:
     String clean = s.replaceAll("\\s+",""); // drop all spaces

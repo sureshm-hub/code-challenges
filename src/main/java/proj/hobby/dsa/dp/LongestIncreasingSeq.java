@@ -17,6 +17,7 @@ public class LongestIncreasingSeq {
         for(int i =  1; i < nums.length; i++) {
             for(int j = 0; j < i; j++) {
                 if(nums[i] > nums[j]) {
+                    // DP state is “best with a specific endpoint/condition”
                     dp[i] = Math.max(dp[i], 1 + dp[j]);
                 }
             }
