@@ -7,6 +7,6 @@ git untrack previously tracked files:
 git creating a new repo:
     git init
     git branch -M main
-    git commit -m "first commit"
+    git commit -m "initial commit"
     git remote add origin https://github.com/<account>/<url>.git
     git push -u origin main
