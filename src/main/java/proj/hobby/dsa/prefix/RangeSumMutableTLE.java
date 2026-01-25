@@ -3,7 +3,7 @@ package proj.hobby.dsa.prefix;
 /**
  *
  * RangeSumMutableTLE: simple impl for RangeSumMutable.
- * Suffers TLE, to avoid use Fenwick Tree solution "RangeSumMutable"
+ * Suffers TLE, use Fenwick Tree solution "RangeSumMutable" to scale
  *
  */
 public class RangeSumMutableTLE {
