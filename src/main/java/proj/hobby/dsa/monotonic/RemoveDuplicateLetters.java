@@ -1,30 +1,32 @@
-package proj.hobby.dsa.strings;
+package proj.hobby.dsa.monotonic;
 
 /**
  *
  * https://leetcode.com/problems/remove-duplicate-letters/description/
  *
+ * "Monotonic Stack" Solution
+ *
  */
 public class RemoveDuplicateLetters {
 
     public String removeDuplicateLetters(String s) {
-        int n = s.length();
-        int[] last = new int[26];
-        for(int i = 0; i < n; i++) last[s.charAt(i) -'a'] = i;
+        int[] freq = new int[26];
+        for(char c: s.toCharArray()) freq[c - 'a']++;
 
-        boolean[] used = new boolean[26];
+        boolean[] used = new boolean[26];//char used in stack
         StringBuilder sb = new StringBuilder();
 
-        for(int i = 0; i < n; i++) {
-            char c = s.charAt(i);
+        for(char c: s.toCharArray()) {
             int idx = c - 'a';
+            freq[idx]--;
 
             if(used[idx]) continue;
 
-            while(sb.length() > 0) {
+            while(!sb.isEmpty()) {
                 char top = sb.charAt(sb.length() - 1);
-                if(top > c && last[top - 'a'] > i) {
-                    used[top - 'a'] = false;
+                int topIdx = top - 'a';
+                if(top > c && freq[topIdx] > 0) {
+                    used[topIdx] = false;
                     sb.deleteCharAt(sb.length() - 1);
                 } else break;
             }
