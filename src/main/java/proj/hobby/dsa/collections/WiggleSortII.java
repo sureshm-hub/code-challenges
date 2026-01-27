@@ -5,6 +5,9 @@ import java.util.Arrays;
 /**
  *
  * https://leetcode.com/problems/wiggle-sort-ii/description/
+ *
+ * Default splice won't work: If you just take the second half and interleave it forward with the first half, duplicates
+ * can sit next to each other and break the < > < > pattern.
  */
 public class WiggleSortII {
 
@@ -12,8 +15,8 @@ public class WiggleSortII {
         Arrays.sort(nums);
 
         int n = nums.length;
-        int mid = (n - 1)/2;
-        int hi = n - 1;
+        int mid = (n - 1)/2; // last index of bottom half; n/2  -> floor division won't work for even lengthed arrays
+        int hi = n - 1; // last index of upper half
 
         int[] temp = new int[n];
         int k = 0;
