@@ -1,4 +1,4 @@
-package proj.hobby.dsa.strings;
+package proj.hobby.dsa.prefix;
 
 /**
  *
