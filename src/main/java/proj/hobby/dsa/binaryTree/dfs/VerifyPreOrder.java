@@ -13,7 +13,7 @@ public class VerifyPreOrder {
 
         if("#".equals(preorder)) return true; // null is valid
 
-        Deque<Integer> stack = new ArrayDeque<Integer>(); // #child = 0, 1, 2
+        Deque<Integer> stack = new ArrayDeque<>(); // #child = 0, 1, 2
 
         String[] nums = preorder.split(",");
         int n = nums.length;
