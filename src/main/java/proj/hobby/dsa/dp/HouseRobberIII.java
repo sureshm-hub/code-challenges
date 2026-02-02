@@ -37,7 +37,7 @@ public class HouseRobberIII {
         int[] L = dfs(node.left, memo);
         int[] R = dfs(node.right, memo);
 
-        int take = node.val + L[0] + R[0]; // dhildren should be skipped
+        int take = node.val + L[0] + R[0]; // children should be skipped
 
         int skip = Math.max(L[0], L[1]) + Math.max(R[0], R[1]); //free to choose any children
 
