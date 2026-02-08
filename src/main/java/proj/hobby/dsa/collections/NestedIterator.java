@@ -1,52 +1,37 @@
 package proj.hobby.dsa.collections;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Queue;
 
 /**
  *
  * https://leetcode.com/problems/flatten-nested-list-iterator/description/
  */
-public class NestedIterator  implements Iterator<Integer> {
-
-    private final Deque<Iterator<NestedInteger>> dq = new ArrayDeque<>();
-    private Integer next = null;
+public class NestedIterator implements Iterator<Integer> {
+    private Queue<Integer> dq = new ArrayDeque<>();
 
     public NestedIterator(List<NestedInteger> nestedList) {
-        if(nestedList != null) {
-            dq.push(nestedList.iterator());
-        }
-    }
-
-    private boolean advance() {
-        while(!dq.isEmpty()) {
-            Iterator<NestedInteger> top = dq.peek();
-            if(!top.hasNext()) {
-                dq.pop();
-                continue;
-            }
-
-            NestedInteger cur = top.next();
-            if(cur.isInteger()) {
-                next = cur.getInteger();//cache
-                return true;
-            } else {
-                dq.push(cur.getList().iterator());
-            }
-        }
-        return false;
+        addInteger(nestedList);
     }
 
     @Override
     public Integer next() {
-        if(!hasNext()) throw new NoSuchElementException();
-        Integer ans = next;
-        next = null;
-        return ans;
+        return dq.poll();
     }
 
     @Override
     public boolean hasNext() {
-        if(next != null) return true;
-        return advance();
+        return  !dq.isEmpty();
+    }
+
+    private void addInteger(List<NestedInteger> nestedList) {
+        for(NestedInteger ni : nestedList) {
+            if(ni.isInteger())
+                dq.offer(ni.getInteger());
+            else
+                addInteger(ni.getList());
+        }
     }
 }
