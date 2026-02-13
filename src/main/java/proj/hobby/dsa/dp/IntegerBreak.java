@@ -24,8 +24,8 @@ public class IntegerBreak {
         int max = Integer.MIN_VALUE;
         for(int i = 1; i <= n - 1; i++) {
             int iComp = n - i;
-            int maxIComp = dfs(iComp, memo);
-            max = Math.max(max, Math.max(i * iComp, i * maxIComp));
+            int maxIComp = dfs(iComp, memo); // best for iComp
+            max = Math.max(max, Math.max(i * iComp, i * maxIComp)); // iComp vs maxIComp
         }
         memo.put(n, max);
         return max;
