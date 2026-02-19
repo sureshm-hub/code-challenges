@@ -1,10 +1,13 @@
-package proj.hobby.dsa.collections;
+package proj.hobby.lld;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * Space: O(N+M)
+ * Time: O(FlogF) per getNewsFeed call
+ *       O(1) - postTweet/follow/unfollow
  *
  * https://leetcode.com/problems/design-twitter/
  */
@@ -21,7 +24,7 @@ public class Twitter {
     }
 
     public void postTweet(int userId, int tweetId) {
-        userFeed.computeIfAbsent(userId, x -> new ArrayList<>()).add(new int[]{orderId.incrementAndGet(), tweetId});
+        userFeed.computeIfAbsent(userId, _ -> new ArrayList<>()).add(new int[]{orderId.incrementAndGet(), tweetId});
     }
 
     public List<Integer> getNewsFeed(int userId) {
