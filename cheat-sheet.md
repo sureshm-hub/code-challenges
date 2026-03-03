@@ -837,6 +837,7 @@
         values used in the case labels must be compile-time constants not run time 
 
 ### Bitwise:
+    in java/python bits take up full int space
     left shift:
         1 << n -> left shift same as 2^n  or Math.pow(2, n)
         x << n is equivalent to x * 2^n
@@ -889,3 +890,20 @@
     #2  Functional interfaces + lambdas => Function, BiFunction, Predicate
     #3  Enhanced Collections API => Map.merge, computeIfAbsent, forEach, replaceAll
         Map.merge belongs to #3, powered by #2, but not #1.
+### Java 10 additions as three parallel upgrades:
+    * The var identifier in Java, introduced in Java 10, enables local variable type inference
+    * Local scope only + Strong typing: Once the type is inferred cannot be changed 
+```java
+int x = 5;	
+var x = 5;	// inferred type int	
+...
+String message = "Hello";	
+var message = "Hello";// inferred type 	String
+...
+List<String> list = new ArrayList<>();	
+var list = new ArrayList<String>();	// inferred type ArrayList<String> (implements List)
+...
+Map<String, List<Customer>> map = new HashMap<>();	
+var map = new HashMap<String, List<Customer>>(); // inferred type  HashMap<String, List<Customer>>
+```
+    
