@@ -3,6 +3,9 @@ package proj.hobby.dsa.math;
 /**
  *
  * https://leetcode.com/problems/super-pow/
+ *
+ * a ** (10x+d) ≡ (a ** x )** 10  * a ** d (mod 1337)
+ *
  */
 public class SuperPow {
 

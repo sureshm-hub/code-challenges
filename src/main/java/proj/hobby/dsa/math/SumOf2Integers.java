@@ -9,7 +9,7 @@ public class SumOf2Integers {
 
     public int getSum(int a, int b) {
 
-        int carry = 0, res = 0, mask = 0XFFFFFFFF;
+        int carry = 0, res = 0, mask = 0XFFFFFFFF; //mask for 32 bits
 
         for(int i =0; i < 32; i++) {
             int a_bit = (a >> i) & 1;

@@ -8,6 +8,8 @@ import java.util.List;
 /**
  *
  * https://leetcode.com/problems/largest-divisible-subset/
+ *
+ *  DP + predecessor-chain
  */
 public class LargestDivisibleSubset {
 
@@ -41,43 +43,6 @@ public class LargestDivisibleSubset {
         for(int k = bestEnd; k != -1; k = prev[k]) res.add(nums[k]);
         Collections.reverse(res);
         return res;
-
-        // List<List<Integer>> subs = new ArrayList<>();
-        // subset(nums, 0, subs);
-        // System.out.println(" >> "+subs);
-
-        // int max = 0, index = 0;
-        // for(int i  = 0; i < subs.size(); i++) {
-        //     if(subs.get(i).size() > max) {
-        //         max = subs.get(i).size();
-        //         index = i;
-        //     }
-        // }
-        // return subs.get(index);
     }
 
-//    private  void subset(int[] nums, int index, List<List<Integer>> subs) {
-//        if(index == nums.length) return;
-//
-//        int cur = nums[index];
-//
-//        List<List<Integer>> temp = new ArrayList<>();
-//        for(List<Integer> l : subs) {
-//            boolean allow = true;
-//            for(int i : l) {
-//                if (!( i % cur == 0 || cur % i == 0)) {
-//                    allow = false;
-//                    break;
-//                }
-//            }
-//            if(allow) {
-//                List<Integer> l2 = new ArrayList<>(l);
-//                l2.add(cur);
-//                temp.add(l2);
-//            }
-//        }
-//        subs.addAll(temp);
-//        subs.add(new ArrayList<>(List.of(cur)));
-//        subset(nums, index + 1, subs);
-//    }
 }
