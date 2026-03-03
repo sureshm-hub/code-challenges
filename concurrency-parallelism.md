@@ -107,6 +107,9 @@
   * Phases are numbered sequentially
 * Phasers support dynamic adjustment of the number of registered parties and phases
 
+## Exchanger:
+* 2-thread data swap
+
 ## Common Combination Patterns
 ### ThreadPoolExecutor + BlockingQueue + Semaphore
   * This pattern combines rate limiting with task execution. The semaphore limits concurrent external calls while the 
@@ -114,7 +117,6 @@
   * This combination lets you have many threads (for CPU work) while limiting how many call an external API 
     simultaneously.
 ```java
-
 public class RateLimitedProcessor {
     private final ExecutorService executor;
     private final Semaphore rateLimiter;
