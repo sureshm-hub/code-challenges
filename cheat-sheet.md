@@ -885,12 +885,22 @@
 
 ## Java Versions/Releases:
 
-### Java 8 additions as three parallel upgrades:
-    #1  Streams API => stream(), map, filter, collect
-    #2  Functional interfaces + lambdas => Function, BiFunction, Predicate
-    #3  Enhanced Collections API => Map.merge, computeIfAbsent, forEach, replaceAll
+### Java 8:
+  * Collection additions as three parallel upgrades
+    *  Streams API => stream(), map, filter, collect
+    *  Functional interfaces + lambdas => Function, BiFunction, Predicate
+    *  Enhanced Collections API => Map.merge, computeIfAbsent, forEach, replaceAll
         Map.merge belongs to #3, powered by #2, but not #1.
-### Java 10 additions as three parallel upgrades:
+  * "Function references", more commonly known as method references
+    * Reference to a static method: ClassName::staticMethodName (e.g., Person::compareByAge).
+    * Reference to an instance method of a particular object: instance::instanceMethodName 
+      (e.g., System.out::println).
+    * Reference to an instance method of an arbitrary object of a particular type: ClassName::instanceMethodName 
+      (e.g., String::toUpperCase).
+    * Reference to a constructor: ClassName::new (e.g., ArrayList::new)
+
+### Java 10:
+  * var 
     * The var identifier in Java, introduced in Java 10, enables local variable type inference
     * Local scope only + Strong typing: Once the type is inferred cannot be changed 
 ```java
@@ -907,3 +917,10 @@ Map<String, List<Customer>> map = new HashMap<>();
 var map = new HashMap<String, List<Customer>>(); // inferred type  HashMap<String, List<Customer>>
 ```
     
+### Java 14:
+  * record
+    * records are a special, concise form of class designed to create immutable data carriers with minimal 
+      boilerplate code
+    * Immutability: All fields are private, final
+    * A public constructor with the same signature as the state description, used to initialize the fields
+    * Accessor methods (e.g., name(), age()), toString(), equals() and hashCode()

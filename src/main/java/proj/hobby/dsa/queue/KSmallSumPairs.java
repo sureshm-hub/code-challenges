@@ -9,6 +9,8 @@ import java.util.PriorityQueue;
  *
  * https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/
  *
+ * solution technique: Implicit grid / matrix traversal with a heap
+ *
  */
 public class KSmallSumPairs {
 
