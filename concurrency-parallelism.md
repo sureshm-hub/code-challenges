@@ -1,11 +1,17 @@
-# Concurrency & Parallelism
+# Multithreading, Concurrency & Parallelism
 * java.util.concurrent package in Java is designed to support both concurrency and parallelism
+* Multithreading: Multithreading is a specific technique used to achieve concurrency in a single program. It involves 
+  creating multiple, independent units of execution (threads) within a single program that share the same resources, 
+  such as memory and I/O.
 * concurrency: interleaving multiple tasks, e.g., when one task is waiting on i/o another task can be  executed, so
   progress is made on multiple tasks
     *  ConcurrentHashMap and BlockingQueue
-* parallelism: is about executing multiple tasks at the same time, leveraging multiple CPU's to run code
-  simultaneously
+* parallelism: is about executing multiple tasks at the same time, leveraging multiple CPU's to run code simultaneously
     * ForkJoinPool and associated ForkJoinTask and RecursiveTask
+    * does not create new operating system processes; Uses a pool of worker threads within a single Java Virtual 
+      Machine (JVM) process
+* thread: A lightweight execution units within a single process sharing the resources of the  process
+* Process: An independent execution unit with it's own memory space
 
 ## java.util.concurrent package
 * Concurrent Collections: Instead of the basic Collections.synchronizedList wrapper with blocking access to the entire 
