@@ -30,6 +30,12 @@
   * Conditions
 * Synchronizers: auxiliary utilities for synchronizing threads.
   * Semaphores (control access to a shared resource using "limited number of permits" + acquire and release permits)
+    * there can be 0 or -ve permits, acquire() is blocked if 0 or -ve permits
+    * can release before acquiring
+    * can release multiple permits
+    * ### API:
+      * acquire() 
+      * release()
   * Consider using higher-level abstractions like ConcurrentHashMap and ConcurrentLinkedQueue for thread-safe data
     structures instead of manual synchronization with locks.
 * Executors: creating & managing thread pools, scheduling asynchronous tasks
@@ -104,6 +110,9 @@
   it allows waiting threads to proceed.
 * Unlike Phasers, CountdownLatch does not support dynamic adjustment of the count once initialized. Once the count 
   reaches zero, it remains at zero, and subsequent calls to countDown() have no effect.
+  * ### API:
+    * await()
+    * countDown()
 
 ## Phaser:
 * a synchronization barrier that allows threads to synchronize their execution in multiple phases.
@@ -178,6 +187,11 @@ public class MemoizingCache<K, V> {
 
 ### CyclicBarrier + ConcurrentHashMap (Phased Processing)
 * This pattern coordinates multiple workers that process data in phases, aggregating results between phases.
+  * ### API:
+    * await() is the only method often used 
+    * reset()
+    * getNumberWaiting()
+    * getParties()
 
 ### Dangerous Combinations to Avoid
 * Warning: Queues + Barriers can cause deadlock. When threads waiting at a barrier also wait on a blocking queue, you 

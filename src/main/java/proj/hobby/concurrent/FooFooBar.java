@@ -3,7 +3,8 @@ package proj.hobby.concurrent;
 import java.util.concurrent.*;
 
 /**
- *  A Twist on FooBar to print FooFooBar -  https://leetcode.com/problems/print-foobar-alternately/
+ *  A Twist on FooBar to print FooFooBar
+ *  https://leetcode.com/problems/print-foobar-alternately/
  *
  * Approach: Use Semaphore to synchronize Foo & Bar
  *
