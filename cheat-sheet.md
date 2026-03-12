@@ -44,7 +44,7 @@
   * Special Names 
     - Deque
     - HashSet
-    - Character.isAlphabet(c) //compiler failure use Character.isLetter(c)
+    - use Character.isLetter(c) //compiler failure for Character.isAlphabet(c) 
     - obj1.equals(obj2) //not obj1.equalsTo(...) or obj1.equalTo(...)
   * No Capitalize Names
     - str.substring()

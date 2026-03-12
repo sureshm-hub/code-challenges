@@ -95,6 +95,17 @@
   * FIFO for stealing: Get larger tasks that will generate more sub-tasks, reducing future stealing
 * ForkJoinPool.commonPool(): Java 8 introduced a shared pool for all Fork/Join operations
 
+## Callable:
+  Callable interface represents a task that returns a result and may throw a "checked exception" when executed by a  
+  service like an ExecutorService
+
+## Future:
+  ExecutorService accepts an asynchronous task (Runnable or Callable) and returns a Future 
+  Future is blocking when you call get()
+  Status Checking and Cancellation: Methods like isDone(), isCancelled(), and cancel()
+  **FutureTask:** A concrete class that implements both Future and Runnable
+  
+
 ## CompletableFuture:
 * powerful asynchronous programming model. It represents a future result of an asynchronous computation, providing a 
   flexible and expressive way to compose, combine, and execute asynchronous tasks.
@@ -102,7 +113,12 @@
     * CompletableFuture.completedFuture()
     * CompletableFuture.supplyAsync()
     * CompletableFuture.runAsync().
-* fluent API for chaining: thenApply(), thenAccept(), thenRun(), thenCompose(), and thenCombine().
+* fluent API for chaining: thenApply(), thenAccept(), thenRun(), thenCompose(), and thenCombine(). 
+  // these are non-blocking allowing main thread to continue
+* manual completion:
+  * complete() 
+  * completeExceptionally()
+* Provides methods like orTimeout() and completeOnTimeout() for graceful timeout management.
 
 ## CountdownLatch:
 * CountdownLatch is a synchronization
