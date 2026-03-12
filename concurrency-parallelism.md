@@ -18,7 +18,12 @@
   collection, locks are used on data segments or lock-free (CAS)
   * ConcurrentHashMap: high-performance concurrent thread-safe access  without blocking
     * partitioning the hash table into **segments (pre - java 8)**, each guarded by a separate lock
-    * **Node-based Locking with CAS (java 8)** with fine-grained lock
+    * **Node-based Locking with CAS (java 8)** and fine-grained lock
+    * Non-Blocking Reads: Retrieval operations, such as get()
+    * Atomic Operations:  putIfAbsent(), compute(), merge(), and replace()
+    * Weakly Consistent Iterators: Iterators on a ConcurrentHashMap are "weakly consistent". This means they reflect 
+      the state of the map at the time the iterator was created and may or may not reflect modifications that occur  
+      after the iterator is created, but they are guaranteed not to throw a ConcurrentModificationException
   * CopyOnWriteArrayList: ideal for mostly read-only or where concurrent modifications are infrequent.
 * Queues: non-blocking (for speed and operation without blocking threads) and blocking queues (“slow down” the 
   “Producer” or “Consumer” threads if some conditions are not met)
