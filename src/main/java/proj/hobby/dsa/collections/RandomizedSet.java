@@ -26,6 +26,7 @@ public class RandomizedSet {
         return true;
     }
 
+    // list.remove() is O(N) so we swap with last index to keep the amortization at O(1)
     public boolean remove(int val) {
         if(!map.containsKey(val)) return false;
 
