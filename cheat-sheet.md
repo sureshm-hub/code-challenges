@@ -1,15 +1,25 @@
-# General Framework for Solving Coding Problems in an Interview:
+# Guidelines for Solving Coding Problems in an Interview:
 
-## Mnemonic: CE-BICRE-F
-- Clarify - Show you're thoughtful and avoid assumptions.
-- Example - Show you're grounded and "build" intuition.
-- Basic/Brute Force - Shows your thought process is transparent and structured (Outline clearly)
-  * Implement (if needed) - Shows communication + coding skills/Shows you're ready to move incrementally
-  * Complexity - Helps you decide correctness & scope for optimization
-- Optimize & Refine - Shows problem-solving depth.
-  * Write clean, functional code in your chosen language.
-  * Edge Cases - Shows thoroughness and reliability.
-- Follow-Ups / Improvements - Shows flexibility and seniority.
+## Clarification & Examples - Algorithm, Approach - API - Coding - Testing - Optimize & Refine
+- Clarification and Examples 
+  - Discuss the problem description with the interviewer, asking clarifying 
+    questions about inputs, outputs, edge cases, and constraints
+  - Work through a small example to confirm mutual understanding of the 
+    problem.
+- Algorithm and High Level Approach
+  - Outline the high-level plan or algorithm to solve it
+  - Discuss the time and space complexity
+- API Design (Function Signature): 
+  - Define the function signature (name, parameters, return type) as part 
+    of the implementation plan, ensuring it aligns with the examples discussed
+- Coding: 
+  - Implement the algorithm using the agreed-upon API
+- Testing: 
+  - Use the initial examples and edge cases to test the written code and 
+    verify its correctness
+- Optimize & Refine
+  - Edge Cases, further refinement of the solution
+  - This iterative process is similar to test-driven development principles
 
 ## Guidelines to get program right on first run:
 - avoid java compilation errors
