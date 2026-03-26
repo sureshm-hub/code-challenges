@@ -364,7 +364,7 @@ Runnable worker = () -> {
 };
 ```
 
-* References:
+## References:
   * https://medium.com/@alxkm/unlocking-concurrent-power-a-guide-to-java-util-concurrent-pt-1-b1342edadad1
   * https://medium.com/@alxkm/unlocking-concurrent-power-a-guide-to-java-util-concurrent-pt-2-056f1da1e74a
   * https://algomaster.io/learn/concurrency-interview/java-util-concurrent-package-tour
