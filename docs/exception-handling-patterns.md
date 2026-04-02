@@ -1,29 +1,35 @@
 # Patterns for Exception Handling
 
-1. Exception Wrapper Pattern
-How: All exceptions thrown by methods in a peculiar package should be wrapped into peculiar exceptions.
-When: This pattern is very useful if the code is to be shipped in the form of Java libraries
-Why: Re-throwing exceptions will show implementation details to the client, which should be hidden.
+1. Exception Wrapper Patterns
+How: All exceptions thrown by methods in a peculiar package should be wrapped 
+into peculiar exceptions.
+When: This pattern is very useful if the code is to be shipped in the form of 
+Java libraries
+Why: Re-throwing exceptions will show implementation details to the client, 
+which should be hidden.
 
-2. Fault Barrier Pattern
+2. Fault Barrier Patterns
 * Faults are non-recoverable errors to be handled with unchecked exceptions.
 * Contingencies are recoverable errors to be handled with checked exceptions.
 
-How: “In the fault barrier pattern, any application component can throw a fault exception, but only the component 
-acting as the ‘fault barrier’ catches them.” Source. The fault barrier component should record the information 
-contained in the fault exception for future action (logging) and close out the operation in a controlled manner.
+How: “In the fault barrier pattern, any application component can throw a 
+fault exception, but only the component acting as the ‘fault barrier’ catches 
+them.” Source. The fault barrier component should record the information 
+contained in the fault exception for future action (logging) and close out the 
+operation in a controlled manner.
 
-3. Exception Bouncer Pattern
-* This pattern should also be called the “Validator Pattern”. It is a way of implementing the beans validations using 
-exceptions, which is the best way of doing it, in my opinion.
+3. Exception Bouncer Patterns
+* This pattern should also be called the “Validator Pattern”. It is a way of
+implementing the beans validations using exceptions, which is the best way of
+doing it, in my opinion.
 
-How: It defines methods that just throw exceptions based on validations.
-When: It can be used in any application that needs input validation.
+* How: It defines methods that just throw exceptions based on validations.
+* When: It can be used in any application that needs input validation.
 
-4. Error Code Pattern
-
-How: It gives a specific code number for each checked exception.
-When: It can be used in any Java project that uses checked exceptions as business errors.
+4. Error Code Patterns
+* How: It gives a specific code number for each checked exception.
+* When: It can be used in any Java project that uses checked exceptions as 
+business errors.
 
 https://gaetanopiazzolla.github.io/java/2023/03/05/java-exception-patterns.html
 

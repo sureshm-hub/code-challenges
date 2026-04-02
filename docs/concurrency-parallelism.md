@@ -340,12 +340,18 @@ public class MemoizingCache<K, V> {
 ```
 
 ### CyclicBarrier + ConcurrentHashMap (Phased Processing)
-* This pattern coordinates multiple workers that process data in phases, aggregating results between phases.
+* This pattern coordinates multiple workers that process data in phases, 
+  aggregating results between phases.
   * ### API:
     * await() is the only method often used 
     * reset()
     * getNumberWaiting()
     * getParties()
+* Threads call await() when they reach the barrier. The barrier trips (releases
+  all waiting threads) only when the specified number of parties (threads) have 
+  called await()
+* Unlike a CountDownLatch, a CyclicBarrier can be reused immediately after all 
+  threads are released, making it ideal for iterative algorithms
 
 ### Dangerous Combinations to Avoid
 * Warning: Queues + Barriers can cause deadlock. When threads waiting at a barrier also wait on a blocking queue, you 

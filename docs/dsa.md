@@ -333,7 +333,7 @@
             3) Swap in and out
         * Result: out always has the newest element in front => stack top.
 
-## Add Parenthesis:
+### Add Parenthesis:
     - tag: divide‑and‑conquer pattern: “choose a split point, recurse on left and right, combine” 
 
 ## Technique Guidelines
