@@ -145,6 +145,19 @@ BlockingQueue <|-- PriorityBlockingQueue
       Machine (JVM) process
 * thread: A lightweight execution units within a single process sharing the resources of the  process
 * Process: An independent execution unit with it's own memory space
+* common multithreading patterns:
+  * shutdown vs awaitTermination
+    * pool.shutdown();// stops accepting new tasks
+    * pool.awaitTermination(10, TimeUnit.SECONDS); // blocks until all submitted tasks finish
+  * invoke() // synchronous or blocking call
+  * invokeAll(task1, task2) // runs multiple tasks in parallel
+  * submit() // returns a Future Async
+  * execute() // for runnable like actions
+  * task() // returns a result object ex: RecursiveTask<V>
+  * action() // for tasks without return values
+  * put/take for BlockingQueue
+
+
 
 ## java.util.concurrent package
 * Concurrent Collections: Instead of the basic Collections.synchronizedList wrapper with blocking access to the entire 
@@ -232,6 +245,10 @@ BlockingQueue <|-- PriorityBlockingQueue
   * LIFO for own work: Better cache locality, work on most recently created (smaller) tasks
   * FIFO for stealing: Get larger tasks that will generate more sub-tasks, reducing future stealing
 * ForkJoinPool.commonPool(): Java 8 introduced a shared pool for all Fork/Join operations
+* ForkJoinPool.commonPool() is the JVM’s shared fork/join executor for lightweight parallel tasks, 
+  while a custom ForkJoinPool is better when I need workload isolation, custom parallelism, or 
+  predictable performance.
+* When to use commonPool(): shared, short-lived, short-lived, Do Not need isolation
 
 ## Callable:
   Callable interface represents a task that returns a result and may throw a "checked exception" when executed by a  
@@ -371,6 +388,7 @@ Runnable worker = () -> {
 ```
 
 ## References:
+  * https://chatgpt.com/c/67d10755-aad8-800b-b841-622913b3688c
   * https://medium.com/@alxkm/unlocking-concurrent-power-a-guide-to-java-util-concurrent-pt-1-b1342edadad1
   * https://medium.com/@alxkm/unlocking-concurrent-power-a-guide-to-java-util-concurrent-pt-2-056f1da1e74a
   * https://algomaster.io/learn/concurrency-interview/java-util-concurrent-package-tour
